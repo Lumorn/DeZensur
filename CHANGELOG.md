@@ -262,3 +262,10 @@ Alle Änderungen werden in diesem Dokument festgehalten.
   Versionen ohne Codeanpassung.
 ### Hinzugefügt
 - Stub ``list_repo_files`` und aktualisierte Tests.
+
+## [1.4.28] – 2025-08-16
+### Hinzugefügt
+- ``start.py`` prüft jetzt die installierte Node-Version und bricht bei Version
+  unter 18 mit einer Fehlermeldung ab.
+### Geändert
+- README erwähnt die Mindestanforderung für Node.js.

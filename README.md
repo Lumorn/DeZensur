@@ -64,8 +64,8 @@ DeZensur/
 
 ## Schnellstart
 
-Voraussetzung ist eine installierte **Node.js**-Umgebung (inkl. `npm`),
-da die GUI auf Electron basiert.
+Voraussetzung ist eine installierte **Node.js**-Umgebung (inkl. `npm`)
+ab Version **18**, da die GUI auf Electron basiert.
 
 ```bash
 # 1. Repo klonen (alternativ nur start.py herunterladen)
@@ -131,6 +131,8 @@ Ab Version 1.4.26 heißt die bereitgestellte Gewichtsdatei `model.safetensors`. 
 Seit Version 1.4.27 erkennt der Downloader automatisch den neuesten Unterordner
 von `anime_censor_detection` (z.B. `censor_detect_v0.9_s/model.onnx`). Damit
 funktioniert der Download auch bei zukünftigen Updates ohne Anpassungen.
+Ab Version 1.4.28 prüft `start.py` die installierte Node-Version und verlangt
+mindestens Version 18.
 
 ## Automatische Zensur-Erkennung (Modul 3)
 
