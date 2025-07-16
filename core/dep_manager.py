@@ -31,7 +31,8 @@ MODEL_REGISTRY: dict[str, dict[str, str | list[str] | None]] = {
         "device": "cpu",
     },
     "sam_vit_hq": {
-        "repo": "SysCV/sam-hq",
+        # Repository in Kleinschreibung, um 401-Fehler zu vermeiden
+        "repo": "syscv/sam-hq",
         "filename": "sam_vit_hq.pth",
         "sha256": None,
         "device": "gpu",
@@ -189,12 +190,18 @@ def download_model(name: str, progress: bool = True) -> Path:
             raise RuntimeError(
                 f"Download für {name} fehlgeschlagen: {exc}"
             ) from exc
-        onnx_files = list(Path(snap).rglob("*.onnx"))
-        if not onnx_files:
+
+        found: Path | None = None
+        for cand in candidates:
+            matches = list(Path(snap).rglob(cand))
+            if matches:
+                found = matches[0]
+                break
+        if not found:
             raise RuntimeError(
-                f"Im Snapshot von {repo} wurde keine ONNX-Datei gefunden"
+                f"Im Snapshot von {repo} wurde keine der Dateien {candidates} gefunden"
             )
-        shutil.copy(onnx_files[0], dest)
+        shutil.copy(found, dest)
 
     sha256 = info.get("sha256")
     if sha256 and not verify_checksum(dest, sha256):

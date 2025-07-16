@@ -224,3 +224,11 @@ Alle Änderungen werden in diesem Dokument festgehalten.
   bekannten Dateinamen einen 404-Fehler liefern.
 ### Geändert
 - README erläutert den neuen Snapshot-Fallback.
+
+## [1.4.23] – 2025-08-11
+### Behoben
+- Snapshot-Fallback durchsucht nun alle bekannten Dateinamen und findet so auch
+  ``.pth``-Modelle wie ``sam_vit_hq``.
+### Geändert
+- README weist auf die erweiterte Suche hin und das SAM-HQ-Repository wird in
+  Kleinschreibung referenziert.
