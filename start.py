@@ -160,12 +160,15 @@ def main() -> None:
     python_bin = venv_path / ("Scripts" if os.name == "nt" else "bin") / "python"
 
     # Wenn dieses Skript nicht mit dem venv-Python ausgeführt wird,
-    # starten wir uns selbst erneut. Unter Windows führt ein
-    # ``os.execv`` jedoch gelegentlich zu ``OSError: [Errno 12] Not enough space``.
-    # Daher erzeugen wir dort einen neuen Prozess und beenden uns.
-    if Path(sys.executable).resolve() != python_bin.resolve():
+    # starten wir uns selbst erneut. Um eine Neustart-Schleife zu vermeiden,
+    # setzen wir eine Umgebungsvariable.
+    if (
+        Path(sys.executable).resolve() != python_bin.resolve()
+        and not os.environ.get("DEZENSUR_VENV")
+    ):
+        os.environ["DEZENSUR_VENV"] = "1"
         if os.name == "nt":
-            subprocess.check_call([str(python_bin), __file__] + sys.argv[1:])
+            subprocess.check_call([str(python_bin), __file__] + sys.argv[1:], env=os.environ)
             sys.exit(0)
         else:
             os.execv(str(python_bin), [str(python_bin), __file__] + sys.argv[1:])
