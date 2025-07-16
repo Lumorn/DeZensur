@@ -1,4 +1,8 @@
-"""Bootstrap-Skript zum Starten der Anwendung."""
+"""Bootstrap-Skript zum Starten der Anwendung.
+
+Wird dieses Skript allein heruntergeladen, kann es das Repository selbst
+herunterladen und danach wie gewohnt starten.
+"""
 
 import os
 import subprocess
@@ -7,18 +11,47 @@ import tkinter as tk
 from pathlib import Path
 from tkinter import messagebox
 
-# Sicherstellen, dass das Projektverzeichnis im Modulpfad liegt
 project_root = Path(__file__).resolve().parent
+
+
+def run(cmd: list[str], **kwargs) -> None:
+    """Hilfsfunktion zum Ausführen eines Befehls."""
+    subprocess.run(cmd, check=True, **kwargs)
+
+
+def ensure_repo() -> None:
+    """Klonen des Git-Repositories, falls die Dateien fehlen."""
+
+    if (project_root / "core").exists():
+        return
+
+    repo_url = "https://github.com/Lumorn/DeZensur.git"
+
+    try:
+        if not (project_root / ".git").exists():
+            # Leeres Git-Repo anlegen und Remote setzen
+            run(["git", "init"], cwd=project_root)
+            run(["git", "remote", "add", "origin", repo_url], cwd=project_root)
+        run(["git", "fetch", "origin"], cwd=project_root)
+        run(["git", "reset", "--hard", "origin/main"], cwd=project_root)
+    except Exception as exc:
+        tk.Tk().withdraw()
+        messagebox.showerror("Fehler", f"Repository konnte nicht geklont werden: {exc}")
+        sys.exit(1)
+
+    # Nach erfolgreichem Klonen Skript neu starten
+    os.execv(sys.executable, [sys.executable, __file__] + sys.argv[1:])
+
+
+# Erst sicherstellen, dass das Repo vorhanden ist
+ensure_repo()
+
+# Projektverzeichnis dem Modulpfad hinzufügen
 if str(project_root) not in sys.path:
     sys.path.insert(0, str(project_root))
 
 from core import censor_detector  # ONNX-Session vorwärmen
 from core.dep_manager import ensure_model
-
-
-def run(cmd: list[str]) -> None:
-    """Hilfsfunktion zum Ausführen eines Befehls."""
-    subprocess.run(cmd, check=True)
 
 
 def main() -> None:

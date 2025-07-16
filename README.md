@@ -65,7 +65,7 @@ DeZensur/
 ## Schnellstart
 
 ```bash
-# 1. Repo klonen
+# 1. Repo klonen (alternativ nur start.py herunterladen)
 git clone https://github.com/<EuerRepo>/DeZensur.git
 cd DeZensur
 
@@ -82,6 +82,9 @@ wird automatisch `npm install` in `gui/` ausgeführt. Danach öffnet sich die GU
 Ab Version 1.4.1 setzt `start.py` sein Verzeichnis automatisch auf den
 `PYTHONPATH`. Dadurch funktioniert der Import des Pakets `core` auch dann,
 wenn das Skript von einem anderen Arbeitsverzeichnis aus aufgerufen wird.
+
+Seit Version 1.4.2 kann `start.py` zudem das komplette Repository
+selbstständig klonen, wenn nur diese Datei vorhanden ist.
 
 ## Automatischer Modell-Download
 
