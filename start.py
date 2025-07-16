@@ -96,14 +96,32 @@ def update_repo() -> None:
 
 
 def check_npm() -> None:
-    """Prueft, ob npm verfuegbar ist."""
-    if shutil.which("npm") is None:
+    """Prüft, ob npm und eine ausreichende Node-Version verfügbar sind."""
+
+    # Erst sicherstellen, dass sowohl npm als auch node im Pfad liegen
+    if shutil.which("npm") is None or shutil.which("node") is None:
         msg = "Node.js bzw. npm wurde nicht gefunden. Bitte erst installieren."
-        # Hinweis auch im Terminal ausgeben
         print(msg)
         tk.Tk().withdraw()
         messagebox.showerror("Fehler", msg)
         sys.exit(1)
+
+    # Node-Version abfragen und auf Mindestversion 18 prüfen
+    try:
+        proc = subprocess.run(
+            ["node", "--version"], capture_output=True, text=True, check=True
+        )
+        version = proc.stdout.strip().lstrip("v")
+        major = int(version.split(".")[0])
+        if major < 18:
+            msg = f"Node.js Version {version} ist zu alt (>=18 benötigt)."
+            print(msg)
+            tk.Tk().withdraw()
+            messagebox.showerror("Fehler", msg)
+            sys.exit(1)
+    except Exception:  # pragma: no cover - unerwartete Fehler ignorieren
+        pass
+
 
 def ensure_repo() -> None:
     """Klonen des Git-Repositories, falls die Dateien fehlen."""
@@ -162,13 +180,14 @@ def main() -> None:
     # Wenn dieses Skript nicht mit dem venv-Python ausgeführt wird,
     # starten wir uns selbst erneut. Um eine Neustart-Schleife zu vermeiden,
     # setzen wir eine Umgebungsvariable.
-    if (
-        Path(sys.executable).resolve() != python_bin.resolve()
-        and not os.environ.get("DEZENSUR_VENV")
+    if Path(sys.executable).resolve() != python_bin.resolve() and not os.environ.get(
+        "DEZENSUR_VENV"
     ):
         os.environ["DEZENSUR_VENV"] = "1"
         if os.name == "nt":
-            subprocess.check_call([str(python_bin), __file__] + sys.argv[1:], env=os.environ)
+            subprocess.check_call(
+                [str(python_bin), __file__] + sys.argv[1:], env=os.environ
+            )
             sys.exit(0)
         else:
             os.execv(str(python_bin), [str(python_bin), __file__] + sys.argv[1:])
