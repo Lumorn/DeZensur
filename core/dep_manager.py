@@ -130,6 +130,7 @@ def download_model(name: str, progress: bool = True) -> Path:
     info = MODEL_REGISTRY[name]
     repo = info["repo"]
     filename = info["filename"]
+    token = os.environ.get("HUGGINGFACE_HUB_TOKEN") or os.environ.get("HF_TOKEN")
     alternatives = info.get("alternatives", []) or []
     models_dir = MODELS_DIR / name
     models_dir.mkdir(parents=True, exist_ok=True)
@@ -164,6 +165,7 @@ def download_model(name: str, progress: bool = True) -> Path:
                         cache_dir=models_dir,
                         resume_download=True,
                         progress_bar=False,
+                        token=token,
                     )
                 except TypeError:
                     # Ältere huggingface_hub-Versionen kennen das Argument
@@ -173,6 +175,7 @@ def download_model(name: str, progress: bool = True) -> Path:
                         filename=fname,
                         cache_dir=models_dir,
                         resume_download=True,
+                        token=token,
                     )
                 shutil.copy(Path(path), dest)
             break
@@ -185,7 +188,7 @@ def download_model(name: str, progress: bool = True) -> Path:
             "Keiner der bekannten Dateinamen funktionierte, versuche Snapshot"
         )
         try:
-            snap = snapshot_download(repo_id=repo, cache_dir=models_dir)
+            snap = snapshot_download(repo_id=repo, cache_dir=models_dir, token=token)
         except Exception as exc:  # pragma: no cover - reiner Fehlerpfad
             raise RuntimeError(
                 f"Download für {name} fehlgeschlagen: {exc}"

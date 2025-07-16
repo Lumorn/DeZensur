@@ -12,7 +12,11 @@ import types
 sys.modules['requests'] = requests_stub
 torch_stub = types.SimpleNamespace(cuda=types.SimpleNamespace(is_available=lambda: False))
 sys.modules['torch'] = torch_stub
-hub_stub = types.SimpleNamespace(hf_hub_download=lambda *a, **k: None, hf_hub_url=lambda *a, **k: "")
+hub_stub = types.SimpleNamespace(
+    hf_hub_download=lambda *a, **k: None,
+    hf_hub_url=lambda *a, **k: "",
+    snapshot_download=lambda *a, **k: None,
+)
 sys.modules['huggingface_hub'] = hub_stub
 tqdm_stub = types.SimpleNamespace(tqdm=lambda *a, **k: types.SimpleNamespace(update=lambda n=None: None, close=lambda: None))
 sys.modules['tqdm'] = tqdm_stub
@@ -92,7 +96,7 @@ def test_snapshot_fallback(monkeypatch, tmp_path: Path) -> None:
     )
 
     # Snapshot enthält die erwartete Datei
-    def fake_snapshot(repo_id: str, cache_dir: Path) -> str:
+    def fake_snapshot(repo_id: str, cache_dir: Path, **kwargs) -> str:
         snap = tmp_path / "snap"
         snap.mkdir()
         f = snap / "sam_vit_hq.pth"
@@ -104,4 +108,32 @@ def test_snapshot_fallback(monkeypatch, tmp_path: Path) -> None:
 
     p = dep_manager.download_model("sam_vit_hq", progress=False)
     assert p.exists()
+
+
+def test_download_with_token(monkeypatch, tmp_path: Path) -> None:
+    """Stellt sicher, dass ein gesetztes Token an Hugging Face übergeben wird."""
+
+    class FakeHead:
+        ok = True
+        status_code = 200
+        headers = {"content-length": "1"}
+
+    monkeypatch.setattr(dep_manager.requests, "head", lambda *a, **k: FakeHead())
+
+    captured = {}
+
+    def fake_hub_download(**kwargs) -> str:
+        captured["token"] = kwargs.get("token")
+        dest = tmp_path / "m.pth"
+        dest.parent.mkdir(parents=True, exist_ok=True)
+        dest.write_text("x")
+        return str(dest)
+
+    monkeypatch.setattr(dep_manager, "hf_hub_download", fake_hub_download)
+    monkeypatch.setattr(dep_manager, "MODELS_DIR", tmp_path)
+    monkeypatch.setenv("HUGGINGFACE_HUB_TOKEN", "secret")
+
+    p = dep_manager.download_model("sam_vit_hq", progress=False)
+    assert p.exists()
+    assert captured["token"] == "secret"
 
