@@ -127,6 +127,7 @@ Ab Version 1.4.24 kann optional ein Zugangstoken
 über die Umgebungsvariable ``HUGGINGFACE_HUB_TOKEN`` gesetzt werden,
 um private oder nur für angemeldete Nutzer freigegebene Modelle herunterladen zu können.
 Seit Version 1.4.25 wird das HQ-SAM-Modell aus dem Repository `syscv-community/sam-hq-vit-base` geladen. Der frühere Dateiname `sam_vit_hq.pth` bleibt als Fallback erhalten.
+Ab Version 1.4.26 heißt die bereitgestellte Gewichtsdatei `model.safetensors`. Die alten Dateinamen werden weiterhin als Ersatz akzeptiert.
 
 ## Automatische Zensur-Erkennung (Modul 3)
 

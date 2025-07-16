@@ -247,3 +247,10 @@ Alle Änderungen werden in diesem Dokument festgehalten.
   erhalten.
 ### Geändert
 - README vermerkt den neuen Modellpfad.
+
+## [1.4.26] – 2025-08-14
+### Behoben
+- Das HQ-SAM-Modell nutzt nun die Datei ``model.safetensors``. ``sam_hq_vit_b.pth``
+  und ``sam_vit_hq.pth`` bleiben als Fallback erhalten.
+### Geändert
+- README weist auf den neuen Dateinamen hin.
