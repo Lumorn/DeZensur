@@ -20,8 +20,29 @@ def run(cmd: list[str], **kwargs) -> None:
     subprocess.run(cmd, check=True, **kwargs)
 
 
+def ensure_clean_worktree() -> bool:
+    """Prüft, ob noch nicht commitete Änderungen vorliegen."""
+    try:
+        status = subprocess.check_output(
+            ["git", "status", "--porcelain"], cwd=project_root, text=True
+        ).strip()
+    except subprocess.CalledProcessError as exc:
+        print(f"Git-Status konnte nicht abgefragt werden: {exc}")
+        return True
+    if status:
+        tk.Tk().withdraw()
+        messagebox.showwarning(
+            "Uncommittete Änderungen",
+            "Bitte committe oder stash deine Änderungen, bevor ein Pull erfolgt.",
+        )
+        return False
+    return True
+
+
 def update_repo() -> None:
     """Prüft, ob das Git-Repository aktuell ist und aktualisiert es falls nötig."""
+    if not ensure_clean_worktree():
+        return
     try:
         run(["git", "fetch", "origin"], cwd=project_root)
         local_sha = subprocess.check_output(
@@ -34,7 +55,9 @@ def update_repo() -> None:
             run(["git", "pull", "origin", "main"], cwd=project_root)
     except subprocess.CalledProcessError as exc:
         # Fehler ausgeben, aber fortfahren, damit das Terminal offen bleibt.
-        print(f"Git-Aktualisierung fehlgeschlagen: {exc}\nBitte Branch-Tracking einrichten.")
+        print(
+            f"Git-Aktualisierung fehlgeschlagen: {exc}\nBitte Branch-Tracking einrichten."
+        )
 
 
 def check_npm() -> None:

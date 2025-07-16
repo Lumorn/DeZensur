@@ -165,3 +165,9 @@ Alle Änderungen werden in diesem Dokument festgehalten.
   ``OSError: [Errno 12] Not enough space``. Das Skript nutzt dort nun
   ``subprocess`` und beendet sich anschließend.
 - Hinweis in der README ergänzt.
+
+## [1.4.13] – 2025-08-04
+### Geändert
+- `start.py` überprüft jetzt, ob uncommittete Änderungen vorhanden sind und
+  warnt den Benutzer. Bei Änderungen wird kein automatisches `git pull`
+  ausgeführt.

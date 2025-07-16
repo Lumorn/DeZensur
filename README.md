@@ -101,6 +101,9 @@ Pakete sofort nutzbar und Importfehler werden vermieden.
 Ab Version 1.4.12 wird unter Windows kein ``os.execv`` mehr verwendet,
 da dies dort zu ``OSError: [Errno 12] Not enough space`` führte. Stattdessen
 startet ein neuer Prozess und das Skript beendet sich anschließend.
+Seit Version 1.4.13 prüft `start.py` zudem, ob ungesicherte Änderungen im
+Repository vorliegen. Ist dies der Fall, wird ein Hinweis angezeigt und der
+automatische `git pull` übersprungen.
 
 ## Automatischer Modell-Download
 
