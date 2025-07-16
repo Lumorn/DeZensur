@@ -200,6 +200,7 @@ Projektordner gespeichert.
 2. Code-Style: **black + isort**
 3. Commit-Muster: `feat:`, `fix:`, `docs:` usw. (Conventional Commits)
 4. Jeder PR benötigt einen Testfall in `tests/`
+5. Die GitHub-Action prüft Formatierung (black, isort, flake8) und startet alle Tests
 
 ---
 
