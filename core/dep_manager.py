@@ -20,10 +20,13 @@ logger = logging.getLogger(__name__)
 MODELS_DIR = Path("models")
 
 # Registry mit bekannten Modellen und Metadaten
-MODEL_REGISTRY: dict[str, dict[str, str | None]] = {
+# "alternatives" listet alternative Dateinamen auf, falls der Hauptname nicht
+# mehr vorhanden ist.
+MODEL_REGISTRY: dict[str, dict[str, str | list[str] | None]] = {
     "anime_censor_detection": {
         "repo": "deepghs/anime_censor_detection",
         "filename": "censor_detect_v0.7_s.onnx",
+        "alternatives": ["censor_detect_v0.7.onnx"],
         "sha256": None,
         "device": "cpu",
     },
@@ -126,40 +129,58 @@ def download_model(name: str, progress: bool = True) -> Path:
     info = MODEL_REGISTRY[name]
     repo = info["repo"]
     filename = info["filename"]
+    alternatives = info.get("alternatives", []) or []
     models_dir = MODELS_DIR / name
     models_dir.mkdir(parents=True, exist_ok=True)
     dest = models_dir / filename
 
-    url = hf_hub_url(repo, filename)
-    size = 0
-    try:
-        head = requests.head(url, allow_redirects=True, timeout=10)
-        if head.ok and head.headers.get("content-length"):
-            size = int(head.headers["content-length"])
-    except Exception as exc:  # pragma: no cover - reine Warnung
-        logger.warning("Konnte Dateigröße nicht bestimmen: %s", exc)
-
-    if size > 500 * 1024 * 1024:
-        _parallel_download(url, dest, size, progress)
-    else:
+    candidates = [filename, *alternatives]
+    last_exc: Exception | None = None
+    for fname in candidates:
+        url = hf_hub_url(repo, fname)
+        size = 0
+        status = None
         try:
-            path = hf_hub_download(
-                repo_id=repo,
-                filename=filename,
-                cache_dir=models_dir,
-                resume_download=True,
-                progress_bar=False,
-            )
-        except TypeError:
-            # Ältere huggingface_hub-Versionen kennen das Argument
-            # ``progress_bar`` nicht.
-            path = hf_hub_download(
-                repo_id=repo,
-                filename=filename,
-                cache_dir=models_dir,
-                resume_download=True,
-            )
-        shutil.copy(Path(path), dest)
+            head = requests.head(url, allow_redirects=True, timeout=10)
+            status = head.status_code
+            if head.ok and head.headers.get("content-length"):
+                size = int(head.headers["content-length"])
+            if not head.ok:
+                raise requests.HTTPError(f"HTTP {head.status_code}")
+        except Exception as exc:  # pragma: no cover - reine Warnung
+            last_exc = exc
+            logger.warning("Konnte Dateigröße nicht bestimmen: %s", exc)
+            if status == 404:
+                continue
+        try:
+            if size > 500 * 1024 * 1024:
+                _parallel_download(url, dest, size, progress)
+            else:
+                try:
+                    path = hf_hub_download(
+                        repo_id=repo,
+                        filename=fname,
+                        cache_dir=models_dir,
+                        resume_download=True,
+                        progress_bar=False,
+                    )
+                except TypeError:
+                    # Ältere huggingface_hub-Versionen kennen das Argument
+                    # ``progress_bar`` nicht.
+                    path = hf_hub_download(
+                        repo_id=repo,
+                        filename=fname,
+                        cache_dir=models_dir,
+                        resume_download=True,
+                    )
+                shutil.copy(Path(path), dest)
+            break
+        except Exception as exc:
+            last_exc = exc
+            logger.warning("Download von %s fehlgeschlagen: %s", fname, exc)
+            continue
+    else:
+        raise RuntimeError(f"Download für {name} fehlgeschlagen: {last_exc}")
 
     sha256 = info.get("sha256")
     if sha256 and not verify_checksum(dest, sha256):
