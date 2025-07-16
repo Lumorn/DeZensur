@@ -198,6 +198,12 @@ Einen Report kann man auch nachträglich erstellen:
 python -m core.report Projekte/Manga03.dezproj <batch_id>
 ```
 
+Alternativ erlaubt das Skript `generate_report.py` einen frei wählbaren Zielpfad:
+
+```bash
+python generate_report.py Projekte/Manga03.dezproj <batch_id> --report Auswertung/report.json
+```
+
 Beispiel für einen JSON-Eintrag:
 
 ```json

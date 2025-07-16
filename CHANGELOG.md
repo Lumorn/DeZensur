@@ -187,3 +187,8 @@ Alle Änderungen werden in diesem Dokument festgehalten.
 ### Geändert
 - Fehlt das Paket `rich`, gibt `start.py` nun einen Hinweis aus und führt den
   Befehl ohne Fortschrittsanzeige aus.
+
+## [1.4.17] – 2025-08-06
+### Hinzugefügt
+- Neues Skript `generate_report.py`, das die CLI `python -m core.report` aufruft
+  und einen Zielpfad für den Report entgegen nimmt.
