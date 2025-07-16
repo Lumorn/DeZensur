@@ -71,10 +71,30 @@ cd DeZensur
 # 2. Erststart (erstellt venv, installiert Requirements, zieht Updates)
 python start.py
 ````
+Mit `python start.py --dev` startet die Oberfläche im Entwicklungsmodus.
 
 Das Skript führt zuerst `git pull` aus, aktualisiert also euer Repository und
 installiert anschließend alle Abhängigkeiten. Beim ersten Durchlauf lädt das
 Tool alle benötigten Modelle in `models/`. Danach öffnet sich die GUI.
+
+---
+
+## Projektordnerstruktur & GUI
+
+Beim Anlegen eines Projektes wird eine Ordnerstruktur erzeugt:
+
+```
+<Projektname>/
+├─ originals/   # importierte Bilder
+├─ masks/       # Masken
+├─ processed/   # Ergebnisse
+└─ logs/        # Protokolle
+```
+
+Die GUI erlaubt das Importieren einzelner Bilder oder ganzer Ordner. Alle
+Bilder werden in `originals/` kopiert und in der Galerie als Thumbnails
+angezeigt. Einstellungen und Bildstatus werden in einer `.dezproj`-Datei im
+Projektordner gespeichert.
 
 ---
 

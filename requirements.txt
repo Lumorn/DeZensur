@@ -6,3 +6,5 @@ opencv-python
 pillow
 tqdm
 huggingface-hub
+flask
+requests

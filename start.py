@@ -28,8 +28,17 @@ def main() -> None:
     # Repository aktualisieren
     run(["git", "pull"])
 
-    # GUI starten
-    run([str(python_bin), "gui/main.py"])
+    pkg_lock = Path("gui/package-lock.json")
+    node_modules = Path("gui/node_modules")
+    if pkg_lock.exists() and (
+        not node_modules.exists() or pkg_lock.stat().st_mtime > node_modules.stat().st_mtime
+    ):
+        run(["npm", "install"], cwd="gui")
+
+    if "--dev" in sys.argv:
+        run(["npm", "run", "dev"], cwd="gui")
+    else:
+        run(["npm", "start"], cwd="gui")
 
 
 if __name__ == "__main__":
