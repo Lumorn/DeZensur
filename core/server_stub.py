@@ -49,15 +49,23 @@ def inpaint_route():
     data = request.get_json()
     project = Path(data.get("project", ""))
     img_id = data.get("img_id", "")
-    model = data.get("model", "lama")
-    prompt = data.get("prompt", "")
+    model = data.get("model", "revanimated")
+    prompt = data.get("prompt") or ""
+
+    labels = []
+    detect_json = project / "logs" / f"{img_id}_detect.json"
+    if detect_json.exists():
+        try:
+            labels = [b.get("label") for b in json.load(detect_json.open())]
+        except Exception:
+            labels = []
 
     img_path = project / "originals" / f"{img_id}.png"
     mask_path = project / "masks" / f"{img_id}_mask.png"
 
     from core.inpainter import inpaint
 
-    result = inpaint(img_path, mask_path, model, prompt)
+    result = inpaint(img_path, mask_path, labels=labels, model_key=model, user_prompt=prompt)
     return jsonify({"result": str(result)})
 
 
@@ -73,6 +81,7 @@ def batch_route():
         "model_detector": data.get("detector", "anime_censor_detection"),
         "model_sam": data.get("sam", "sam_vit_hq"),
         "model_inpaint": data.get("inpaint", "lama"),
+        "batch_user_prompt": data.get("prompt", ""),
     }
     task_id = str(int(time.time() * 1000))
     thread = threading.Thread(

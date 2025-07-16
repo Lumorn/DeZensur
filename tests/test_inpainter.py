@@ -5,7 +5,7 @@ import sys
 from pathlib import Path
 
 sys.modules['diffusers'] = importlib.import_module('tests.diffusers')
-sys.modules['lama_cleaner.model_manager'] = importlib.import_module('tests.lama_cleaner')
+sys.modules['iopaint.model_manager'] = importlib.import_module('tests.iopaint')
 sys.modules['PIL'] = importlib.import_module('tests.PIL')
 sys.modules['numpy'] = importlib.import_module('tests.numpy')
 sys.modules['torch'] = importlib.import_module('tests.torch')
@@ -25,7 +25,7 @@ def test_inpaint_creates_output(monkeypatch, tmp_path: Path) -> None:
     monkeypatch.setattr(inpainter, "ensure_model", lambda *a, **k: tmp_path / "model")
     monkeypatch.setattr(inpainter, "is_gpu_available", lambda: False)
 
-    out = inpainter.inpaint(img, mask, model_key="lama")
+    out = inpainter.inpaint(img, mask, labels=None, model_key="lama")
     assert out.exists()
     res = Image.open(out)
     assert res.size == (8, 8)

@@ -55,7 +55,7 @@ def test_run_batch_updates_status(monkeypatch, tmp_path: Path) -> None:
     monkeypatch.setattr(batch_runner, "generate_mask", lambda *a, **k: [[True]])
     monkeypatch.setattr(batch_runner, "save_mask_png", lambda mask, p: p.write_text("m"))
 
-    def fake_inpaint(image_path, mask_path, model_key="lama"):
+    def fake_inpaint(image_path, mask_path, labels=None, model_key="lama", user_prompt=""):
         out = mask_path.parent.parent / "processed" / f"{Path(image_path).stem}_{model_key}.png"
         out.parent.mkdir(parents=True, exist_ok=True)
         out.write_text("r")

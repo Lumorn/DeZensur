@@ -30,6 +30,7 @@ def _process_image(
     model_detector: str,
     model_sam: str,
     model_inpaint: str,
+    batch_user_prompt: str,
     logger,
 ) -> None:
     """Führt die Pipeline für ein einzelnes Bild aus."""
@@ -39,11 +40,18 @@ def _process_image(
 
     try:
         boxes = detect_censor(img_path, model_name=model_detector)
+        labels = {b.get("label") for b in boxes}
         prompts = boxes_to_prompts(boxes)
         mask = generate_mask(img_path, prompts, model_sam)
         mask_path = project.get_mask_path(img_id)
         save_mask_png(mask, mask_path)
-        result = inpaint(img_path, mask_path, model_key=model_inpaint)
+        result = inpaint(
+            img_path,
+            mask_path,
+            labels=list(labels),
+            model_key=model_inpaint,
+            user_prompt=batch_user_prompt,
+        )
 
         elapsed = int((time.perf_counter() - start) * 1000)
         project.update_status(img_id, "done", mask=str(mask_path), result=str(result))
@@ -62,6 +70,7 @@ def run_batch(
     model_detector: str = "anime_censor_detection",
     model_sam: str = "sam_vit_hq",
     model_inpaint: str = "lama",
+    batch_user_prompt: str = "",
     disable_progress: bool = False,
 ) -> None:
     """Verarbeitet alle noch offenen Bilder eines Projektes."""
@@ -103,6 +112,7 @@ def run_batch(
                     model_detector,
                     model_sam,
                     model_inpaint,
+                    batch_user_prompt,
                     logger,
                 ): img
                 for img in todo
@@ -123,9 +133,17 @@ def cli() -> None:
     parser.add_argument("--detector", default="anime_censor_detection")
     parser.add_argument("--sam", default="sam_vit_hq")
     parser.add_argument("--inpaint", default="lama")
+    parser.add_argument("--prompt", default="")
     args = parser.parse_args()
 
-    run_batch(Path(args.project), args.workers, args.detector, args.sam, args.inpaint)
+    run_batch(
+        Path(args.project),
+        args.workers,
+        args.detector,
+        args.sam,
+        args.inpaint,
+        args.prompt,
+    )
 
 
 if __name__ == "__main__":

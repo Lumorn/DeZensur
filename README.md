@@ -122,6 +122,8 @@ Zum Auffüllen der Masken stehen zwei Verfahren bereit:
 
 Alle Modelle brauchen eine GPU, bei CPU-Fallback entsteht nur ein leeres Bild.
 
+Das LaMa-Modell wird nun über das PyPI-Paket `iopaint[lama]` bereitgestellt.
+
 ![Einstellungen Dialog](gui_screenshot.png "GUI-Einstellungen f\xFCr Inpainting")
 
 Beispiel für die CLI:
@@ -130,6 +132,11 @@ Beispiel für die CLI:
 python -m core.inpainter images/page01.png masks/page01.png --model revanimated \
        --prompt "bare chest, anime style" --out processed/page01.png
 ```
+
+### Anatomie-Tags
+
+Aktiviert man in den Einstellungen die Option **Automatische Anatomie-Tags**, wird der Prompt automatisch um passende Genitalbegriffe (z.B. `penis`, `pussy`) erweitert. Dadurch gelingt eine detailgetreue Rekonstruktion der verdeckten Bereiche.
+Zusätzlich wird das verwendete Prompt neben dem Ergebnisbild in einer Datei `prompt.txt` gespeichert.
 
 ## Schritt 7 – Batch-Runner
 

@@ -10,11 +10,12 @@ import numpy as np
 from PIL import Image
 
 from .dep_manager import ensure_model, is_gpu_available
+from .prompt_helper import build_prompt
 
 import torch
 
 SUPPORTED_MODELS = {
-    "lama": "big_lama",
+    "lama": "iopaint_lama",
     "sd2_inpaint": "sd2_inpaint",
     "revanimated": "revanimated_inpaint",
 }
@@ -38,20 +39,24 @@ def _load_images(image_path: Path, mask_path: Path) -> tuple[Image.Image, Image.
 def inpaint(
     image_path: Path,
     mask_path: Path,
+    labels: list[str] | None = None,
     model_key: str = "lama",
-    prompt: str = "",
-    negative_prompt: str = "",
+    user_prompt: str = "",
 ) -> Path:
     """Gibt den Pfad zum Ergebnis-PNG im Ordner ``processed`` zurück."""
     img, mask = _load_images(image_path, mask_path)
     device = "cuda" if is_gpu_available() else "cpu"
 
+    prompt, negative_prompt = "", ""
+    if model_key != "lama":
+        prompt, negative_prompt = build_prompt(labels or [], user_prompt)
+
     if device == "cpu":
         # CPU-Fallback: liefert nur ein leeres Bild zur Wahrung der Dimensionen
         result = Image.new("RGB", img.size)
     elif model_key == "lama":
-        model_path = ensure_model("big_lama")
-        from lama_cleaner.model_manager import ModelManager
+        model_path = ensure_model("iopaint_lama")
+        from iopaint.model_manager import ModelManager
 
         image_np = np.asarray(img)[:, :, ::-1]
         mask_np = np.asarray(mask)
@@ -80,6 +85,9 @@ def inpaint(
     out_dir.mkdir(parents=True, exist_ok=True)
     out_path = out_dir / f"{image_path.stem}_{model_key}.png"
     result.save(out_path)
+    if prompt:
+        prompt_file = out_path.with_suffix(".txt")
+        prompt_file.write_text(prompt)
     return out_path
 
 
@@ -92,16 +100,15 @@ def cli() -> None:
         "--model", default="lama", choices=list(SUPPORTED_MODELS.keys())
     )
     parser.add_argument("--prompt", default="")
-    parser.add_argument("--negative_prompt", default="")
     parser.add_argument("--out", default="processed/out.png")
     args = parser.parse_args()
 
     out = inpaint(
         Path(args.image),
         Path(args.mask),
+        None,
         args.model,
         args.prompt,
-        args.negative_prompt,
     )
     Path(args.out).parent.mkdir(parents=True, exist_ok=True)
     Image.open(out).save(args.out)
