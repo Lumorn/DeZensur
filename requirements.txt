@@ -15,3 +15,7 @@ diffusers>=0.28
 lama-cleaner @ git+https://github.com/Sanster/lama-cleaner.git
 rich>=13.6
 loguru>=0.7
+pytest>=8.0
+pytest-mock
+pytest-cov
+coverage

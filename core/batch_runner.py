@@ -5,6 +5,8 @@ from __future__ import annotations
 from pathlib import Path
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from rich.progress import Progress, BarColumn, TimeRemainingColumn
+from contextlib import nullcontext
+import sys
 from core.project_manager import Project
 from core.censor_detector import detect_censor
 from core.segmenter import generate_mask, save_mask_png
@@ -60,6 +62,7 @@ def run_batch(
     model_detector: str = "anime_censor_detection",
     model_sam: str = "sam_vit_hq",
     model_inpaint: str = "lama",
+    disable_progress: bool = False,
 ) -> None:
     """Verarbeitet alle noch offenen Bilder eines Projektes."""
 
@@ -78,13 +81,19 @@ def run_batch(
             # GPU-Inpainting läuft besser seriell
             max_workers = 1
 
-    with Progress(
-        "[progress.description]{task.description}",
-        BarColumn(),
-        "[progress.percentage]{task.percentage:>3.0f}%",
-        TimeRemainingColumn(),
-    ) as progress:
-        task = progress.add_task("[cyan]Batch-Job", total=len(todo))
+    show_progress = (not disable_progress) and sys.stdout.isatty()
+    progress_ctx = (
+        Progress(
+            "[progress.description]{task.description}",
+            BarColumn(),
+            "[progress.percentage]{task.percentage:>3.0f}%",
+            TimeRemainingColumn(),
+        )
+        if show_progress
+        else nullcontext()
+    )
+    with progress_ctx as progress:
+        task = progress.add_task("[cyan]Batch-Job", total=len(todo)) if show_progress else None
         with ThreadPoolExecutor(max_workers=max_workers) as exe:
             futures = {
                 exe.submit(
@@ -101,7 +110,8 @@ def run_batch(
             for fut in as_completed(futures):
                 img = futures[fut]
                 fut.result()
-                progress.update(task, advance=1, description=f"[green]{img['id']}")
+                if show_progress:
+                    progress.update(task, advance=1, description=f"[green]{img['id']}")
         rep_path = summarize_batch(project.root, batch_id)
         logger.info(f"Report saved: {rep_path}")
 
