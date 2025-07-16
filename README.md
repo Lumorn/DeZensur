@@ -90,6 +90,18 @@ Die Datei `core/censor_detector.py` kapselt das ONNX-Modell
 JSON-Bounding-Boxen inkl. Scores. Per CLI kann man den Detector so nutzen:
 `python -m core.censor_detector <bild.png> --json boxes.json`.
 
+## Schritt 4 – SAM-Segmenter
+
+Neben HQ-SAM steht auch MobileSAM zur Auswahl. HQ-SAM liefert sehr exakte
+Masken, MobileSAM arbeitet dagegen deutlich schneller und eignet sich für
+schwächere Hardware.
+
+Beispielaufruf:
+
+```bash
+python -m core.segmenter samples/page01.png --boxes 120,80,400,350 --model sam_vit_hq --out page01_mask.png
+```
+
 ---
 
 ## Projektordnerstruktur & GUI

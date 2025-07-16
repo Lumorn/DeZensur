@@ -28,8 +28,14 @@ MODEL_REGISTRY: dict[str, dict[str, str | None]] = {
         "device": "cpu",
     },
     "sam_vit_hq": {
-        "repo": "facebook/sam-vit-hq",
+        "repo": "SysCV/sam-hq",
         "filename": "sam_vit_hq.pth",
+        "sha256": None,
+        "device": "gpu",
+    },
+    "sam_mobile": {
+        "repo": "ChaoningZhang/MobileSAM",
+        "filename": "mobile_sam.pt",
         "sha256": None,
         "device": "gpu",
     },
