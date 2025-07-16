@@ -142,13 +142,23 @@ def download_model(name: str, progress: bool = True) -> Path:
     if size > 500 * 1024 * 1024:
         _parallel_download(url, dest, size, progress)
     else:
-        path = hf_hub_download(
-            repo_id=repo,
-            filename=filename,
-            cache_dir=models_dir,
-            resume_download=True,
-            progress_bar=False,
-        )
+        try:
+            path = hf_hub_download(
+                repo_id=repo,
+                filename=filename,
+                cache_dir=models_dir,
+                resume_download=True,
+                progress_bar=False,
+            )
+        except TypeError:
+            # Ältere huggingface_hub-Versionen kennen das Argument
+            # ``progress_bar`` nicht.
+            path = hf_hub_download(
+                repo_id=repo,
+                filename=filename,
+                cache_dir=models_dir,
+                resume_download=True,
+            )
         shutil.copy(Path(path), dest)
 
     sha256 = info.get("sha256")

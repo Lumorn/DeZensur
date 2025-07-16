@@ -115,6 +115,8 @@ Ab Version 1.4.19 erscheint der Hinweis auf fehlendes `npm` nun auch im Terminal
 Fehlende KI-Modelle werden beim Start automatisch aus dem Hugging-Face-Hub
 heruntergeladen und im Ordner `models/` gespeichert. Eine SHA‑256-Prüfung
 stellt sicher, dass die Dateien korrekt übertragen wurden.
+Seit Version 1.4.20 ignoriert der Download das optionale ``progress_bar``-
+Argument, sodass auch ältere ``huggingface_hub``-Versionen funktionieren.
 
 ## Automatische Zensur-Erkennung (Modul 3)
 
