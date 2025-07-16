@@ -128,6 +128,9 @@ Ab Version 1.4.24 kann optional ein Zugangstoken
 um private oder nur für angemeldete Nutzer freigegebene Modelle herunterladen zu können.
 Seit Version 1.4.25 wird das HQ-SAM-Modell aus dem Repository `syscv-community/sam-hq-vit-base` geladen. Der frühere Dateiname `sam_vit_hq.pth` bleibt als Fallback erhalten.
 Ab Version 1.4.26 heißt die bereitgestellte Gewichtsdatei `model.safetensors`. Die alten Dateinamen werden weiterhin als Ersatz akzeptiert.
+Seit Version 1.4.27 erkennt der Downloader automatisch den neuesten Unterordner
+von `anime_censor_detection` (z.B. `censor_detect_v0.9_s/model.onnx`). Damit
+funktioniert der Download auch bei zukünftigen Updates ohne Anpassungen.
 
 ## Automatische Zensur-Erkennung (Modul 3)
 

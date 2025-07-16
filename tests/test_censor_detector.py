@@ -44,7 +44,9 @@ def test_cli(tmp_path: Path) -> None:
     Image.new("RGB", (10, 10)).save(img)
     models_dir = Path("models/anime_censor_detection")
     models_dir.mkdir(parents=True, exist_ok=True)
-    (models_dir / "censor_detect_v0.7_s.onnx").write_text("x")
+    subdir = models_dir / "censor_detect_v0.9_s"
+    subdir.mkdir(parents=True, exist_ok=True)
+    (subdir / "model.onnx").write_text("x")
     env = os.environ.copy()
     test_path = Path(__file__).resolve().parent
     env["PYTHONPATH"] = os.pathsep.join([str(test_path), env.get("PYTHONPATH", "")])
