@@ -192,3 +192,9 @@ Alle Änderungen werden in diesem Dokument festgehalten.
 ### Hinzugefügt
 - Neues Skript `generate_report.py`, das die CLI `python -m core.report` aufruft
   und einen Zielpfad für den Report entgegen nimmt.
+
+## [1.4.18] – 2025-08-06
+### Behoben
+- `start.py` konnte in seltenen Fällen unendlich viele Python-Prozesse starten,
+  wenn der Wechsel in die virtuelle Umgebung scheiterte. Eine Umgebungsvariable
+  verhindert nun diese Neustart-Schleife.
