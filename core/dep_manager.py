@@ -31,10 +31,11 @@ MODEL_REGISTRY: dict[str, dict[str, str | list[str] | None]] = {
         "device": "cpu",
     },
     "sam_vit_hq": {
-        # Repository wurde verschoben und der Dateiname geändert
+        # Repository wurde verschoben und die bereitgestellten Gewichte liegen
+        # inzwischen als ``model.safetensors`` vor
         "repo": "syscv-community/sam-hq-vit-base",
-        "filename": "sam_hq_vit_b.pth",
-        "alternatives": ["sam_vit_hq.pth"],
+        "filename": "model.safetensors",
+        "alternatives": ["sam_hq_vit_b.pth", "sam_vit_hq.pth"],
         "sha256": None,
         "device": "gpu",
     },
