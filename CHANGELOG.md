@@ -65,3 +65,7 @@ Alle Änderungen werden in diesem Dokument festgehalten.
 - Speichert verwendetes Prompt als `prompt.txt`
 ### Geändert
 - ersetze Paketnamen 'lama-cleaner' → 'iopaint[lama]' (PyPI-konform)
+
+## [1.3.0] – 2025-07-19
+### Hinzugefügt
+- GitHub Actions Workflow mit Format- und Testlauf

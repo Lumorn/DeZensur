@@ -1,5 +1,5 @@
 # DeZensur
-![CI](https://github.com/<Org>/DeZensur/actions/workflows/ci.yml/badge.svg)
+![CI](https://github.com/Lumorn/DeZensur/actions/workflows/ci.yml/badge.svg)
 
 **DeZensur** ist ein rein lokales Windows-(optionaler Cross-Platform-Support)-Tool-Kit,  
 das Zensur in Anime- und Comicbildern **vollautomatisch** erkennt und entfernt.  
@@ -22,7 +22,7 @@ Es kombiniert modernste Open-Source-Modelle:
 | 🧩 **Modular** – jeder Verarbeitungsschritt als eigenständiges Modul | ⬜ |
 | ⚡ **Schnellstart**: `start.py` erledigt Git-Pull + `pip install` | ✅ |
 | 📦 **Selbst-Updater** & automatischer Modell-Download | ⬜ |
-| 📝 Saubere **Code-Doku**, **Tests** & **CI** | ⬜ |
+| 📝 Saubere **Code-Doku**, **Tests** & **CI** | ✅ |
 | 🧪 **Erweiterbar** (Video-Support, neue Modelle, LoRAs) | ⬜ |
 
 ---
