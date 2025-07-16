@@ -89,6 +89,8 @@ selbstständig klonen, wenn nur diese Datei vorhanden ist.
 Ab Version 1.4.3 werden die internen Module erst nach der Installation der
 Python-Abhängigkeiten importiert. So treten keine Fehler mehr auf, wenn
 Pakete wie `onnxruntime` noch fehlen.
+Ab Version 1.4.4 bleibt das Terminal auch bei Fehlern offen, damit man die
+Ausgabe in Ruhe lesen kann.
 
 ## Automatischer Modell-Download
 
