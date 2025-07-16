@@ -11,7 +11,7 @@ from pathlib import Path
 
 import requests
 import torch
-from huggingface_hub import hf_hub_download, hf_hub_url
+from huggingface_hub import hf_hub_download, hf_hub_url, snapshot_download
 from tqdm import tqdm
 
 logger = logging.getLogger(__name__)
@@ -26,7 +26,7 @@ MODEL_REGISTRY: dict[str, dict[str, str | list[str] | None]] = {
     "anime_censor_detection": {
         "repo": "deepghs/anime_censor_detection",
         "filename": "censor_detect_v0.7_s.onnx",
-        "alternatives": ["censor_detect_v0.7.onnx"],
+        "alternatives": ["censor_detect_v0.7.onnx", "censor_detect_v0.8.onnx"],
         "sha256": None,
         "device": "cpu",
     },
@@ -180,7 +180,21 @@ def download_model(name: str, progress: bool = True) -> Path:
             logger.warning("Download von %s fehlgeschlagen: %s", fname, exc)
             continue
     else:
-        raise RuntimeError(f"Download für {name} fehlgeschlagen: {last_exc}")
+        logger.warning(
+            "Keiner der bekannten Dateinamen funktionierte, versuche Snapshot"
+        )
+        try:
+            snap = snapshot_download(repo_id=repo, cache_dir=models_dir)
+        except Exception as exc:  # pragma: no cover - reiner Fehlerpfad
+            raise RuntimeError(
+                f"Download für {name} fehlgeschlagen: {exc}"
+            ) from exc
+        onnx_files = list(Path(snap).rglob("*.onnx"))
+        if not onnx_files:
+            raise RuntimeError(
+                f"Im Snapshot von {repo} wurde keine ONNX-Datei gefunden"
+            )
+        shutil.copy(onnx_files[0], dest)
 
     sha256 = info.get("sha256")
     if sha256 and not verify_checksum(dest, sha256):
