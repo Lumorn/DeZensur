@@ -3,12 +3,12 @@
 import os
 import subprocess
 import sys
-from pathlib import Path
-
-from core.dep_manager import ensure_model
-from core import censor_detector  # ONNX-Session vorwärmen
 import tkinter as tk
+from pathlib import Path
 from tkinter import messagebox
+
+from core import censor_detector  # ONNX-Session vorwärmen
+from core.dep_manager import ensure_model
 
 
 def run(cmd: list[str]) -> None:
@@ -27,11 +27,11 @@ def main() -> None:
     # Pfad zum Python-Interpreter der venv ermitteln
     python_bin = venv_path / ("Scripts" if os.name == "nt" else "bin") / "python"
 
-    # Abhängigkeiten installieren
-    run([str(python_bin), "-m", "pip", "install", "-r", "requirements.txt"])
-
-    # Repository aktualisieren
+    # Repository auf den neuesten Stand bringen, damit requirements aktuell sind
     run(["git", "pull"])
+
+    # Python-Abhängigkeiten installieren
+    run([str(python_bin), "-m", "pip", "install", "-r", "requirements.txt"])
 
     try:
         ensure_model("anime_censor_detection")
@@ -42,9 +42,20 @@ def main() -> None:
         sys.exit(1)
 
     pkg_lock = Path("gui/package-lock.json")
+    package_json = Path("gui/package.json")
     node_modules = Path("gui/node_modules")
-    if pkg_lock.exists() and (
-        not node_modules.exists() or pkg_lock.stat().st_mtime > node_modules.stat().st_mtime
+
+    # NPM-Pakete installieren, falls noetig
+    if (
+        not node_modules.exists()
+        or (
+            pkg_lock.exists()
+            and pkg_lock.stat().st_mtime > node_modules.stat().st_mtime
+        )
+        or (
+            not pkg_lock.exists()
+            and package_json.stat().st_mtime > node_modules.stat().st_mtime
+        )
     ):
         run(["npm", "install"], cwd="gui")
 
