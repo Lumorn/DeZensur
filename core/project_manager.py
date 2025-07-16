@@ -53,3 +53,28 @@ class Project:
                 }
             )
         self.save()
+
+    # Zusätzliche Hilfsmethoden für den Batch-Runner
+
+    def get_image_entry(self, img_id: str) -> dict:
+        """Liefert das Dictionary eines Bildes."""
+        for entry in self.data["images"]:
+            if entry["id"] == img_id:
+                return entry
+        raise KeyError(img_id)
+
+    def get_image_path(self, img_id: str) -> Path:
+        """Pfad zum Originalbild."""
+        entry = self.get_image_entry(img_id)
+        return self.root / entry["file"]
+
+    def get_mask_path(self, img_id: str) -> Path:
+        """Pfad zur Maske."""
+        return self.root / "masks" / f"{img_id}_mask.png"
+
+    def update_status(self, img_id: str, status: str, **extra: str) -> None:
+        """Aktualisiert Status und optionale Felder eines Bildes."""
+        entry = self.get_image_entry(img_id)
+        entry["status"] = status
+        entry.update(extra)
+        self.save()
