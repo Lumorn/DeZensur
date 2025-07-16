@@ -64,6 +64,9 @@ DeZensur/
 
 ## Schnellstart
 
+Voraussetzung ist eine installierte **Node.js**-Umgebung (inkl. `npm`),
+da die GUI auf Electron basiert.
+
 ```bash
 # 1. Repo klonen (alternativ nur start.py herunterladen)
 git clone https://github.com/<EuerRepo>/DeZensur.git

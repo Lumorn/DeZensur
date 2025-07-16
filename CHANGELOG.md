@@ -145,3 +145,9 @@ Alle Änderungen werden in diesem Dokument festgehalten.
 - `diffusers` ist nun auf Version 0.27.2 festgeschrieben, da iopaint 1.6.0
   diese Version benötigt.
 - README entsprechend ergänzt.
+
+## [1.4.10] – 2025-08-01
+### Hinzugefügt
+- `start.py` prüft nun, ob `npm` installiert ist und gibt einen klaren
+  Fehlerhinweis aus.
+- README erwähnt die notwendige Node.js-Installation.

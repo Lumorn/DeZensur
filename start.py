@@ -10,6 +10,7 @@ import sys
 import tkinter as tk
 from pathlib import Path
 from tkinter import messagebox
+import shutil
 
 project_root = Path(__file__).resolve().parent
 
@@ -34,6 +35,17 @@ def update_repo() -> None:
     except subprocess.CalledProcessError as exc:
         # Fehler ausgeben, aber fortfahren, damit das Terminal offen bleibt.
         print(f"Git-Aktualisierung fehlgeschlagen: {exc}\nBitte Branch-Tracking einrichten.")
+
+
+def check_npm() -> None:
+    """Prueft, ob npm verfuegbar ist."""
+    if shutil.which("npm") is None:
+        tk.Tk().withdraw()
+        messagebox.showerror(
+            "Fehler",
+            "Node.js bzw. npm wurde nicht gefunden. Bitte erst installieren."
+        )
+        sys.exit(1)
 
 def ensure_repo() -> None:
     """Klonen des Git-Repositories, falls die Dateien fehlen."""
@@ -78,8 +90,9 @@ def main() -> None:
     # Pfad zum Python-Interpreter der venv ermitteln
     python_bin = venv_path / ("Scripts" if os.name == "nt" else "bin") / "python"
 
-    # Repository prüfen und aktualisieren
+    # Repository pruefen und aktualisieren
     update_repo()
+    check_npm()
 
     # Python-Abhängigkeiten installieren
     run([str(python_bin), "-m", "pip", "install", "-r", "requirements.txt"])
