@@ -48,3 +48,10 @@ Alle Änderungen werden in diesem Dokument festgehalten.
 ### Hinzugefügt
 - Modul 8: JSON-Logging mit Loguru, Batch-Report-Generator
 - CLI-Werkzeug `python -m core.report`
+
+## [1.1.0] – 2025-07-17
+### Geändert
+- `start.py` aktualisiert nun zuerst das Repository und installiert danach die
+  Python-Abhängigkeiten.
+- Automatisches `npm install` in `gui/`, wenn `package.json` neuer ist oder
+  `node_modules` fehlt.

@@ -75,7 +75,8 @@ Mit `python start.py --dev` startet die Oberfläche im Entwicklungsmodus.
 
 Das Skript führt zuerst `git pull` aus, aktualisiert also euer Repository und
 installiert anschließend alle Abhängigkeiten. Beim ersten Durchlauf lädt das
-Tool alle benötigten Modelle in `models/`. Danach öffnet sich die GUI.
+Tool alle benötigten Modelle in `models/`. Fehlen die Node-Abhängigkeiten,
+wird automatisch `npm install` in `gui/` ausgeführt. Danach öffnet sich die GUI.
 
 ## Automatischer Modell-Download
 
