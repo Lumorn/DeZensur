@@ -77,4 +77,11 @@ export function ProjectIPC(ipc) {
     });
     return res.json();
   });
+  ipc.handle('save-mask', (_e, id, png) => {
+    if (!project) return false;
+    const file = path.join(project.root, 'masks', `${id}_user.png`);
+    const data = png.replace(/^data:image\/png;base64,/, '');
+    fs.writeFileSync(file, data, 'base64');
+    return true;
+  });
 }

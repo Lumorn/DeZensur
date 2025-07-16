@@ -102,6 +102,12 @@ Beispielaufruf:
 python -m core.segmenter samples/page01.png --boxes 120,80,400,350 --model sam_vit_hq --out page01_mask.png
 ```
 
+## Schritt 5 – Manueller Masken-Editor
+
+In der GUI kann eine automatisch erzeugte Maske nun per Canvas bearbeitet werden.
+Der Editor nutzt **Konva.js** und erlaubt Zeichnen, Radieren sowie Undo/Redo.
+Die finalisierte Maske wird als PNG in den Projektordner gespeichert.
+
 ---
 
 ## Projektordnerstruktur & GUI
