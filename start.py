@@ -63,7 +63,12 @@ def main() -> None:
     python_bin = venv_path / ("Scripts" if os.name == "nt" else "bin") / "python"
 
     # Repository auf den neuesten Stand bringen, damit requirements aktuell sind
-    run(["git", "pull"])
+    try:
+        run(["git", "pull"])
+    except subprocess.CalledProcessError as exc:
+        # Fehler ausgeben, aber fortfahren. Sonst wuerde sich das Terminal bei
+        # fehlendem Tracking-Branch sofort schliessen.
+        print(f"Git-Pull fehlgeschlagen: {exc}\nBitte Branch-Tracking einrichten.")
 
     # Python-Abhängigkeiten installieren
     run([str(python_bin), "-m", "pip", "install", "-r", "requirements.txt"])
@@ -107,4 +112,14 @@ def main() -> None:
 
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except Exception as exc:  # noqa: BLE001
+        # Fehlermeldung ausgeben und auf Eingabe warten, damit das Terminal
+        # geoeffnet bleibt und der Nutzer den Fehler sehen kann.
+        import traceback
+
+        print(f"Fehler: {exc}")
+        traceback.print_exc()
+        input("Zum Beenden Enter druecken...")
+        sys.exit(1)

@@ -108,3 +108,8 @@ Alle Änderungen werden in diesem Dokument festgehalten.
 - `start.py` importiert interne Module erst nach erfolgreicher Installation der
   Abhängigkeiten. Damit verhindert der Erststart fehlende Pakete wie
   `onnxruntime`.
+
+## [1.4.4] – 2025-07-27
+### Geändert
+- `start.py` haelt das Terminal nun auch bei Fehlern offen und gibt den
+  Stacktrace aus. So koennen Anwender die Fehlermeldung in Ruhe lesen.
