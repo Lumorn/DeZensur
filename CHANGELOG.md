@@ -133,3 +133,9 @@ Alle Änderungen werden in diesem Dokument festgehalten.
 - `requirements.txt` setzt nun `torch` auf Version 2.2.x, da 2.1.x keine
   Python‑3.12-Builds bietet.
 - README entsprechend angepasst.
+
+## [1.4.8] – 2025-07-31
+### Geändert
+- `iopaint[lama]` ist nun auf Version 1.6.0 angehoben, um Python 3.12 zu
+  unterstützen.
+- README entsprechend angepasst.
