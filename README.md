@@ -86,6 +86,10 @@ wenn das Skript von einem anderen Arbeitsverzeichnis aus aufgerufen wird.
 Seit Version 1.4.2 kann `start.py` zudem das komplette Repository
 selbstständig klonen, wenn nur diese Datei vorhanden ist.
 
+Ab Version 1.4.3 werden die internen Module erst nach der Installation der
+Python-Abhängigkeiten importiert. So treten keine Fehler mehr auf, wenn
+Pakete wie `onnxruntime` noch fehlen.
+
 ## Automatischer Modell-Download
 
 Fehlende KI-Modelle werden beim Start automatisch aus dem Hugging-Face-Hub

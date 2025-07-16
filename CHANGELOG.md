@@ -102,3 +102,9 @@ Alle Änderungen werden in diesem Dokument festgehalten.
 ## [1.4.2] – 2025-07-25
 ### Hinzugefügt
 - `start.py` klont das Repository automatisch, wenn nur diese Datei vorliegt.
+
+## [1.4.3] – 2025-07-26
+### Behoben
+- `start.py` importiert interne Module erst nach erfolgreicher Installation der
+  Abhängigkeiten. Damit verhindert der Erststart fehlende Pakete wie
+  `onnxruntime`.

@@ -50,9 +50,6 @@ ensure_repo()
 if str(project_root) not in sys.path:
     sys.path.insert(0, str(project_root))
 
-from core import censor_detector  # ONNX-Session vorwärmen
-from core.dep_manager import ensure_model
-
 
 def main() -> None:
     """Legt die virtuelle Umgebung an und startet die GUI."""
@@ -71,9 +68,15 @@ def main() -> None:
     # Python-Abhängigkeiten installieren
     run([str(python_bin), "-m", "pip", "install", "-r", "requirements.txt"])
 
+    # Erst nach der Installation können wir die Module importieren
+    from core.dep_manager import ensure_model
+    from core import censor_detector
+
     try:
         ensure_model("anime_censor_detection")
         ensure_model("sam_vit_hq")
+        # ONNX-Session einmalig starten, um Wartezeit zu sparen
+        censor_detector._load_session("anime_censor_detection")
     except Exception as exc:
         tk.Tk().withdraw()
         messagebox.showerror("Fehler", f"Modelldownload schlug fehl: {exc}")
