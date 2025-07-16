@@ -108,6 +108,7 @@ Ab Version 1.4.14 zeigt `start.py` bei jedem externen Befehl eine kleine Fortsch
 Ab Version 1.4.15 kann das Skript auch ohne das Paket `rich` starten. Die Fortschrittsanzeige erscheint erst, wenn die Abhängigkeit installiert ist.
 Ab Version 1.4.16 weist `start.py` darauf hin, wenn `rich` fehlt und arbeitet dann ohne Fortschrittsanzeige weiter.
 Ab Version 1.4.18 verhindert eine Umgebungsvariable endlose Neustart-Schleifen, wenn das Skript die virtuelle Umgebung aktiviert.
+Ab Version 1.4.19 erscheint der Hinweis auf fehlendes `npm` nun auch im Terminal.
 
 ## Automatischer Modell-Download
 

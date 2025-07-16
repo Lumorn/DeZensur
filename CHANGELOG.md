@@ -198,3 +198,8 @@ Alle Änderungen werden in diesem Dokument festgehalten.
 - `start.py` konnte in seltenen Fällen unendlich viele Python-Prozesse starten,
   wenn der Wechsel in die virtuelle Umgebung scheiterte. Eine Umgebungsvariable
   verhindert nun diese Neustart-Schleife.
+
+## [1.4.19] – 2025-08-07
+### Geändert
+- `start.py` gibt nun auch im Terminal einen Hinweis aus, wenn `npm` fehlt. So
+  ist der Grund eines Abbruchs besser erkennbar.
