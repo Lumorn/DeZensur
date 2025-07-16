@@ -55,3 +55,5 @@ Alle Änderungen werden in diesem Dokument festgehalten.
   Python-Abhängigkeiten.
 - Automatisches `npm install` in `gui/`, wenn `package.json` neuer ist oder
   `node_modules` fehlt.
+### Hinzugefügt
+- Modul 9: PyTest-Suite, Coverage-Threshold 80 %, GitHub Actions CI

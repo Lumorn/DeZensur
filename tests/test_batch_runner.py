@@ -64,7 +64,7 @@ def test_run_batch_updates_status(monkeypatch, tmp_path: Path) -> None:
     monkeypatch.setattr(batch_runner, "inpaint", fake_inpaint)
     monkeypatch.setattr(batch_runner, "is_gpu_available", lambda: False)
 
-    batch_runner.run_batch(proj.file)
+    batch_runner.run_batch(proj.file, disable_progress=True)
 
     updated = Project.load(proj.file)
     assert all(img["status"] == "done" for img in updated.data["images"])

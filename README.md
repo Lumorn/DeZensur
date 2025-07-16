@@ -1,4 +1,5 @@
 # DeZensur
+![CI](https://github.com/<Org>/DeZensur/actions/workflows/ci.yml/badge.svg)
 
 **DeZensur** ist ein rein lokales Windows-(optionaler Cross-Platform-Support)-Tool-Kit,  
 das Zensur in Anime- und Comicbildern **vollautomatisch** erkennt und entfernt.  

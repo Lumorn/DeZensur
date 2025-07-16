@@ -15,3 +15,7 @@ def test_add_images_creates_copies(tmp_path: Path):
 
     copied = proj_dir / "originals" / "sample.jpg"
     assert copied.exists(), "Bildkopie sollte vorhanden sein"
+
+    # Projektdatei sollte einen Eintrag besitzen
+    data = Path(f"{proj_dir}.dezproj").read_text(encoding="utf-8")
+    assert 'sample.jpg' in data

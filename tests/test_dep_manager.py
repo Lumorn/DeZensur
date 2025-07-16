@@ -53,3 +53,19 @@ def test_ensure_missing_model(tmp_path: Path) -> None:
             p = dep_manager.ensure_model(name)
             assert p.exists()
 
+
+def test_ensure_model_returns_path(monkeypatch, tmp_path: Path) -> None:
+    """Stellt sicher, dass ein Modellpfad geliefert wird."""
+
+    def fake_download(*a, **k):
+        dest = tmp_path / "cache" / "sam_vit_hq.pth"
+        dest.parent.mkdir(parents=True, exist_ok=True)
+        dest.write_text("data")
+        return str(dest)
+
+    monkeypatch.setattr(dep_manager, "hf_hub_download", fake_download)
+    monkeypatch.setattr(dep_manager, "MODELS_DIR", tmp_path)
+
+    p = dep_manager.ensure_model("sam_vit_hq")
+    assert p.exists()
+
