@@ -62,7 +62,7 @@ def test_ensure_model_returns_path(monkeypatch, tmp_path: Path) -> None:
     """Stellt sicher, dass ein Modellpfad geliefert wird."""
 
     def fake_download(*a, **k):
-        dest = tmp_path / "cache" / "sam_vit_hq.pth"
+        dest = tmp_path / "cache" / "sam_hq_vit_b.pth"
         dest.parent.mkdir(parents=True, exist_ok=True)
         dest.write_text("data")
         return str(dest)

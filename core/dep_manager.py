@@ -31,9 +31,10 @@ MODEL_REGISTRY: dict[str, dict[str, str | list[str] | None]] = {
         "device": "cpu",
     },
     "sam_vit_hq": {
-        # Repository in Kleinschreibung, um 401-Fehler zu vermeiden
-        "repo": "syscv/sam-hq",
-        "filename": "sam_vit_hq.pth",
+        # Repository wurde verschoben und der Dateiname geändert
+        "repo": "syscv-community/sam-hq-vit-base",
+        "filename": "sam_hq_vit_b.pth",
+        "alternatives": ["sam_vit_hq.pth"],
         "sha256": None,
         "device": "gpu",
     },

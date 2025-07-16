@@ -239,3 +239,11 @@ Alle Änderungen werden in diesem Dokument festgehalten.
   hinterlegte Zugangstoken an Hugging Face.
 ### Geändert
 - README beschreibt die Token-Variable.
+
+## [1.4.25] – 2025-08-13
+### Behoben
+- HQ-SAM wird jetzt aus ``syscv-community/sam-hq-vit-base`` geladen und nutzt
+  die Datei ``sam_hq_vit_b.pth``. ``sam_vit_hq.pth`` bleibt als Fallback
+  erhalten.
+### Geändert
+- README vermerkt den neuen Modellpfad.
