@@ -139,3 +139,9 @@ Alle Änderungen werden in diesem Dokument festgehalten.
 - `iopaint[lama]` ist nun auf Version 1.6.0 angehoben, um Python 3.12 zu
   unterstützen.
 - README entsprechend angepasst.
+
+## [1.4.9] – 2025-07-31
+### Geändert
+- `diffusers` ist nun auf Version 0.27.2 festgeschrieben, da iopaint 1.6.0
+  diese Version benötigt.
+- README entsprechend ergänzt.

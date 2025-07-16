@@ -138,7 +138,9 @@ Alle Modelle brauchen eine GPU, bei CPU-Fallback entsteht nur ein leeres Bild.
 
 Das LaMa-Modell wird nun über das PyPI-Paket `iopaint[lama]` bereitgestellt.
 Seit Version **1.4.8** setzen wir dabei auf **iopaint 1.6.0**, da ältere Versionen
-kein Python 3.12 unterstützen.
+kein Python 3.12 unterstützen. Ab Version **1.4.9** ist deshalb
+`diffusers` auf **0.27.2** festgeschrieben, weil diese Version von iopaint
+benötigt wird.
 Ab Version 1.4.7 setzen wir **PyTorch** auf die Version *2.2.x*. Die vorherige
 Beschränkung auf *2.1.x* verursachte Installationsprobleme unter Python 3.12.
 
