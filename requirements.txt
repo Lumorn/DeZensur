@@ -13,3 +13,4 @@ aiohttp
 segment-anything @ git+https://github.com/facebookresearch/segment-anything.git
 diffusers>=0.28
 lama-cleaner @ git+https://github.com/Sanster/lama-cleaner.git
+rich>=13.6

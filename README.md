@@ -129,6 +129,18 @@ python -m core.inpainter images/page01.png masks/page01.png --model revanimated 
        --prompt "bare chest, anime style" --out processed/page01.png
 ```
 
+## Schritt 7 – Batch-Runner
+
+Mehrere Bilder lassen sich jetzt komplett ohne Interaktion verarbeiten. Der
+Befehl zeigt eine Rich-Fortschrittsleiste an.
+
+```bash
+python -m core.batch_runner Projekte/Manga03.dezproj --workers 4
+```
+
+Der Stub-Server bietet dazu den Endpunkt `/batch`, der denselben Vorgang im
+Hintergrund startet und eine Task-ID zurückliefert.
+
 ---
 
 ## Projektordnerstruktur & GUI

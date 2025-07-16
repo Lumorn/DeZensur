@@ -5,8 +5,13 @@ from __future__ import annotations
 import json
 from flask import Flask, request, jsonify
 from pathlib import Path
+import threading
+import time
 
 app = Flask(__name__)
+
+# Läuft ein Batch-Prozess im Hintergrund
+_tasks: dict[str, threading.Thread] = {}
 
 
 @app.post("/detect")
@@ -54,6 +59,28 @@ def inpaint_route():
 
     result = inpaint(img_path, mask_path, model, prompt)
     return jsonify({"result": str(result)})
+
+
+@app.post("/batch")
+def batch_route():
+    """Startet den Batch-Runner im Hintergrund."""
+    data = request.get_json()
+    project = Path(data.get("project", ""))
+    from core.batch_runner import run_batch
+
+    params = {
+        "max_workers": data.get("workers"),
+        "model_detector": data.get("detector", "anime_censor_detection"),
+        "model_sam": data.get("sam", "sam_vit_hq"),
+        "model_inpaint": data.get("inpaint", "lama"),
+    }
+    task_id = str(int(time.time() * 1000))
+    thread = threading.Thread(
+        target=run_batch, args=(project,), kwargs=params, daemon=True
+    )
+    _tasks[task_id] = thread
+    thread.start()
+    return jsonify({"task": task_id})
 
 
 def run() -> None:

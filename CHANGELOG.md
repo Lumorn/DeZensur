@@ -38,3 +38,8 @@ Alle Änderungen werden in diesem Dokument festgehalten.
 ### Hinzugefügt
 - Modul 6: core/inpainter.py (LaMa + Stable-Diffusion-Inpainting)
 - Neuer /inpaint-Endpunkt und GUI-Einstellung zur Modellauswahl
+
+## [0.9.0] – 2025-07-16
+### Hinzugefügt
+- Modul 7: core/batch_runner.py, Rich-Progress, Thread-Pool
+- Neuer /batch-Endpunkt im Stub-Server
