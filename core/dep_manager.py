@@ -45,7 +45,7 @@ MODEL_REGISTRY: dict[str, dict[str, str | None]] = {
         "sha256": None,
         "device": "gpu",
     },
-    "big_lama": {
+    "iopaint_lama": {
         "repo": "advimman/lama",
         "filename": "big-lama.zip",
         "sha256": None,

@@ -5,7 +5,7 @@ import sys
 from pathlib import Path
 
 sys.modules['diffusers'] = importlib.import_module('tests.diffusers')
-sys.modules['lama_cleaner.model_manager'] = importlib.import_module('tests.lama_cleaner')
+sys.modules['iopaint.model_manager'] = importlib.import_module('tests.iopaint')
 sys.modules['PIL'] = importlib.import_module('tests.PIL')
 sys.modules['numpy'] = importlib.import_module('tests.numpy')
 sys.modules['torch'] = importlib.import_module('tests.torch')

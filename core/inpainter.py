@@ -15,7 +15,7 @@ from .prompt_helper import build_prompt
 import torch
 
 SUPPORTED_MODELS = {
-    "lama": "big_lama",
+    "lama": "iopaint_lama",
     "sd2_inpaint": "sd2_inpaint",
     "revanimated": "revanimated_inpaint",
 }
@@ -55,8 +55,8 @@ def inpaint(
         # CPU-Fallback: liefert nur ein leeres Bild zur Wahrung der Dimensionen
         result = Image.new("RGB", img.size)
     elif model_key == "lama":
-        model_path = ensure_model("big_lama")
-        from lama_cleaner.model_manager import ModelManager
+        model_path = ensure_model("iopaint_lama")
+        from iopaint.model_manager import ModelManager
 
         image_np = np.asarray(img)[:, :, ::-1]
         mask_np = np.asarray(mask)

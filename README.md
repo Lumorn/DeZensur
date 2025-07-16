@@ -122,6 +122,8 @@ Zum Auffüllen der Masken stehen zwei Verfahren bereit:
 
 Alle Modelle brauchen eine GPU, bei CPU-Fallback entsteht nur ein leeres Bild.
 
+Das LaMa-Modell wird nun über das PyPI-Paket `iopaint[lama]` bereitgestellt.
+
 ![Einstellungen Dialog](gui_screenshot.png "GUI-Einstellungen f\xFCr Inpainting")
 
 Beispiel für die CLI:

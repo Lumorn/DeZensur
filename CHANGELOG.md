@@ -62,3 +62,5 @@ Alle Änderungen werden in diesem Dokument festgehalten.
 ### Hinzugefügt
 - Automatischer Prompt-Builder mit Genital-Tags
 - GUI-Option „Automatische Anatomie-Tags“
+### Geändert
+- ersetze Paketnamen 'lama-cleaner' → 'iopaint[lama]' (PyPI-konform)
