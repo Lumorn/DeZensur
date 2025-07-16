@@ -203,3 +203,10 @@ Alle Änderungen werden in diesem Dokument festgehalten.
 ### Geändert
 - `start.py` gibt nun auch im Terminal einen Hinweis aus, wenn `npm` fehlt. So
   ist der Grund eines Abbruchs besser erkennbar.
+
+## [1.4.20] – 2025-08-08
+### Behoben
+- Kompatibilitätsproblem mit älteren ``huggingface_hub``-Versionen: Das
+  ``progress_bar``-Argument wird nun optional behandelt.
+### Geändert
+- README um Hinweis zur geänderten Downloadfunktion ergänzt.
