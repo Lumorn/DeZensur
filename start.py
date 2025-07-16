@@ -12,7 +12,6 @@ from pathlib import Path
 from tkinter import messagebox
 import shutil
 import time
-from rich.progress import Progress, SpinnerColumn, TextColumn
 
 project_root = Path(__file__).resolve().parent
 
@@ -22,6 +21,14 @@ def run(cmd: list[str], *, beschreibung: str | None = None, **kwargs) -> None:
 
     beschreibung = beschreibung or " ".join(cmd)
     if sys.stdout.isatty():
+        # ``rich`` erst hier importieren, damit der Start ohne Abhängigkeiten klappt
+        try:
+            from rich.progress import Progress, SpinnerColumn, TextColumn
+        except ImportError:
+            # Fallback ohne Fortschrittsanzeige
+            subprocess.run(cmd, check=True, **kwargs)
+            return
+
         # Fortschrittsspinne anzeigen, solange der Prozess läuft
         with Progress(
             SpinnerColumn(),
