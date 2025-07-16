@@ -6,6 +6,7 @@ import sys
 from pathlib import Path
 
 from core.dep_manager import ensure_model
+from core import censor_detector  # ONNX-Session vorwärmen
 import tkinter as tk
 from tkinter import messagebox
 

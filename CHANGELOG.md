@@ -19,3 +19,9 @@ Alle Änderungen werden in diesem Dokument festgehalten.
 ## [0.4.0] – 2025-07-16
 ### Hinzugefügt
 - Dependency-Manager lädt Modelle automatisch herunter und prüft deren Integrität
+
+## [0.5.0] – 2025-07-16
+### Hinzugefügt
+- Modul 3: core/censor_detector.py (ONNX-Wrapper für anime_censor_detection)
+- CLI `python -m core.censor_detector`
+- NumPy-basierte NMS-Logik

@@ -83,6 +83,13 @@ Fehlende KI-Modelle werden beim Start automatisch aus dem Hugging-Face-Hub
 heruntergeladen und im Ordner `models/` gespeichert. Eine SHA‑256-Prüfung
 stellt sicher, dass die Dateien korrekt übertragen wurden.
 
+## Automatische Zensur-Erkennung (Modul 3)
+
+Die Datei `core/censor_detector.py` kapselt das ONNX-Modell
+`deepghs/anime_censor_detection` (Labels: nipple_f, penis, pussy) und liefert
+JSON-Bounding-Boxen inkl. Scores. Per CLI kann man den Detector so nutzen:
+`python -m core.censor_detector <bild.png> --json boxes.json`.
+
 ---
 
 ## Projektordnerstruktur & GUI
