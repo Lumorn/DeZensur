@@ -117,6 +117,8 @@ heruntergeladen und im Ordner `models/` gespeichert. Eine SHA‑256-Prüfung
 stellt sicher, dass die Dateien korrekt übertragen wurden.
 Seit Version 1.4.20 ignoriert der Download das optionale ``progress_bar``-
 Argument, sodass auch ältere ``huggingface_hub``-Versionen funktionieren.
+Ab Version 1.4.21 prüft der Dependency-Manager zudem alternative Dateinamen,
+falls ein Modell auf Hugging Face umbenannt wurde.
 
 ## Automatische Zensur-Erkennung (Modul 3)
 

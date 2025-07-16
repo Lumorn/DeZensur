@@ -210,3 +210,10 @@ Alle Änderungen werden in diesem Dokument festgehalten.
   ``progress_bar``-Argument wird nun optional behandelt.
 ### Geändert
 - README um Hinweis zur geänderten Downloadfunktion ergänzt.
+
+## [1.4.21] – 2025-08-09
+### Behoben
+- ``dep_manager.download_model`` versucht nun alternative Dateinamen, falls der
+  ursprüngliche Modellname nicht verfügbar ist.
+### Geändert
+- README weist auf diese Fallback-Strategie hin.
