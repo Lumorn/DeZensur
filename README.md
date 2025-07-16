@@ -77,6 +77,12 @@ Das Skript führt zuerst `git pull` aus, aktualisiert also euer Repository und
 installiert anschließend alle Abhängigkeiten. Beim ersten Durchlauf lädt das
 Tool alle benötigten Modelle in `models/`. Danach öffnet sich die GUI.
 
+## Automatischer Modell-Download
+
+Fehlende KI-Modelle werden beim Start automatisch aus dem Hugging-Face-Hub
+heruntergeladen und im Ordner `models/` gespeichert. Eine SHA‑256-Prüfung
+stellt sicher, dass die Dateien korrekt übertragen wurden.
+
 ---
 
 ## Projektordnerstruktur & GUI

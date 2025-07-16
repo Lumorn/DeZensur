@@ -15,3 +15,7 @@ Alle Änderungen werden in diesem Dokument festgehalten.
 - Stub-Server mit Endpunkten `/detect`, `/segment`, `/inpaint`
 - Aktualisiertes `start.py` zum Starten der GUI
 - Neue Tests für Projektmanager und Server
+
+## [0.4.0] – 2025-07-16
+### Hinzugefügt
+- Dependency-Manager lädt Modelle automatisch herunter und prüft deren Integrität
