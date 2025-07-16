@@ -171,3 +171,8 @@ Alle Änderungen werden in diesem Dokument festgehalten.
 - `start.py` überprüft jetzt, ob uncommittete Änderungen vorhanden sind und
   warnt den Benutzer. Bei Änderungen wird kein automatisches `git pull`
   ausgeführt.
+
+## [1.4.14] – 2025-08-05
+### Hinzugefügt
+- `start.py` zeigt nun für jeden externen Befehl einen Fortschrittsspinne im
+  Terminal an. So ist klar ersichtlich, was gerade passiert.

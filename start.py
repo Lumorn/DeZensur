@@ -11,13 +11,33 @@ import tkinter as tk
 from pathlib import Path
 from tkinter import messagebox
 import shutil
+import time
+from rich.progress import Progress, SpinnerColumn, TextColumn
 
 project_root = Path(__file__).resolve().parent
 
 
-def run(cmd: list[str], **kwargs) -> None:
-    """Hilfsfunktion zum Ausführen eines Befehls."""
-    subprocess.run(cmd, check=True, **kwargs)
+def run(cmd: list[str], *, beschreibung: str | None = None, **kwargs) -> None:
+    """Hilfsfunktion zum Ausführen eines Befehls mit Fortschrittsanzeige."""
+
+    beschreibung = beschreibung or " ".join(cmd)
+    if sys.stdout.isatty():
+        # Fortschrittsspinne anzeigen, solange der Prozess läuft
+        with Progress(
+            SpinnerColumn(),
+            TextColumn("[progress.description]{task.description}"),
+            transient=True,
+        ) as progress:
+            task = progress.add_task(beschreibung, start=False)
+            proc = subprocess.Popen(cmd, **kwargs)
+            progress.start_task(task)
+            while proc.poll() is None:
+                progress.refresh()
+                time.sleep(0.1)
+            if proc.returncode != 0:
+                raise subprocess.CalledProcessError(proc.returncode, cmd)
+    else:
+        subprocess.run(cmd, check=True, **kwargs)
 
 
 def ensure_clean_worktree() -> bool:
@@ -44,7 +64,7 @@ def update_repo() -> None:
     if not ensure_clean_worktree():
         return
     try:
-        run(["git", "fetch", "origin"], cwd=project_root)
+        run(["git", "fetch", "origin"], cwd=project_root, beschreibung="git fetch")
         local_sha = subprocess.check_output(
             ["git", "rev-parse", "HEAD"], cwd=project_root, text=True
         ).strip()
@@ -52,7 +72,11 @@ def update_repo() -> None:
             ["git", "rev-parse", "origin/main"], cwd=project_root, text=True
         ).strip()
         if local_sha != remote_sha:
-            run(["git", "pull", "origin", "main"], cwd=project_root)
+            run(
+                ["git", "pull", "origin", "main"],
+                cwd=project_root,
+                beschreibung="git pull",
+            )
     except subprocess.CalledProcessError as exc:
         # Fehler ausgeben, aber fortfahren, damit das Terminal offen bleibt.
         print(
@@ -81,10 +105,18 @@ def ensure_repo() -> None:
     try:
         if not (project_root / ".git").exists():
             # Leeres Git-Repo anlegen und Remote setzen
-            run(["git", "init"], cwd=project_root)
-            run(["git", "remote", "add", "origin", repo_url], cwd=project_root)
-        run(["git", "fetch", "origin"], cwd=project_root)
-        run(["git", "reset", "--hard", "origin/main"], cwd=project_root)
+            run(["git", "init"], cwd=project_root, beschreibung="git init")
+            run(
+                ["git", "remote", "add", "origin", repo_url],
+                cwd=project_root,
+                beschreibung="git remote add",
+            )
+        run(["git", "fetch", "origin"], cwd=project_root, beschreibung="git fetch")
+        run(
+            ["git", "reset", "--hard", "origin/main"],
+            cwd=project_root,
+            beschreibung="git reset",
+        )
     except Exception as exc:
         tk.Tk().withdraw()
         messagebox.showerror("Fehler", f"Repository konnte nicht geklont werden: {exc}")
@@ -108,7 +140,10 @@ def main() -> None:
     venv_path = Path(".venv")
     if not venv_path.exists():
         # Virtuelle Umgebung erstellen, falls nicht vorhanden
-        run([sys.executable, "-m", "venv", str(venv_path)])
+        run(
+            [sys.executable, "-m", "venv", str(venv_path)],
+            beschreibung="Erzeuge virtuelle Umgebung",
+        )
 
     # Pfad zum Python-Interpreter der venv ermitteln
     python_bin = venv_path / ("Scripts" if os.name == "nt" else "bin") / "python"
@@ -129,7 +164,10 @@ def main() -> None:
     check_npm()
 
     # Python-Abhängigkeiten installieren
-    run([str(python_bin), "-m", "pip", "install", "-r", "requirements.txt"])
+    run(
+        [str(python_bin), "-m", "pip", "install", "-r", "requirements.txt"],
+        beschreibung="pip install",
+    )
 
     # Erst nach der Installation können wir die Module importieren
     from core.dep_manager import ensure_model
@@ -161,12 +199,12 @@ def main() -> None:
             and package_json.stat().st_mtime > node_modules.stat().st_mtime
         )
     ):
-        run(["npm", "install"], cwd="gui")
+        run(["npm", "install"], cwd="gui", beschreibung="npm install")
 
     if "--dev" in sys.argv:
-        run(["npm", "run", "dev"], cwd="gui")
+        run(["npm", "run", "dev"], cwd="gui", beschreibung="npm run dev")
     else:
-        run(["npm", "start"], cwd="gui")
+        run(["npm", "start"], cwd="gui", beschreibung="npm start")
 
 
 if __name__ == "__main__":
