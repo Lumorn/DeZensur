@@ -91,10 +91,15 @@ def main() -> None:
     python_bin = venv_path / ("Scripts" if os.name == "nt" else "bin") / "python"
 
     # Wenn dieses Skript nicht mit dem venv-Python ausgeführt wird,
-    # starten wir uns selbst erneut. So stehen die installierten Pakete
-    # unmittelbar zur Verfügung und es kommt zu keinen Importfehlern.
+    # starten wir uns selbst erneut. Unter Windows führt ein
+    # ``os.execv`` jedoch gelegentlich zu ``OSError: [Errno 12] Not enough space``.
+    # Daher erzeugen wir dort einen neuen Prozess und beenden uns.
     if Path(sys.executable).resolve() != python_bin.resolve():
-        os.execv(str(python_bin), [str(python_bin), __file__] + sys.argv[1:])
+        if os.name == "nt":
+            subprocess.check_call([str(python_bin), __file__] + sys.argv[1:])
+            sys.exit(0)
+        else:
+            os.execv(str(python_bin), [str(python_bin), __file__] + sys.argv[1:])
 
     # Repository pruefen und aktualisieren
     update_repo()

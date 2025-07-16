@@ -158,3 +158,10 @@ Alle Änderungen werden in diesem Dokument festgehalten.
   erneut mit dem Python der venv. Dadurch stehen neu installierte Pakete sofort
   zur Verfügung.
 - README erläutert dieses Verhalten.
+
+## [1.4.12] – 2025-08-03
+### Behoben
+- Unter Windows verursachte der Neustart via ``os.execv`` einen Fehler
+  ``OSError: [Errno 12] Not enough space``. Das Skript nutzt dort nun
+  ``subprocess`` und beendet sich anschließend.
+- Hinweis in der README ergänzt.
