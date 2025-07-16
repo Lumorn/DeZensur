@@ -2,7 +2,7 @@ gitpython
 virtualenv
 onnxruntime>=1.17
 numpy
-torch>=2.2
+torch>=2.1,<2.2  # Begrenzung auf stabile 2.1er Version
 opencv-python
 pillow
 tqdm

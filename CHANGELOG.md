@@ -80,3 +80,9 @@ Alle Änderungen werden in diesem Dokument festgehalten.
 - `iopaint[lama]` ist nun auf Version 1.2.5 festgeschrieben
 ### Hinzugefügt
 - Hinweis zur festen Version in der README
+
+## [1.3.3] – 2025-07-22
+### Geändert
+- `requirements.txt` beschränkt `torch` jetzt auf Version 2.1.x
+### Hinzugefügt
+- Info zur Torch-Begrenzung in der README
