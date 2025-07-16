@@ -25,3 +25,7 @@ Alle Änderungen werden in diesem Dokument festgehalten.
 - Modul 3: core/censor_detector.py (ONNX-Wrapper für anime_censor_detection)
 - CLI `python -m core.censor_detector`
 - NumPy-basierte NMS-Logik
+
+## [0.6.0] – 2025-07-16
+### Hinzugefügt
+- Modul 4: core/segmenter.py (HQ-SAM & MobileSAM Integration)

@@ -22,8 +22,20 @@ def detect():
 
 @app.post("/segment")
 def segment():
+    """Erzeugt eine Maske aus übergebenen Box-Prompts."""
     data = request.get_json()
-    return jsonify({"action": "segment", "id": data.get("id")})
+    project = Path(data.get("project", ""))
+    img_id = data.get("img_id", "")
+    boxes = data.get("boxes", [])
+
+    from core.segmenter import generate_mask, save_mask_png
+
+    img_path = project / "originals" / f"{img_id}.png"
+    mask_path = project / "masks" / f"{img_id}_mask.png"
+    prompts = [{"type": "box", "data": b} for b in boxes]
+    mask = generate_mask(img_path, prompts)
+    save_mask_png(mask, mask_path)
+    return jsonify({"mask": str(mask_path)})
 
 
 @app.post("/inpaint")
