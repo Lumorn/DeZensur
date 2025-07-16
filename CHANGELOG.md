@@ -69,3 +69,8 @@ Alle Änderungen werden in diesem Dokument festgehalten.
 ## [1.3.0] – 2025-07-19
 ### Hinzugefügt
 - GitHub Actions Workflow mit Format- und Testlauf
+
+## [1.3.1] – 2025-07-20
+### Geändert
+- README: Projektordner heißt nun `DeZensur/`
+- CI-Badge verweist auf korrektes GitHub-Repository
