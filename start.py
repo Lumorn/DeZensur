@@ -25,6 +25,10 @@ def run(cmd: list[str], *, beschreibung: str | None = None, **kwargs) -> None:
         try:
             from rich.progress import Progress, SpinnerColumn, TextColumn
         except ImportError:
+            # Hinweis ausgeben, falls die Bibliothek fehlt
+            print(
+                "[Info] Paket 'rich' nicht gefunden - Befehle laufen ohne Fortschrittsanzeige."
+            )
             # Fallback ohne Fortschrittsanzeige
             subprocess.run(cmd, check=True, **kwargs)
             return

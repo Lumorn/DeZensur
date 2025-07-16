@@ -182,3 +182,8 @@ Alle Änderungen werden in diesem Dokument festgehalten.
 - `start.py` importiert `rich` nun erst in der Hilfsfunktion `run`. Dadurch
   startet das Skript auch dann fehlerfrei, wenn die Abhängigkeiten noch nicht
   installiert sind.
+
+## [1.4.16] – 2025-08-05
+### Geändert
+- Fehlt das Paket `rich`, gibt `start.py` nun einen Hinweis aus und führt den
+  Befehl ohne Fortschrittsanzeige aus.
