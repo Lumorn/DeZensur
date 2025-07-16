@@ -79,6 +79,10 @@ installiert anschließend alle Abhängigkeiten. Beim ersten Durchlauf lädt das
 Tool alle benötigten Modelle in `models/`. Fehlen die Node-Abhängigkeiten,
 wird automatisch `npm install` in `gui/` ausgeführt. Danach öffnet sich die GUI.
 
+Ab Version 1.4.1 setzt `start.py` sein Verzeichnis automatisch auf den
+`PYTHONPATH`. Dadurch funktioniert der Import des Pakets `core` auch dann,
+wenn das Skript von einem anderen Arbeitsverzeichnis aus aufgerufen wird.
+
 ## Automatischer Modell-Download
 
 Fehlende KI-Modelle werden beim Start automatisch aus dem Hugging-Face-Hub

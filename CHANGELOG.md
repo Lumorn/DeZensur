@@ -93,3 +93,8 @@ Alle Änderungen werden in diesem Dokument festgehalten.
 - Neues `npm`-Script `test` für Jest
 ### Geändert
 - README erwähnt den automatischen CI-Lauf
+
+## [1.4.1] – 2025-07-24
+### Behoben
+- `start.py` fügt nun das Projektverzeichnis dem `PYTHONPATH` hinzu, sodass der
+  Import von `core` zuverlässig funktioniert.

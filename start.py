@@ -7,6 +7,11 @@ import tkinter as tk
 from pathlib import Path
 from tkinter import messagebox
 
+# Sicherstellen, dass das Projektverzeichnis im Modulpfad liegt
+project_root = Path(__file__).resolve().parent
+if str(project_root) not in sys.path:
+    sys.path.insert(0, str(project_root))
+
 from core import censor_detector  # ONNX-Session vorwärmen
 from core.dep_manager import ensure_model
 
