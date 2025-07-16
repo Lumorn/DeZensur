@@ -57,3 +57,8 @@ Alle Änderungen werden in diesem Dokument festgehalten.
   `node_modules` fehlt.
 ### Hinzugefügt
 - Modul 9: PyTest-Suite, Coverage-Threshold 80 %, GitHub Actions CI
+
+## [1.2.0] – 2025-07-18
+### Hinzugefügt
+- Automatischer Prompt-Builder mit Genital-Tags
+- GUI-Option „Automatische Anatomie-Tags“
