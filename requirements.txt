@@ -12,7 +12,7 @@ requests
 aiohttp
 segment-anything @ git+https://github.com/facebookresearch/segment-anything.git
 diffusers>=0.28
- iopaint[lama]==1.2.4
+iopaint[lama]==1.2.4
 rich>=13.6
 loguru>=0.7
 pytest>=8.0

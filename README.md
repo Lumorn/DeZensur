@@ -136,6 +136,7 @@ python -m core.inpainter images/page01.png masks/page01.png --model revanimated 
 ### Anatomie-Tags
 
 Aktiviert man in den Einstellungen die Option **Automatische Anatomie-Tags**, wird der Prompt automatisch um passende Genitalbegriffe (z.B. `penis`, `pussy`) erweitert. Dadurch gelingt eine detailgetreue Rekonstruktion der verdeckten Bereiche.
+Zusätzlich wird das verwendete Prompt neben dem Ergebnisbild in einer Datei `prompt.txt` gespeichert.
 
 ## Schritt 7 – Batch-Runner
 
