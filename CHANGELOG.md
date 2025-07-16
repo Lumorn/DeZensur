@@ -151,3 +151,10 @@ Alle Änderungen werden in diesem Dokument festgehalten.
 - `start.py` prüft nun, ob `npm` installiert ist und gibt einen klaren
   Fehlerhinweis aus.
 - README erwähnt die notwendige Node.js-Installation.
+
+## [1.4.11] – 2025-08-02
+### Geändert
+- `start.py` startet nach dem Anlegen der virtuellen Umgebung automatisch
+  erneut mit dem Python der venv. Dadurch stehen neu installierte Pakete sofort
+  zur Verfügung.
+- README erläutert dieses Verhalten.

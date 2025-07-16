@@ -95,6 +95,9 @@ Python-Abhängigkeiten importiert. So treten keine Fehler mehr auf, wenn
 Pakete wie `onnxruntime` noch fehlen.
 Ab Version 1.4.4 bleibt das Terminal auch bei Fehlern offen, damit man die
 Ausgabe in Ruhe lesen kann.
+Ab Version 1.4.6 startet `start.py` nach dem Anlegen der virtuellen Umgebung
+automatisch erneut mit dem Python der venv. Dadurch sind frisch installierte
+Pakete sofort nutzbar und Importfehler werden vermieden.
 
 ## Automatischer Modell-Download
 
