@@ -29,3 +29,7 @@ Alle Änderungen werden in diesem Dokument festgehalten.
 ## [0.6.0] – 2025-07-16
 ### Hinzugefügt
 - Modul 4: core/segmenter.py (HQ-SAM & MobileSAM Integration)
+
+## [0.7.0] – 2025-07-16
+### Hinzugefügt
+- Mask-Editor in der GUI zum manuellen Bearbeiten von Masken (Konva)

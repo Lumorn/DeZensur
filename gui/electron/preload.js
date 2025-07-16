@@ -14,3 +14,7 @@ contextBridge.exposeInMainWorld('api', {
     call: (endpoint, payload) => ipcRenderer.invoke('backend:call', endpoint, payload),
   },
 });
+
+contextBridge.exposeInMainWorld('maskEditor', {
+  saveMask: (id, png) => ipcRenderer.invoke('save-mask', id, png),
+});
