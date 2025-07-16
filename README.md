@@ -42,7 +42,7 @@ Es kombiniert modernste Open-Source-Modelle:
 
 ```
 
-zensur_remover/
+DeZensur/
 ├─ start.py                # Bootstrap-Script (Self-Update + GUI-Start)
 ├─ requirements.txt
 ├─ gui/                    # Electron/React-Frontend
