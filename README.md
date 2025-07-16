@@ -108,6 +108,27 @@ In der GUI kann eine automatisch erzeugte Maske nun per Canvas bearbeitet werden
 Der Editor nutzt **Konva.js** und erlaubt Zeichnen, Radieren sowie Undo/Redo.
 Die finalisierte Maske wird als PNG in den Projektordner gespeichert.
 
+## Schritt 6 – Inpainting
+
+Zum Auffüllen der Masken stehen zwei Verfahren bereit:
+
+| Modellschlüssel | Technik | Vorteile |
+|------------------|---------|----------|
+| `lama` | CNN-Inpainting (LaMa) | sehr schnell, kein Prompt nötig |
+| `sd2_inpaint` | Stable Diffusion 2 Inpainting | flexibel, promptbar |
+| `revanimated` | revAnimated Inpainting | Anime-optimiert |
+
+Alle Modelle brauchen eine GPU, bei CPU-Fallback entsteht nur ein leeres Bild.
+
+![Einstellungen Dialog](gui_screenshot.png "GUI-Einstellungen f\xFCr Inpainting")
+
+Beispiel für die CLI:
+
+```bash
+python -m core.inpainter images/page01.png masks/page01.png --model revanimated \
+       --prompt "bare chest, anime style" --out processed/page01.png
+```
+
 ---
 
 ## Projektordnerstruktur & GUI

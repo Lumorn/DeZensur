@@ -45,6 +45,24 @@ MODEL_REGISTRY: dict[str, dict[str, str | None]] = {
         "sha256": None,
         "device": "gpu",
     },
+    "big_lama": {
+        "repo": "advimman/lama",
+        "filename": "big-lama.zip",
+        "sha256": None,
+        "device": "gpu",
+    },
+    "sd2_inpaint": {
+        "repo": "stabilityai/stable-diffusion-2-inpainting",
+        "filename": "model.safetensors",
+        "sha256": None,
+        "device": "gpu",
+    },
+    "revanimated_inpaint": {
+        "repo": "Uminosachi/revAnimated_v121Inp-inpainting",
+        "filename": "revAnimated_v121Inp-inpainting.safetensors",
+        "sha256": None,
+        "device": "gpu",
+    },
 }
 
 

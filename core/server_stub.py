@@ -39,9 +39,21 @@ def segment():
 
 
 @app.post("/inpaint")
-def inpaint():
+def inpaint_route():
+    """Führt das Inpainting für ein Projektbild aus."""
     data = request.get_json()
-    return jsonify({"action": "inpaint", "id": data.get("id")})
+    project = Path(data.get("project", ""))
+    img_id = data.get("img_id", "")
+    model = data.get("model", "lama")
+    prompt = data.get("prompt", "")
+
+    img_path = project / "originals" / f"{img_id}.png"
+    mask_path = project / "masks" / f"{img_id}_mask.png"
+
+    from core.inpainter import inpaint
+
+    result = inpaint(img_path, mask_path, model, prompt)
+    return jsonify({"result": str(result)})
 
 
 def run() -> None:

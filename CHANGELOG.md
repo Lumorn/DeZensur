@@ -33,3 +33,8 @@ Alle Änderungen werden in diesem Dokument festgehalten.
 ## [0.7.0] – 2025-07-16
 ### Hinzugefügt
 - Mask-Editor in der GUI zum manuellen Bearbeiten von Masken (Konva)
+
+## [0.8.0] – 2025-07-16
+### Hinzugefügt
+- Modul 6: core/inpainter.py (LaMa + Stable-Diffusion-Inpainting)
+- Neuer /inpaint-Endpunkt und GUI-Einstellung zur Modellauswahl
