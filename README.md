@@ -119,6 +119,8 @@ Seit Version 1.4.20 ignoriert der Download das optionale ``progress_bar``-
 Argument, sodass auch ältere ``huggingface_hub``-Versionen funktionieren.
 Ab Version 1.4.21 prüft der Dependency-Manager zudem alternative Dateinamen,
 falls ein Modell auf Hugging Face umbenannt wurde.
+Ab Version 1.4.22 wird bei fehlenden Dateien das gesamte Repository als
+Snapshot heruntergeladen und die erste gefundene ``.onnx``-Datei verwendet.
 
 ## Automatische Zensur-Erkennung (Modul 3)
 

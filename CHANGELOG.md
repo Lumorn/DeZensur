@@ -217,3 +217,10 @@ Alle Änderungen werden in diesem Dokument festgehalten.
   ursprüngliche Modellname nicht verfügbar ist.
 ### Geändert
 - README weist auf diese Fallback-Strategie hin.
+
+## [1.4.22] – 2025-08-10
+### Behoben
+- Fehlende Modelle werden nun über einen Repository-Snapshot gesucht, wenn alle
+  bekannten Dateinamen einen 404-Fehler liefern.
+### Geändert
+- README erläutert den neuen Snapshot-Fallback.
