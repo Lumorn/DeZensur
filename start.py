@@ -98,11 +98,11 @@ def update_repo() -> None:
 def check_npm() -> None:
     """Prueft, ob npm verfuegbar ist."""
     if shutil.which("npm") is None:
+        msg = "Node.js bzw. npm wurde nicht gefunden. Bitte erst installieren."
+        # Hinweis auch im Terminal ausgeben
+        print(msg)
         tk.Tk().withdraw()
-        messagebox.showerror(
-            "Fehler",
-            "Node.js bzw. npm wurde nicht gefunden. Bitte erst installieren."
-        )
+        messagebox.showerror("Fehler", msg)
         sys.exit(1)
 
 def ensure_repo() -> None:
