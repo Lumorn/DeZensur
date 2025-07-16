@@ -98,3 +98,7 @@ Alle Änderungen werden in diesem Dokument festgehalten.
 ### Behoben
 - `start.py` fügt nun das Projektverzeichnis dem `PYTHONPATH` hinzu, sodass der
   Import von `core` zuverlässig funktioniert.
+
+## [1.4.2] – 2025-07-25
+### Hinzugefügt
+- `start.py` klont das Repository automatisch, wenn nur diese Datei vorliegt.
