@@ -1,6 +1,7 @@
 gitpython
 virtualenv
-onnxruntime
+onnxruntime>=1.17
+numpy
 torch>=2.2
 opencv-python
 pillow
