@@ -69,3 +69,39 @@ def test_ensure_model_returns_path(monkeypatch, tmp_path: Path) -> None:
     p = dep_manager.ensure_model("sam_vit_hq")
     assert p.exists()
 
+
+def test_snapshot_fallback(monkeypatch, tmp_path: Path) -> None:
+    """Überprüft die Snapshot-Suche für unbekannte Dateinamen."""
+
+    # HEAD-Anfrage liefert immer 404
+    class FakeHead:
+        status_code = 404
+        ok = False
+        headers: dict = {}
+
+        def raise_for_status(self) -> None:
+            raise Exception("404")
+
+    monkeypatch.setattr(dep_manager.requests, "head", lambda *a, **k: FakeHead())
+
+    # Direkter Download schlägt fehl
+    monkeypatch.setattr(
+        dep_manager,
+        "hf_hub_download",
+        lambda *a, **k: (_ for _ in ()).throw(Exception("404")),
+    )
+
+    # Snapshot enthält die erwartete Datei
+    def fake_snapshot(repo_id: str, cache_dir: Path) -> str:
+        snap = tmp_path / "snap"
+        snap.mkdir()
+        f = snap / "sam_vit_hq.pth"
+        f.write_text("x")
+        return str(snap)
+
+    monkeypatch.setattr(dep_manager, "snapshot_download", fake_snapshot)
+    monkeypatch.setattr(dep_manager, "MODELS_DIR", tmp_path)
+
+    p = dep_manager.download_model("sam_vit_hq", progress=False)
+    assert p.exists()
+
