@@ -141,6 +141,26 @@ python -m core.batch_runner Projekte/Manga03.dezproj --workers 4
 Der Stub-Server bietet dazu den Endpunkt `/batch`, der denselben Vorgang im
 Hintergrund startet und eine Task-ID zurückliefert.
 
+## Schritt 8 – Logging & Reports
+
+Der Batch-Runner schreibt nun strukturierte Log-Dateien in den Projektordner.
+Neben einer lesbaren `run_*.log`-Datei entsteht ein JSON-Log `run_*.jsonl`.
+Loguru kümmert sich dabei um Rotation und Aufbewahrung. Nach Abschluss wird ein
+Report mit Kennzahlen generiert.
+
+Einen Report kann man auch nachträglich erstellen:
+
+```bash
+python -m core.report Projekte/Manga03.dezproj <batch_id>
+```
+
+Beispiel für einen JSON-Eintrag:
+
+```json
+{"time":"2025-07-16T18:22:30.003Z","level":"INFO","message":"done",
+ "extra":{"batch":"20250716_1822","img":"page01","duration_ms":742,"model":"lama"}}
+```
+
 ---
 
 ## Projektordnerstruktur & GUI

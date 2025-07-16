@@ -1,7 +1,41 @@
-import logging
+from loguru import logger
+from pathlib import Path
+import sys
+
+# Standardformat für Konsolen-Ausgaben
+DEFAULT_FORMAT = "{time:YYYY-MM-DD HH:mm:ss.SSS} | {level: <8} | {message}"
 
 
-def get_logger(name: str) -> logging.Logger:
-    """Gibt einen Logger mit einfachem Standard-Setup zurück."""
-    logging.basicConfig(level=logging.INFO)
-    return logging.getLogger(name)
+def init_logging(project_root: Path, debug: bool = False):
+    """Initialisiert Loguru mit Text- und JSON-Dateien."""
+    log_dir = project_root / "logs"
+    log_dir.mkdir(exist_ok=True)
+
+    # Vorhandene Handler entfernen und neue Sinks setzen
+    logger.remove()
+    logger.add(
+        sys.stderr,
+        level="DEBUG" if debug else "INFO",
+        format=DEFAULT_FORMAT,
+        colorize=True,
+    )
+    logger.add(
+        log_dir / "run_{time}.log",
+        rotation="10 MB",
+        retention="14 days",
+        format=DEFAULT_FORMAT,
+    )
+    logger.add(
+        log_dir / "run_{time}.jsonl",
+        rotation="100 MB",
+        retention="30 days",
+        serialize=True,  # Jede Zeile als JSON
+    )
+
+    # Zusätzliche Felder vorbereiten
+    return logger.patch(lambda r: r["extra"].setdefault("img", "-"))
+
+
+def get_logger(name: str):
+    """Kompatibilitätsfunktion für alte Aufrufer."""
+    return logger.bind(mod=name)

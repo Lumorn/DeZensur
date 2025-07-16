@@ -43,3 +43,8 @@ Alle Änderungen werden in diesem Dokument festgehalten.
 ### Hinzugefügt
 - Modul 7: core/batch_runner.py, Rich-Progress, Thread-Pool
 - Neuer /batch-Endpunkt im Stub-Server
+
+## [1.0.0] – 2025-07-17
+### Hinzugefügt
+- Modul 8: JSON-Logging mit Loguru, Batch-Report-Generator
+- CLI-Werkzeug `python -m core.report`

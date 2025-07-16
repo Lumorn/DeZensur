@@ -10,47 +10,48 @@ from core.censor_detector import detect_censor
 from core.segmenter import generate_mask, save_mask_png
 from core.inpainter import inpaint
 from core.dep_manager import is_gpu_available
-import logging
-import json
+from core.logger_setup import init_logging
+from core.report import summarize_batch
 import os
 import time
+import datetime
 import argparse
-
-
-logger = logging.getLogger(__name__)
-
 
 def boxes_to_prompts(boxes: list[dict]) -> list[dict]:
     """Wandelt Box-Ergebnisse in Prompt-Dictionaries um."""
     return [{"type": "box", "data": b["box"]} for b in boxes]
 
 
-def _process_image(project: Project, img: dict, model_detector: str, model_sam: str, model_inpaint: str) -> None:
+def _process_image(
+    project: Project,
+    img: dict,
+    model_detector: str,
+    model_sam: str,
+    model_inpaint: str,
+    logger,
+) -> None:
     """Führt die Pipeline für ein einzelnes Bild aus."""
     img_id = img["id"]
     img_path = project.get_image_path(img_id)
     start = time.perf_counter()
 
-    boxes = detect_censor(img_path, model_name=model_detector)
-    prompts = boxes_to_prompts(boxes)
-    mask = generate_mask(img_path, prompts, model_sam)
-    mask_path = project.get_mask_path(img_id)
-    save_mask_png(mask, mask_path)
-    result = inpaint(img_path, mask_path, model_key=model_inpaint)
+    try:
+        boxes = detect_censor(img_path, model_name=model_detector)
+        prompts = boxes_to_prompts(boxes)
+        mask = generate_mask(img_path, prompts, model_sam)
+        mask_path = project.get_mask_path(img_id)
+        save_mask_png(mask, mask_path)
+        result = inpaint(img_path, mask_path, model_key=model_inpaint)
 
-    elapsed = int((time.perf_counter() - start) * 1000)
-    project.update_status(img_id, "done", mask=str(mask_path), result=str(result))
-
-    log = {
-        "detector": model_detector,
-        "sam": model_sam,
-        "inpaint": model_inpaint,
-        "boxes": boxes,
-        "inference_ms": elapsed,
-    }
-    log_path = project.root / "logs" / f"{img_id}.json"
-    with log_path.open("w", encoding="utf-8") as f:
-        json.dump(log, f, indent=2)
+        elapsed = int((time.perf_counter() - start) * 1000)
+        project.update_status(img_id, "done", mask=str(mask_path), result=str(result))
+        logger.bind(img=img_id).info(
+            "done",
+            duration_ms=elapsed,
+            model=model_inpaint,
+        )
+    except Exception:
+        logger.bind(img=img_id).exception("failed")
 
 
 def run_batch(
@@ -63,6 +64,9 @@ def run_batch(
     """Verarbeitet alle noch offenen Bilder eines Projektes."""
 
     project = Project.load(project_file)
+    logger = init_logging(project.root)
+    batch_id = datetime.datetime.utcnow().strftime("%Y%m%d_%H%M%S")
+    logger = logger.bind(batch=batch_id)
     todo = [img for img in project.data["images"] if img.get("status") == "pending"]
 
     # Anzahl Threads automatisch wählen
@@ -83,14 +87,23 @@ def run_batch(
         task = progress.add_task("[cyan]Batch-Job", total=len(todo))
         with ThreadPoolExecutor(max_workers=max_workers) as exe:
             futures = {
-                exe.submit(_process_image, project, img, model_detector, model_sam, model_inpaint): img
+                exe.submit(
+                    _process_image,
+                    project,
+                    img,
+                    model_detector,
+                    model_sam,
+                    model_inpaint,
+                    logger,
+                ): img
                 for img in todo
             }
             for fut in as_completed(futures):
                 img = futures[fut]
                 fut.result()
                 progress.update(task, advance=1, description=f"[green]{img['id']}")
-
+        rep_path = summarize_batch(project.root, batch_id)
+        logger.info(f"Report saved: {rep_path}")
 
 def cli() -> None:
     """Einfaches CLI-Interface."""
