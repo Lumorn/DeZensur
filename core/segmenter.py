@@ -24,7 +24,7 @@ def load_sam(model_key: str) -> SamPredictor:
 
     model_path = ensure_model(model_key)
     model_type = "vit_t" if model_key == "sam_mobile" else "vit_h"
-    LOGGER.info("Lade SAM-Modell %s", model_path)
+    LOGGER.info("Lade SAM-Modell {}", model_path)
     sam = sam_model_registry[model_type](checkpoint=str(model_path))
     predictor = SamPredictor(sam)
     device = "cuda" if is_gpu_available() else "cpu"

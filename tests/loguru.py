@@ -32,7 +32,10 @@ class _Logger:
 
     def _log(self, level, message, *args, **extra):
         if args:
-            message = message % args
+            try:
+                message = message.format(*args)
+            except Exception:
+                message = message % args
         data = {"level": level, "message": message, "extra": {**self.extra, **extra}}
         for path, serialize in self.sinks:
             path.parent.mkdir(parents=True, exist_ok=True)
