@@ -215,6 +215,15 @@ Projektordner gespeichert.
 4. Jeder PR benötigt einen Testfall in `tests/`
 5. Die GitHub-Action prüft Formatierung (black, isort, flake8) und startet alle Tests
 
+## Tests
+
+Um die Tests lokal auszuführen, muss der Ordner `tests` im `PYTHONPATH` stehen,
+damit die Stubs der Abhängigkeiten gefunden werden:
+
+```bash
+PYTHONPATH=tests pytest -q
+```
+
 ---
 
 ## TODO-Liste (Auszug)

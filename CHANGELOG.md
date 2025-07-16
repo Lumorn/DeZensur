@@ -113,3 +113,10 @@ Alle Änderungen werden in diesem Dokument festgehalten.
 ### Geändert
 - `start.py` haelt das Terminal nun auch bei Fehlern offen und gibt den
   Stacktrace aus. So koennen Anwender die Fehlermeldung in Ruhe lesen.
+
+## [1.4.5] – 2025-07-28
+### Geändert
+- `pytest.ini` verzichtet auf Coverage-Optionen, sodass die Tests auch ohne
+  zusätzliche Plugins laufen.
+### Hinzugefügt
+- Anleitung zum lokalen Testlauf in der README.
