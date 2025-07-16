@@ -74,3 +74,9 @@ Alle Änderungen werden in diesem Dokument festgehalten.
 ### Geändert
 - README: Projektordner heißt nun `DeZensur/`
 - CI-Badge verweist auf korrektes GitHub-Repository
+
+## [1.3.2] – 2025-07-21
+### Geändert
+- `iopaint[lama]` ist nun auf Version 1.2.5 festgeschrieben
+### Hinzugefügt
+- Hinweis zur festen Version in der README
