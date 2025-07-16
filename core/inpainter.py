@@ -56,6 +56,7 @@ def inpaint(
         result = Image.new("RGB", img.size)
     elif model_key == "lama":
         model_path = ensure_model("iopaint_lama")
+        # Nutzung der gepinnten Bibliothek iopaint (siehe requirements.txt)
         from iopaint.model_manager import ModelManager
 
         image_np = np.asarray(img)[:, :, ::-1]
