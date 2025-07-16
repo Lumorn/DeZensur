@@ -19,6 +19,22 @@ def run(cmd: list[str], **kwargs) -> None:
     subprocess.run(cmd, check=True, **kwargs)
 
 
+def update_repo() -> None:
+    """Prüft, ob das Git-Repository aktuell ist und aktualisiert es falls nötig."""
+    try:
+        run(["git", "fetch", "origin"], cwd=project_root)
+        local_sha = subprocess.check_output(
+            ["git", "rev-parse", "HEAD"], cwd=project_root, text=True
+        ).strip()
+        remote_sha = subprocess.check_output(
+            ["git", "rev-parse", "origin/main"], cwd=project_root, text=True
+        ).strip()
+        if local_sha != remote_sha:
+            run(["git", "pull", "origin", "main"], cwd=project_root)
+    except subprocess.CalledProcessError as exc:
+        # Fehler ausgeben, aber fortfahren, damit das Terminal offen bleibt.
+        print(f"Git-Aktualisierung fehlgeschlagen: {exc}\nBitte Branch-Tracking einrichten.")
+
 def ensure_repo() -> None:
     """Klonen des Git-Repositories, falls die Dateien fehlen."""
 
@@ -62,13 +78,8 @@ def main() -> None:
     # Pfad zum Python-Interpreter der venv ermitteln
     python_bin = venv_path / ("Scripts" if os.name == "nt" else "bin") / "python"
 
-    # Repository auf den neuesten Stand bringen, damit requirements aktuell sind
-    try:
-        run(["git", "pull"])
-    except subprocess.CalledProcessError as exc:
-        # Fehler ausgeben, aber fortfahren. Sonst wuerde sich das Terminal bei
-        # fehlendem Tracking-Branch sofort schliessen.
-        print(f"Git-Pull fehlgeschlagen: {exc}\nBitte Branch-Tracking einrichten.")
+    # Repository prüfen und aktualisieren
+    update_repo()
 
     # Python-Abhängigkeiten installieren
     run([str(python_bin), "-m", "pip", "install", "-r", "requirements.txt"])

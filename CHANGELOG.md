@@ -120,3 +120,10 @@ Alle Änderungen werden in diesem Dokument festgehalten.
   zusätzliche Plugins laufen.
 ### Hinzugefügt
 - Anleitung zum lokalen Testlauf in der README.
+
+## [1.4.6] – 2025-07-29
+### Geändert
+- `start.py` prüft nun, ob das Repository aktuell ist und führt bei Bedarf
+  automatisch `git pull` aus.
+### Geändert
+- README entsprechend angepasst.
