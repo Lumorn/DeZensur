@@ -9,3 +9,7 @@ def hf_hub_url(*args, **kwargs):
 
 def snapshot_download(*args, **kwargs):
     return '/tmp/snapshot'
+
+
+def list_repo_files(*args, **kwargs):
+    return []

@@ -254,3 +254,11 @@ Alle Änderungen werden in diesem Dokument festgehalten.
   und ``sam_vit_hq.pth`` bleiben als Fallback erhalten.
 ### Geändert
 - README weist auf den neuen Dateinamen hin.
+
+## [1.4.27] – 2025-08-15
+### Geändert
+- ``dep_manager.download_model`` ermittelt nun automatisch den neuesten
+  Unterordner von ``anime_censor_detection``. Dadurch funktionieren zukünftige
+  Versionen ohne Codeanpassung.
+### Hinzugefügt
+- Stub ``list_repo_files`` und aktualisierte Tests.

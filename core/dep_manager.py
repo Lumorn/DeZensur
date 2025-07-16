@@ -11,7 +11,12 @@ from pathlib import Path
 
 import requests
 import torch
-from huggingface_hub import hf_hub_download, hf_hub_url, snapshot_download
+from huggingface_hub import (
+    hf_hub_download,
+    hf_hub_url,
+    snapshot_download,
+    list_repo_files,
+)
 from tqdm import tqdm
 
 logger = logging.getLogger(__name__)
@@ -25,8 +30,14 @@ MODELS_DIR = Path("models")
 MODEL_REGISTRY: dict[str, dict[str, str | list[str] | None]] = {
     "anime_censor_detection": {
         "repo": "deepghs/anime_censor_detection",
-        "filename": "censor_detect_v0.7_s.onnx",
-        "alternatives": ["censor_detect_v0.7.onnx", "censor_detect_v0.8.onnx"],
+        # aktueller Pfad innerhalb des Repos
+        "filename": "censor_detect_v0.9_s/model.onnx",
+        # ältere Dateinamen als Fallback
+        "alternatives": [
+            "censor_detect_v0.7_s.onnx",
+            "censor_detect_v0.7.onnx",
+            "censor_detect_v0.8.onnx",
+        ],
         "sha256": None,
         "device": "cpu",
     },
@@ -137,8 +148,20 @@ def download_model(name: str, progress: bool = True) -> Path:
     models_dir = MODELS_DIR / name
     models_dir.mkdir(parents=True, exist_ok=True)
     dest = models_dir / filename
+    dest.parent.mkdir(parents=True, exist_ok=True)
 
     candidates = [filename, *alternatives]
+    if name == "anime_censor_detection":
+        try:
+            files = list_repo_files(repo_id=repo, token=token)
+            subdirs = sorted(
+                {p.split("/")[0] for p in files if p.startswith("censor_detect_v")},
+                reverse=True,
+            )
+            if subdirs:
+                candidates.insert(0, f"{subdirs[0]}/model.onnx")
+        except Exception as exc:  # pragma: no cover - nur Warnung
+            logger.warning("Konnte Unterordner nicht ermitteln: %s", exc)
     last_exc: Exception | None = None
     for fname in candidates:
         url = hf_hub_url(repo, fname)
