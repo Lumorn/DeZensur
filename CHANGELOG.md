@@ -232,3 +232,10 @@ Alle Änderungen werden in diesem Dokument festgehalten.
 ### Geändert
 - README weist auf die erweiterte Suche hin und das SAM-HQ-Repository wird in
   Kleinschreibung referenziert.
+
+## [1.4.24] – 2025-08-12
+### Behoben
+- ``dep_manager.download_model`` übergibt jetzt das in ``HUGGINGFACE_HUB_TOKEN``
+  hinterlegte Zugangstoken an Hugging Face.
+### Geändert
+- README beschreibt die Token-Variable.

@@ -123,6 +123,9 @@ Ab Version 1.4.22 wird bei fehlenden Dateien das gesamte Repository als
 Snapshot heruntergeladen und die erste gefundene ``.onnx``-Datei verwendet.
 Seit Version 1.4.23 durchsucht dieser Snapshot alle bekannten Dateinamen,
 so dass auch ``.pth``-Modelle wie ``sam_vit_hq`` gefunden werden.
+Ab Version 1.4.24 kann optional ein Zugangstoken 
+über die Umgebungsvariable ``HUGGINGFACE_HUB_TOKEN`` gesetzt werden,
+um private oder nur für angemeldete Nutzer freigegebene Modelle herunterladen zu können.
 
 ## Automatische Zensur-Erkennung (Modul 3)
 
