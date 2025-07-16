@@ -5,6 +5,10 @@ import subprocess
 import sys
 from pathlib import Path
 
+from core.dep_manager import ensure_model
+import tkinter as tk
+from tkinter import messagebox
+
 
 def run(cmd: list[str]) -> None:
     """Hilfsfunktion zum Ausführen eines Befehls."""
@@ -27,6 +31,14 @@ def main() -> None:
 
     # Repository aktualisieren
     run(["git", "pull"])
+
+    try:
+        ensure_model("anime_censor_detection")
+        ensure_model("sam_vit_hq")
+    except Exception as exc:
+        tk.Tk().withdraw()
+        messagebox.showerror("Fehler", f"Modelldownload schlug fehl: {exc}")
+        sys.exit(1)
 
     pkg_lock = Path("gui/package-lock.json")
     node_modules = Path("gui/node_modules")

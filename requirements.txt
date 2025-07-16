@@ -5,6 +5,7 @@ torch>=2.2
 opencv-python
 pillow
 tqdm
-huggingface-hub
+huggingface-hub>=0.24.0
 flask
 requests
+aiohttp

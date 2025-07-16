@@ -1,0 +1,55 @@
+"""Tests für den Dependency-Manager."""
+
+from pathlib import Path
+from unittest import mock
+
+import hashlib
+import sys
+
+from tests import requests_stub
+import types
+
+sys.modules['requests'] = requests_stub
+torch_stub = types.SimpleNamespace(cuda=types.SimpleNamespace(is_available=lambda: False))
+sys.modules['torch'] = torch_stub
+hub_stub = types.SimpleNamespace(hf_hub_download=lambda *a, **k: None, hf_hub_url=lambda *a, **k: "")
+sys.modules['huggingface_hub'] = hub_stub
+tqdm_stub = types.SimpleNamespace(tqdm=lambda *a, **k: types.SimpleNamespace(update=lambda n=None: None, close=lambda: None))
+sys.modules['tqdm'] = tqdm_stub
+
+from core import dep_manager
+
+
+def test_gpu_check() -> None:
+    assert isinstance(dep_manager.is_gpu_available(), bool)
+
+
+def test_verify_checksum(tmp_path: Path) -> None:
+    f = tmp_path / "a.txt"
+    f.write_text("hello")
+    sha = hashlib.sha256(b"hello").hexdigest()
+    assert dep_manager.verify_checksum(f, sha)
+    assert not dep_manager.verify_checksum(f, "0" * 64)
+
+
+def test_ensure_missing_model(tmp_path: Path) -> None:
+    name = "dummy"
+    dep_manager.MODEL_REGISTRY[name] = {
+        "repo": "some/repo",
+        "filename": "model.bin",
+        "sha256": None,
+        "device": "cpu",
+    }
+
+    def fake_download(**kwargs):
+        cache = tmp_path / "cache"
+        cache.mkdir(parents=True, exist_ok=True)
+        path = cache / "model.bin"
+        path.write_text("data")
+        return str(path)
+
+    with mock.patch.object(dep_manager, "hf_hub_download", side_effect=fake_download):
+        with mock.patch.object(dep_manager, "MODELS_DIR", tmp_path):
+            p = dep_manager.ensure_model(name)
+            assert p.exists()
+
