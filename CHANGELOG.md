@@ -269,3 +269,9 @@ Alle Änderungen werden in diesem Dokument festgehalten.
   unter 18 mit einer Fehlermeldung ab.
 ### Geändert
 - README erwähnt die Mindestanforderung für Node.js.
+
+## [1.4.29] – 2025-08-17
+### Behoben
+- Platzhalter in Log-Ausgaben werden nun korrekt mit ``{}`` formatiert.
+### Geändert
+- README weist auf die ``{}``-Syntax bei Loguru hin.

@@ -32,7 +32,7 @@ def _load_session(model_name: str) -> onnxruntime.InferenceSession:
         if dep_manager.is_gpu_available()
         else ["CPUExecutionProvider"]
     )
-    LOGGER.info("Lade ONNX-Modell %s", model_path)
+    LOGGER.info("Lade ONNX-Modell {}", model_path)
     return onnxruntime.InferenceSession(str(model_path), providers=providers)
 
 

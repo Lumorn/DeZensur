@@ -210,7 +210,9 @@ Hintergrund startet und eine Task-ID zurückliefert.
 Der Batch-Runner schreibt nun strukturierte Log-Dateien in den Projektordner.
 Neben einer lesbaren `run_*.log`-Datei entsteht ein JSON-Log `run_*.jsonl`.
 Loguru kümmert sich dabei um Rotation und Aufbewahrung. Nach Abschluss wird ein
-Report mit Kennzahlen generiert.
+Report mit Kennzahlen generiert. Log-Nachrichten verwenden die
+loguru-übliche Formatierung mit `{}`-Platzhaltern, etwa
+`logger.info("Lade ONNX-Modell {}", pfad)`.
 
 Einen Report kann man auch nachträglich erstellen:
 
