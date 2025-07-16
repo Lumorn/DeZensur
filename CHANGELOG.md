@@ -176,3 +176,9 @@ Alle Änderungen werden in diesem Dokument festgehalten.
 ### Hinzugefügt
 - `start.py` zeigt nun für jeden externen Befehl einen Fortschrittsspinne im
   Terminal an. So ist klar ersichtlich, was gerade passiert.
+
+## [1.4.15] – 2025-08-05
+### Geändert
+- `start.py` importiert `rich` nun erst in der Hilfsfunktion `run`. Dadurch
+  startet das Skript auch dann fehlerfrei, wenn die Abhängigkeiten noch nicht
+  installiert sind.

@@ -104,8 +104,8 @@ startet ein neuer Prozess und das Skript beendet sich anschließend.
 Seit Version 1.4.13 prüft `start.py` zudem, ob ungesicherte Änderungen im
 Repository vorliegen. Ist dies der Fall, wird ein Hinweis angezeigt und der
 automatische `git pull` übersprungen.
-Ab Version 1.4.14 zeigt `start.py` bei jedem externen Befehl eine kleine
-Fortschrittsspinne im Terminal, damit man den aktuellen Schritt erkennt.
+Ab Version 1.4.14 zeigt `start.py` bei jedem externen Befehl eine kleine Fortschrittsspinne im Terminal, damit man den aktuellen Schritt erkennt.
+Ab Version 1.4.15 kann das Skript auch ohne das Paket `rich` starten. Die Fortschrittsanzeige erscheint erst, wenn die Abhängigkeit installiert ist.
 
 ## Automatischer Modell-Download
 
