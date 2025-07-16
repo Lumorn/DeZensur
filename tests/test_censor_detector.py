@@ -15,6 +15,8 @@ sys.modules['requests'] = requests_stub
 import tests.huggingface_hub as hf_stub
 sys.modules['huggingface_hub'] = hf_stub
 sys.modules['tqdm'] = __import__('tests.tqdm', fromlist=[''])
+import tests.loguru as loguru_stub
+sys.modules['loguru'] = loguru_stub
 
 sys.modules['onnxruntime'] = __import__('onnxruntime') if 'onnxruntime' in sys.modules else sys.modules.get('onnxruntime')
 # ensure stubs for offline

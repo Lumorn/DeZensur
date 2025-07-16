@@ -32,6 +32,8 @@ import tests.requests_stub as requests_stub
 sys.modules['requests'] = requests_stub
 import tests.huggingface_hub as hf_stub
 sys.modules['huggingface_hub'] = hf_stub
+import tests.loguru as loguru_stub
+sys.modules['loguru'] = loguru_stub
 sys.modules['tqdm'] = importlib.import_module('tests.tqdm')
 sys.modules['segment_anything'] = importlib.import_module('tests.segment_anything')
 

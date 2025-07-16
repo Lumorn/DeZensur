@@ -127,3 +127,9 @@ Alle Änderungen werden in diesem Dokument festgehalten.
   automatisch `git pull` aus.
 ### Geändert
 - README entsprechend angepasst.
+
+## [1.4.7] – 2025-07-30
+### Geändert
+- `requirements.txt` setzt nun `torch` auf Version 2.2.x, da 2.1.x keine
+  Python‑3.12-Builds bietet.
+- README entsprechend angepasst.
