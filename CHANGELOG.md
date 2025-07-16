@@ -86,3 +86,10 @@ Alle Änderungen werden in diesem Dokument festgehalten.
 - `requirements.txt` beschränkt `torch` jetzt auf Version 2.1.x
 ### Hinzugefügt
 - Info zur Torch-Begrenzung in der README
+
+## [1.4.0] – 2025-07-23
+### Hinzugefügt
+- CI-Workflow prüft jetzt flake8 und startet auch die Jest-Tests im GUI-Ordner
+- Neues `npm`-Script `test` für Jest
+### Geändert
+- README erwähnt den automatischen CI-Lauf
