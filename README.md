@@ -98,6 +98,9 @@ Ausgabe in Ruhe lesen kann.
 Ab Version 1.4.6 startet `start.py` nach dem Anlegen der virtuellen Umgebung
 automatisch erneut mit dem Python der venv. Dadurch sind frisch installierte
 Pakete sofort nutzbar und Importfehler werden vermieden.
+Ab Version 1.4.12 wird unter Windows kein ``os.execv`` mehr verwendet,
+da dies dort zu ``OSError: [Errno 12] Not enough space`` führte. Stattdessen
+startet ein neuer Prozess und das Skript beendet sich anschließend.
 
 ## Automatischer Modell-Download
 
