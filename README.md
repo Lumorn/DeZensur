@@ -161,6 +161,8 @@ automatisch `npm audit` aus und weist bei Fehlern auf mögliche
 Sicherheitslücken hin.
 Ab Version 1.4.44 verwendet die Vite-Konfiguration den relativen Basis-Pfad
 `./`, damit die gebaute Electron-Oberfläche ihre Assets findet.
+Ab Version 1.4.45 prüft `start.py` das Git-Repository bereits vor dem Anlegen der
+virtuellen Umgebung und aktualisiert es gegebenenfalls.
 
 ## Automatische Zensur-Erkennung (Modul 3)
 
