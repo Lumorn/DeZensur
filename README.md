@@ -150,6 +150,8 @@ Ab Version 1.4.36 kann der Schritt `npm install` mit der Umgebungsvariable
 `SKIP_NPM_INSTALL` oder dem Parameter `--skip-npm` übersprungen werden. Das ist
 hilfreich, wenn die Pakete bereits installiert sind oder keine
 Internetverbindung besteht.
+Ab Version 1.4.40 setzt die GUI `react-konva` in Version 19.0.7 ein,
+da die zuvor eingetragene Version 19.0.24 nie veröffentlicht wurde.
 
 ## Automatische Zensur-Erkennung (Modul 3)
 
