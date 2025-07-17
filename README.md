@@ -302,6 +302,15 @@ Projektordner gespeichert.
 Versucht man, ohne geöffnetes Projekt Bilder hinzuzufügen, erscheint nun eine
 Hinweismeldung.
 
+## Mockups
+
+Im Ordner `mockups/` liegen zwei HTML-Dateien, die das geplante
+Desktop-Layout von DeZensur demonstrieren.
+`front.html` zeigt die normale Benutzeroberfläche, `backstage.html` die
+Einstellungs-Ansicht. Du kannst die Dateien einfach im Browser öffnen, um
+einen ersten Eindruck vom Dark-Theme und der Anordnung der Bereiche zu
+erhalten.
+
 ---
 
 ## Mitwirken
