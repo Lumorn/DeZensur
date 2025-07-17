@@ -133,6 +133,8 @@ von `anime_censor_detection` (z.B. `censor_detect_v0.9_s/model.onnx`). Damit
 funktioniert der Download auch bei zukünftigen Updates ohne Anpassungen.
 Ab Version 1.4.28 prüft `start.py` die installierte Node-Version und verlangt
 mindestens Version 18.
+Ab Version 1.4.30 kann der Pfad zu `npm` über die Umgebungsvariable
+``NPM_PATH`` gesetzt werden, falls das Programm nicht im ``PATH`` liegt.
 
 ## Automatische Zensur-Erkennung (Modul 3)
 

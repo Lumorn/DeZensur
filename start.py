@@ -13,6 +13,9 @@ from tkinter import messagebox
 import shutil
 import time
 
+# Pfad zum npm-Binary; wird in check_npm ermittelt
+npm_cmd = "npm"
+
 project_root = Path(__file__).resolve().parent
 
 
@@ -98,8 +101,21 @@ def update_repo() -> None:
 def check_npm() -> None:
     """Prüft, ob npm und eine ausreichende Node-Version verfügbar sind."""
 
-    # Erst sicherstellen, dass sowohl npm als auch node im Pfad liegen
-    if shutil.which("npm") is None or shutil.which("node") is None:
+    global npm_cmd
+
+    # Nach npm suchen und gegebenenfalls Standardpfade pruefen
+    npm_cmd = shutil.which("npm")
+    if npm_cmd is None:
+        env_path = os.environ.get("NPM_PATH")
+        if env_path and Path(env_path).exists():
+            npm_cmd = env_path
+        elif os.name == "nt":
+            standard = Path(os.environ.get("ProgramFiles", "")) / "nodejs" / "npm.cmd"
+            if standard.exists():
+                npm_cmd = str(standard)
+
+    # Wenn weiterhin nichts gefunden wurde, abbrechen
+    if npm_cmd is None or shutil.which("node") is None:
         msg = "Node.js bzw. npm wurde nicht gefunden. Bitte erst installieren."
         print(msg)
         tk.Tk().withdraw()
@@ -232,12 +248,12 @@ def main() -> None:
             and package_json.stat().st_mtime > node_modules.stat().st_mtime
         )
     ):
-        run(["npm", "install"], cwd="gui", beschreibung="npm install")
+        run([npm_cmd, "install"], cwd="gui", beschreibung="npm install")
 
     if "--dev" in sys.argv:
-        run(["npm", "run", "dev"], cwd="gui", beschreibung="npm run dev")
+        run([npm_cmd, "run", "dev"], cwd="gui", beschreibung="npm run dev")
     else:
-        run(["npm", "start"], cwd="gui", beschreibung="npm start")
+        run([npm_cmd, "start"], cwd="gui", beschreibung="npm start")
 
 
 if __name__ == "__main__":
