@@ -388,3 +388,9 @@ Alle Änderungen werden in diesem Dokument festgehalten.
 ## [1.4.47] – 2025-09-04
 ### Behoben
 - `start.py` baut die GUI nun automatisch, wenn `gui/dist` fehlt. Dadurch wird die Oberfläche korrekt angezeigt.
+
+## [1.4.48] – 2025-09-05
+### Behoben
+- Unter Windows schlug der Electron-Build fehl, wenn keine Symlink-Rechte vorhanden waren. `start.py` setzt nun `CSC_IDENTITY_AUTO_DISCOVERY=false`, damit kein Codesigning stattfindet.
+### Geändert
+- README beschreibt diese neue Umgebungsvariable.

@@ -72,6 +72,7 @@ def test_ensure_gui_build(monkeypatch, tmp_path):
             [start.npm_cmd, "run", "build"],
             cwd="gui",
             beschreibung="npm run build",
+            env=mock.ANY,
         )
 
     dist = tmp_path / "gui" / "dist"

@@ -192,7 +192,19 @@ def ensure_gui_build() -> None:
 
     dist_index = project_root / "gui" / "dist" / "index.html"
     if not dist_index.exists():
-        run([npm_cmd, "run", "build"], cwd="gui", beschreibung="npm run build")
+        # Unter Windows kann das Electron-Build scheitern, wenn keine
+        # Berechtigung zum Anlegen von Symlinks vorhanden ist. Durch Setzen
+        # dieser Umgebungsvariable wird das Codesigning deaktiviert und der
+        # entsprechende Download entfaellt.
+        env = os.environ.copy()
+        if os.name == "nt":
+            env.setdefault("CSC_IDENTITY_AUTO_DISCOVERY", "false")
+        run(
+            [npm_cmd, "run", "build"],
+            cwd="gui",
+            beschreibung="npm run build",
+            env=env,
+        )
 
 
 def ensure_repo() -> None:

@@ -169,6 +169,9 @@ virtuellen Umgebung und aktualisiert es gegebenenfalls.
 Ab Version 1.4.47 wird die React-Oberfläche automatisch gebaut, wenn noch kein
 `gui/dist`-Ordner existiert. Dadurch erscheint die GUI auch bei einer frischen
 Installation korrekt.
+Ab Version 1.4.48 setzt `start.py` unter Windows automatisch
+`CSC_IDENTITY_AUTO_DISCOVERY=false`, damit `electron-builder`
+ohne Symlink-Rechte funktioniert.
 
 ## Automatische Zensur-Erkennung (Modul 3)
 
