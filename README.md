@@ -81,6 +81,11 @@ python start.py
 ````
 Mit `python start.py --dev` startet die Oberfläche im Entwicklungsmodus.
 
+Möchtest du die GUI direkt über Node starten, wechsle in den Ordner `gui` und
+führe `npm run dev` aus. Damit laufen Vite und Electron parallel. Der Befehl
+`npm start` hingegen lädt nur Electron und setzt voraus, dass zuvor `npm run
+build` ausgeführt wurde. Ohne diesen Build bleibt das Fenster leer.
+
 Beim Start prüft das Skript, ob neue Commits auf `origin/main` vorhanden sind
 und zieht sie automatisch. Anschließend installiert es alle
 Abhängigkeiten. Beim ersten Durchlauf lädt das
