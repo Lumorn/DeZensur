@@ -367,3 +367,9 @@ Alle Änderungen werden in diesem Dokument festgehalten.
 - `start.py` ruft nach einem erfolgreichen `npm install` automatisch `npm audit` auf und meldet eventuelle Probleme.
 ### Geändert
 - README beschreibt die neue Sicherheitsprüfung.
+
+## [1.4.44] – 2025-09-01
+### Behoben
+- `vite.config.js` setzt nun den Basis-Pfad auf `./`, damit die gebaute GUI ihre Assets korrekt findet.
+### Geändert
+- README weist auf die neue `base`-Einstellung hin.
