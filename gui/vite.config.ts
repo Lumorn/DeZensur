@@ -4,6 +4,8 @@ import path from 'path';
 
 export default defineConfig({
   plugins: [react()],
+  // relativer Basis-Pfad, damit Electron die Assets auch im Produktivmodus findet
+  base: './',
   build: {
     outDir: 'dist',
     emptyOutDir: true,
