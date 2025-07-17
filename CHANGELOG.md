@@ -302,3 +302,10 @@ Alle Änderungen werden in diesem Dokument festgehalten.
   Pakete wie `electron-reload` scheitert.
 ### Geändert
 - README um diese Info erweitert.
+
+## [1.4.34] – 2025-08-22
+### Geändert
+- `electron-reload` wird jetzt in Version ``2.0.1`` installiert, da 2.0.0 und
+  2.0.2 zu Problemen führten.
+### Geändert
+- README entsprechend angepasst.
