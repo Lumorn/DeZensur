@@ -135,6 +135,8 @@ Ab Version 1.4.28 prüft `start.py` die installierte Node-Version und verlangt
 mindestens Version 18.
 Ab Version 1.4.30 kann der Pfad zu `npm` über die Umgebungsvariable
 ``NPM_PATH`` gesetzt werden, falls das Programm nicht im ``PATH`` liegt.
+Ab Version 1.4.31 nutzt die GUI `electron-reload` in Version 2.0.2, weil die zuvor
+eingesetzte Version 2.0.0 nicht mehr verfügbar ist.
 
 ## Automatische Zensur-Erkennung (Modul 3)
 

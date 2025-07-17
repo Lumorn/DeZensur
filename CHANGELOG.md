@@ -281,3 +281,10 @@ Alle Änderungen werden in diesem Dokument festgehalten.
 - ``start.py`` erkennt ``npm`` jetzt auch über die Umgebungsvariable ``NPM_PATH``.
 ### Geändert
 - README beschreibt die neue Variable zum Setzen des ``npm``-Pfads.
+
+## [1.4.31] – 2025-08-19
+### Behoben
+- ``electron-reload`` wird nun in Version ``2.0.2`` installiert, da ``2.0.0`` nicht
+  mehr verfügbar ist.
+### Geändert
+- README verweist auf die aktualisierte Abhängigkeit.
