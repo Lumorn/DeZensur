@@ -236,8 +236,12 @@ def main() -> None:
     package_json = Path("gui/package.json")
     node_modules = Path("gui/node_modules")
 
-    # NPM-Pakete installieren, falls noetig
-    if (
+    # Installation der NPM-Pakete kann über die Umgebungsvariable
+    # "SKIP_NPM_INSTALL" oder den Parameter "--skip-npm" übersprungen werden.
+    skip_npm = os.environ.get("SKIP_NPM_INSTALL") or "--skip-npm" in sys.argv
+
+    # NPM-Pakete installieren, falls erforderlich und nicht übersprungen
+    if not skip_npm and (
         not node_modules.exists()
         or (
             pkg_lock.exists()
@@ -258,6 +262,8 @@ def main() -> None:
                 "oder passe die Version von electron-reload im package.json an."
             )
             raise
+    elif skip_npm:
+        print("npm install wird aufgrund von SKIP_NPM_INSTALL übersprungen.")
 
     if "--dev" in sys.argv:
         run([npm_cmd, "run", "dev"], cwd="gui", beschreibung="npm run dev")

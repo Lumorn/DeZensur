@@ -143,6 +143,10 @@ nutzt Version 1.4.35 wieder `electron-reload` 2.0.0.
 Ab Version 1.4.33 weist `start.py` auf fehlgeschlagene `npm install`-Befehle hin,
 falls beispielsweise `electron-reload` in der geforderten Version nicht
 gefunden wird.
+Ab Version 1.4.36 kann der Schritt `npm install` mit der Umgebungsvariable
+`SKIP_NPM_INSTALL` oder dem Parameter `--skip-npm` übersprungen werden. Das ist
+hilfreich, wenn die Pakete bereits installiert sind oder keine
+Internetverbindung besteht.
 
 ## Automatische Zensur-Erkennung (Modul 3)
 
