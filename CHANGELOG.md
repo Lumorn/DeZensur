@@ -453,3 +453,6 @@ Alle Änderungen werden in diesem Dokument festgehalten.
 - Das GUI-Build schlug wegen einer nicht vorhandenen Version von `electron-trpc` fehl. Die Abhängigkeit ist nun auf ^0.7.1 begrenzt.
 ### Geändert
 - README und `package.json` weisen auf die korrigierte Version hin.
+## [1.7.4] - 2025-09-16
+### Geändert
+- Electron deaktiviert jetzt das Autofill-Feature, um DevTools-Fehler zu vermeiden.
