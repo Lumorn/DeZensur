@@ -16,7 +16,62 @@ from tkinter import messagebox
 # Pfad zum npm-Binary; wird in check_npm ermittelt
 npm_cmd = "npm"
 
+
 project_root = Path(__file__).resolve().parent
+
+
+def _has_symlink_privilege() -> bool:
+    """Prüft, ob unter Windows Symlinks angelegt werden können."""
+
+    if os.name != "nt":
+        return True
+    import tempfile
+
+    test_dir = Path(tempfile.gettempdir()) / "dez_symlink_test"
+    target = test_dir / "target"
+    link = test_dir / "link"
+    try:
+        test_dir.mkdir(exist_ok=True)
+        target.write_text("test")
+        os.symlink(target, link)
+    except OSError:
+        return False
+    else:
+        link.unlink(missing_ok=True)
+        target.unlink(missing_ok=True)
+        test_dir.rmdir()
+        return True
+
+
+def ensure_admin_privileges() -> None:
+    """Fordert bei fehlenden Symlink-Rechten Administratorrechte an."""
+
+    if os.name != "nt" or os.environ.get("DEZENSUR_ADMIN"):
+        return
+    try:
+        import ctypes
+
+        if ctypes.windll.shell32.IsUserAnAdmin():
+            os.environ["DEZENSUR_ADMIN"] = "1"
+            return
+    except Exception:
+        pass
+
+    if _has_symlink_privilege():
+        os.environ["DEZENSUR_ADMIN"] = "1"
+        return
+
+    try:
+        import ctypes
+
+        params = " ".join(f'"{arg}"' for arg in sys.argv)
+        rc = ctypes.windll.shell32.ShellExecuteW(
+            None, "runas", sys.executable, params, None, 1
+        )
+        if int(rc) > 32:
+            sys.exit(0)
+    except Exception:
+        pass
 
 
 def run(cmd: list[str], *, beschreibung: str | None = None, **kwargs) -> None:
@@ -238,6 +293,9 @@ def ensure_repo() -> None:
     # Nach erfolgreichem Klonen Skript neu starten
     os.execv(sys.executable, [sys.executable, __file__] + sys.argv[1:])
 
+
+# Zuerst pruefen wir unter Windows, ob Symlink-Rechte vorhanden sind
+ensure_admin_privileges()
 
 # Erst sicherstellen, dass das Repo vorhanden ist
 ensure_repo()
