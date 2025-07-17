@@ -159,6 +159,8 @@ da die zuvor eingetragene Version 19.0.24 nie veröffentlicht wurde.
 Ab Version 1.4.43 führt `start.py` nach einem erfolgreichen `npm install`
 automatisch `npm audit` aus und weist bei Fehlern auf mögliche
 Sicherheitslücken hin.
+Ab Version 1.4.44 verwendet die Vite-Konfiguration den relativen Basis-Pfad
+`./`, damit die gebaute Electron-Oberfläche ihre Assets findet.
 
 ## Automatische Zensur-Erkennung (Modul 3)
 
