@@ -378,3 +378,9 @@ Alle Änderungen werden in diesem Dokument festgehalten.
 ### Geändert
 - `start.py` prüft das Git-Repository nun direkt beim Start und führt ggf. ein Update durch, bevor weitere Schritte erfolgen.
 - README beschreibt diese Änderung.
+
+## [1.4.46] – 2025-09-03
+### Hinzugefügt
+- Option `--auto-stash` in `start.py`, die ungesicherte Änderungen automatisch vor dem `git pull` stasht und anschließend wieder einspielt.
+### Geändert
+- README erläutert die neue Option.

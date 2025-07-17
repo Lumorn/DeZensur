@@ -108,6 +108,8 @@ startet ein neuer Prozess und das Skript beendet sich anschließend.
 Seit Version 1.4.13 prüft `start.py` zudem, ob ungesicherte Änderungen im
 Repository vorliegen. Ist dies der Fall, wird ein Hinweis angezeigt und der
 automatische `git pull` übersprungen.
+Ab Version 1.4.46 kann das Skript mit `--auto-stash` diese Änderungen
+automatisch stashen, den Pull durchführen und anschließend den Stash wieder anwenden.
 Ab Version 1.4.14 zeigt `start.py` bei jedem externen Befehl eine kleine Fortschrittsspinne im Terminal, damit man den aktuellen Schritt erkennt.
 Ab Version 1.4.15 kann das Skript auch ohne das Paket `rich` starten. Die Fortschrittsanzeige erscheint erst, wenn die Abhängigkeit installiert ist.
 Ab Version 1.4.16 weist `start.py` darauf hin, wenn `rich` fehlt und arbeitet dann ohne Fortschrittsanzeige weiter.
@@ -154,6 +156,7 @@ Ab Version 1.4.36 kann der Schritt `npm install` mit der Umgebungsvariable
 `SKIP_NPM_INSTALL` oder dem Parameter `--skip-npm` übersprungen werden. Das ist
 hilfreich, wenn die Pakete bereits installiert sind oder keine
 Internetverbindung besteht.
+Mit `--auto-stash` stasht `start.py` ungesicherte Änderungen automatisch vor dem Pull und stellt sie anschließend wieder her.
 Ab Version 1.4.40 setzt die GUI `react-konva` in Version 19.0.7 ein,
 da die zuvor eingetragene Version 19.0.24 nie veröffentlicht wurde.
 Ab Version 1.4.43 führt `start.py` nach einem erfolgreichen `npm install`
