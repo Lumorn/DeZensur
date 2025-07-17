@@ -434,3 +434,8 @@ Alle Änderungen werden in diesem Dokument festgehalten.
 ### Hinzugefügt
 - Neues TypeScript-Frontend mit TanStack Router und Zustand-Stores.
 - Playwright-Smoke-Test und electron-trpc IPC-Gerüst.
+
+## [1.7.0] – 2025-09-12
+### Hinzugefügt
+- IPC-Kommunikation nutzt jetzt **electron-trpc** mit Typsicherheit.
+- Preload und Renderer binden die IPC-Routen automatisch ein.

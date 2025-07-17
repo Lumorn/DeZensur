@@ -87,6 +87,7 @@ führe `npm run dev` aus. Damit laufen Vite und Electron parallel. Der Befehl
 build` ausgeführt wurde. Ohne diesen Build bleibt das Fenster leer.
 
 Ab Version 1.3.3 nutzt die neue TypeScript-Oberflaeche mit TanStack Router. Nach `npm install` startest du die Entwicklung mit `npm run dev`. Der E2E-Test laeuft mit `npx playwright test`.
+Seit Version 1.7.0 kommuniziert das Frontend dank **electron-trpc** typisiert mit dem Python-Backend.
 Beim Start prüft das Skript, ob neue Commits auf `origin/main` vorhanden sind
 und zieht sie automatisch. Anschließend installiert es alle
 Abhängigkeiten. Beim ersten Durchlauf lädt das

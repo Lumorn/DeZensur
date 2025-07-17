@@ -1,6 +1,7 @@
-import { contextBridge, ipcRenderer } from 'electron';
+import { contextBridge } from 'electron';
+import { createIPCInvoker } from 'electron-trpc/preload';
+import type { AppRouter } from './ipc';
 
-// IPC-Hilfsfunktionen per contextBridge bereitstellen
-contextBridge.exposeInMainWorld('api', {
-  ping: (msg: string) => ipcRenderer.invoke('ping', msg),
-});
+// Stellt die tRPC-API im Renderer bereit
+const api = createIPCInvoker<AppRouter>();
+contextBridge.exposeInMainWorld('api', api);
