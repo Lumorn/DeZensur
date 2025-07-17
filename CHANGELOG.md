@@ -336,3 +336,9 @@ Alle Änderungen werden in diesem Dokument festgehalten.
 - `electron-reload` 2.0.2 ist aus der Registry verschwunden. Die GUI nutzt wieder die stabile Version 1.6.0.
 ### Geändert
 - README und `package.json` entsprechend angepasst.
+
+## [1.4.39] – 2025-08-27
+### Behoben
+- Version 1.6.0 von `electron-reload` ist im npm-Registry nicht vorhanden. Wir verwenden nun Version 1.5.0.
+### Geändert
+- README und `package.json` wurden entsprechend angepasst.

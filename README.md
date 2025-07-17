@@ -141,7 +141,8 @@ Ab Version 1.4.34 sollte die GUI eigentlich `electron-reload` in Version 2.0.1
 einsetzen. Da diese Version jedoch nicht in der Registry vorhanden war,
 nutzte Version 1.4.35 weiterhin `electron-reload` 2.0.0.
 Seit Version 1.4.37 wurde `electron-reload` in Version 2.0.2 verwendet, da 2.0.0 nicht mehr verfügbar war.
-Seit Version 1.4.38 kommt nun wieder die stabile Version 1.6.0 zum Einsatz, weil 2.0.2 aus der Registry entfernt wurde.
+Seit Version 1.4.38 kam kurzzeitig wieder die stabile Version 1.6.0 zum Einsatz, weil 2.0.2 aus der Registry entfernt wurde.
+Seit Version 1.4.39 verwenden wir nun Version 1.5.0, da die zuvor angegebene 1.6.0 nicht im npm-Registry existiert.
 Ab Version 1.4.33 weist `start.py` auf fehlgeschlagene `npm install`-Befehle hin,
 falls beispielsweise `electron-reload` in der geforderten Version nicht
 gefunden wird.
