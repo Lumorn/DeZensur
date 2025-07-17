@@ -417,3 +417,9 @@ Alle Änderungen werden in diesem Dokument festgehalten.
 ### Geändert
 - README um Hinweis auf die neue Fehlermeldung ergänzt.
 
+## [1.5.0] – 2025-09-09
+### Hinzugefügt
+- Neues Desktop-Layout in der React-GUI mit Titelleiste,
+  Befehlsleiste und Seitenleisten.
+- Tailwind-Konfiguration enthält nun Farbtokens für das Dark-Theme.
+
