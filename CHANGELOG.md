@@ -275,3 +275,9 @@ Alle Änderungen werden in diesem Dokument festgehalten.
 - Platzhalter in Log-Ausgaben werden nun korrekt mit ``{}`` formatiert.
 ### Geändert
 - README weist auf die ``{}``-Syntax bei Loguru hin.
+
+## [1.4.30] – 2025-08-18
+### Hinzugefügt
+- ``start.py`` erkennt ``npm`` jetzt auch über die Umgebungsvariable ``NPM_PATH``.
+### Geändert
+- README beschreibt die neue Variable zum Setzen des ``npm``-Pfads.
