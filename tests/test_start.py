@@ -66,19 +66,21 @@ def test_ensure_gui_build(monkeypatch, tmp_path):
     monkeypatch.setattr(start, "project_root", tmp_path)
     (tmp_path / "gui").mkdir()
 
-    with mock.patch.object(start, "run") as m_run:
-        start.ensure_gui_build()
-        m_run.assert_called_once_with(
-            [start.npm_cmd, "run", "build"],
-            cwd="gui",
-            beschreibung="npm run build",
-            env=mock.ANY,
-        )
+    with mock.patch.object(start, "run") as m_run, pytest.raises(SystemExit):
+        with mock.patch("tkinter.Tk"), mock.patch("tkinter.messagebox.showerror"):
+            start.ensure_gui_build()
+    m_run.assert_called_once_with(
+        [start.npm_cmd, "run", "build"],
+        cwd="gui",
+        beschreibung="npm run build",
+        env=mock.ANY,
+    )
 
     dist = tmp_path / "gui" / "dist"
     dist.mkdir(parents=True)
     (dist / "index.html").write_text("x")
 
     with mock.patch.object(start, "run") as m_run:
-        start.ensure_gui_build()
+        with mock.patch("tkinter.Tk"), mock.patch("tkinter.messagebox.showerror"):
+            start.ensure_gui_build()
         m_run.assert_not_called()
