@@ -6,6 +6,9 @@ import fs from 'fs';
 import http from 'http';
 import { fileURLToPath } from 'url';
 
+// Unterdrückt Autofill-Fehler der DevTools
+app.commandLine.appendSwitch('disable-features', 'Autofill');
+
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 let mainWindow;
 

@@ -90,6 +90,7 @@ Ab Version 1.3.3 nutzt die neue TypeScript-Oberflaeche mit TanStack Router. Nach
 Seit Version 1.7.0 kommuniziert das Frontend dank **electron-trpc** typisiert mit dem Python-Backend.
 Da im npm-Registry nur Versionen bis 0.7.1 verfügbar sind, ist `electron-trpc` aktuell auf ^0.7.1 festgeschrieben.
 Schlägt `npm install` dennoch fehl, weist das Startskript nun darauf hin, die Version von `electron-trpc` anzupassen.
+Seit Version 1.7.4 unterdrückt Electron die Autofill-Funktion, damit im Terminal keine DevTools-Fehler mehr erscheinen.
 Beim Start prüft das Skript, ob neue Commits auf `origin/main` vorhanden sind
 und zieht sie automatisch. Anschließend installiert es alle
 Abhängigkeiten. Beim ersten Durchlauf lädt das
