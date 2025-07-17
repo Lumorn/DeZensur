@@ -447,3 +447,9 @@ Alle Änderungen werden in diesem Dokument festgehalten.
 ## [1.7.2] – 2025-09-14
 ### Geändert
 - Das Startskript erwähnt bei einem fehlgeschlagenen `npm install` nun `electron-trpc` statt `electron-reload`.
+
+## [1.7.3] – 2025-09-15
+### Behoben
+- Das GUI-Build schlug wegen einer nicht vorhandenen Version von `electron-trpc` fehl. Die Abhängigkeit ist nun auf ^0.7.1 begrenzt.
+### Geändert
+- README und `package.json` weisen auf die korrigierte Version hin.
