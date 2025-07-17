@@ -41,3 +41,19 @@ def test_check_npm_ok():
     ), mock.patch("tkinter.Tk"), mock.patch("tkinter.messagebox.showerror") as m_err:
         start.check_npm()
     m_err.assert_not_called()
+
+
+def test_ensure_clean_worktree_autostash():
+    """Prüft, ob bei aktivem auto-stash ein git stash ausgeführt wird."""
+
+    with mock.patch(
+        "subprocess.check_output", return_value=" M changed_file"
+    ), mock.patch("start.run") as m_run:
+        sauber, stashed = start.ensure_clean_worktree(auto_stash=True)
+    m_run.assert_called_once_with(
+        ["git", "stash", "--include-untracked"],
+        cwd=start.project_root,
+        beschreibung="git stash",
+    )
+    assert sauber is True
+    assert stashed is True

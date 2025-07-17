@@ -54,16 +54,33 @@ def run(cmd: list[str], *, beschreibung: str | None = None, **kwargs) -> None:
         subprocess.run(cmd, check=True, **kwargs)
 
 
-def ensure_clean_worktree() -> bool:
-    """Prüft, ob noch nicht commitete Änderungen vorliegen."""
+def ensure_clean_worktree(*, auto_stash: bool = False) -> tuple[bool, bool]:
+    """Prüft auf ungesicherte Änderungen und stasht sie optional.
+
+    Gibt ein Tupel zurück: (Arbeitsverzeichnis_sauber, Wurde_Stash_erstellt)
+    """
+
     try:
         status = subprocess.check_output(
             ["git", "status", "--porcelain"], cwd=project_root, text=True
         ).strip()
     except subprocess.CalledProcessError as exc:
         print(f"Git-Status konnte nicht abgefragt werden: {exc}")
-        return True
+        return True, False
+
     if status:
+        if auto_stash:
+            try:
+                run(
+                    ["git", "stash", "--include-untracked"],
+                    cwd=project_root,
+                    beschreibung="git stash",
+                )
+                return True, True
+            except subprocess.CalledProcessError as exc:
+                print(f"Fehler beim Stashen: {exc}")
+                return False, False
+
         try:
             tk.Tk().withdraw()
             messagebox.showwarning(
@@ -75,13 +92,15 @@ def ensure_clean_worktree() -> bool:
             print(
                 "Uncommittete Änderungen gefunden. Bitte committe oder stash sie, bevor ein Pull erfolgt."
             )
-        return False
-    return True
+        return False, False
+    return True, False
 
 
-def update_repo() -> None:
-    """Prüft, ob das Git-Repository aktuell ist und aktualisiert es falls nötig."""
-    if not ensure_clean_worktree():
+def update_repo(*, auto_stash: bool = False) -> None:
+    """Aktualisiert das Git-Repository und nutzt optional auto-stash."""
+
+    sauber, stashed = ensure_clean_worktree(auto_stash=auto_stash)
+    if not sauber:
         return
     try:
         run(["git", "fetch", "origin"], cwd=project_root, beschreibung="git fetch")
@@ -102,6 +121,12 @@ def update_repo() -> None:
         print(
             f"Git-Aktualisierung fehlgeschlagen: {exc}\nBitte Branch-Tracking einrichten."
         )
+    finally:
+        if stashed:
+            try:
+                run(["git", "stash", "pop"], cwd=project_root, beschreibung="git stash pop")
+            except subprocess.CalledProcessError:
+                print("Stash konnte nicht angewendet werden. Bitte manuell 'git stash pop' ausführen.")
 
 
 def check_npm() -> None:
@@ -190,8 +215,12 @@ def ensure_repo() -> None:
 
 # Erst sicherstellen, dass das Repo vorhanden ist
 ensure_repo()
+# Option für automatisches Stashen auswerten
+auto_stash_flag = "--auto-stash" in sys.argv
+if auto_stash_flag:
+    sys.argv.remove("--auto-stash")
 # Vor allen weiteren Schritten prüfen wir, ob das Git-Repository aktuell ist
-update_repo()
+update_repo(auto_stash=auto_stash_flag)
 
 # Projektverzeichnis dem Modulpfad hinzufügen
 if str(project_root) not in sys.path:
