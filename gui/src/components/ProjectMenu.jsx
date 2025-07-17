@@ -19,6 +19,11 @@ export default function ProjectMenu() {
     const files = await window.api.openFileDialog();
     if (files && files.length) {
       const data = await window.api.project.addImages(files);
+      // Falls kein Projekt offen ist, liefert der IPC-Handler null
+      if (!data) {
+        alert('Bitte erst ein Projekt anlegen oder öffnen.');
+        return;
+      }
       const imgs = data.images.map((img) => ({
         id: img.id,
         path: 'file://' + folderPath(data, img.file),

@@ -410,3 +410,10 @@ Alle Änderungen werden in diesem Dokument festgehalten.
 ### Geändert
 - README erklärt den Unterschied zwischen `npm run dev` und `npm start`.
 
+## [1.4.51] – 2025-09-08
+### Behoben
+- "Bilder hinzufügen" löst jetzt einen Hinweis aus, wenn noch kein Projekt
+  geöffnet ist. Dadurch verhindert die GUI einen Absturz.
+### Geändert
+- README um Hinweis auf die neue Fehlermeldung ergänzt.
+
