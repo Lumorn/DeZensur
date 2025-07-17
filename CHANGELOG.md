@@ -323,3 +323,10 @@ Alle Änderungen werden in diesem Dokument festgehalten.
   den `npm install`-Schritt zu überspringen.
 ### Geändert
 - README beschreibt die neue Option.
+
+## [1.4.37] – 2025-08-25
+### Geändert
+- ``electron-reload`` wird nun in Version ``2.0.2`` verwendet,
+  weil ``2.0.0`` nicht mehr in der Registry verfügbar ist.
+- README und ``package.json`` wurden entsprechend angepasst.
+
