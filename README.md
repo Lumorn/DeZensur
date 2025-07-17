@@ -156,6 +156,9 @@ hilfreich, wenn die Pakete bereits installiert sind oder keine
 Internetverbindung besteht.
 Ab Version 1.4.40 setzt die GUI `react-konva` in Version 19.0.7 ein,
 da die zuvor eingetragene Version 19.0.24 nie veröffentlicht wurde.
+Ab Version 1.4.43 führt `start.py` nach einem erfolgreichen `npm install`
+automatisch `npm audit` aus und weist bei Fehlern auf mögliche
+Sicherheitslücken hin.
 
 ## Automatische Zensur-Erkennung (Modul 3)
 
