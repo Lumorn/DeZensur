@@ -355,3 +355,9 @@ Alle Änderungen werden in diesem Dokument festgehalten.
 - `preload.js` verwendet jetzt CommonJS, damit Electron das Skript korrekt lädt.
 ### Geändert
 - README erwähnt das CommonJS-Format des Preload-Skripts.
+
+## [1.4.42] – 2025-08-30
+### Geändert
+- `index.html` definiert nun eine Content-Security-Policy, wodurch die Electron-Warnung zu unsicheren Skripten verschwindet.
+### Geändert
+- README weist auf die neue Content-Security-Policy hin.
