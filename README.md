@@ -135,11 +135,13 @@ Ab Version 1.4.28 prüft `start.py` die installierte Node-Version und verlangt
 mindestens Version 18.
 Ab Version 1.4.30 kann der Pfad zu `npm` über die Umgebungsvariable
 ``NPM_PATH`` gesetzt werden, falls das Programm nicht im ``PATH`` liegt.
-Ab Version 1.4.31 setzt die GUI `electron-reload` wieder in Version 2.0.0 ein,
-da sich Version 2.0.2 nicht installieren ließ.
+Ab Version 1.4.31 setzte die GUI `electron-reload` erneut in Version 2.0.0 ein,
+da sich damals Version 2.0.2 nicht installieren ließ.
 Ab Version 1.4.34 sollte die GUI eigentlich `electron-reload` in Version 2.0.1
-einsetzen. Da diese Version jedoch nicht in der Registry vorhanden ist,
-nutzt Version 1.4.35 wieder `electron-reload` 2.0.0.
+einsetzen. Da diese Version jedoch nicht in der Registry vorhanden war,
+nutzte Version 1.4.35 weiterhin `electron-reload` 2.0.0.
+Seit Version 1.4.37 verwendet die GUI `electron-reload` nun Version 2.0.2,
+da 2.0.0 nicht mehr verfügbar ist.
 Ab Version 1.4.33 weist `start.py` auf fehlgeschlagene `npm install`-Befehle hin,
 falls beispielsweise `electron-reload` in der geforderten Version nicht
 gefunden wird.
