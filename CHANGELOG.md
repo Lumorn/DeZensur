@@ -466,3 +466,7 @@ Alle Änderungen werden in diesem Dokument festgehalten.
 ### Behoben
 - `vite.config.ts` enthält nun ebenfalls den Basis-Pfad `./`, womit Electron die
   gebauten Assets fehlerfrei lädt.
+
+## [1.7.7] - 2025-07-17
+### Hinzugefügt
+- "Add Images" Dialog inklusive Galerie-Grid und Auswahlfunktion

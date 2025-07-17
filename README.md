@@ -29,7 +29,7 @@ Es kombiniert modernste Open-Source-Modelle:
 
 ## Funktionsübersicht
 
-1. **Bild-/Ordner-Import**  
+1. **Bild-/Ordner-Import** über `File → Add Images…` oder Drag & Drop
 2. **Automatische Zensur-Erkennung** (Bounding-Boxen via `anime_censor_detection`)  
 3. **Masken-Verfeinerung** mit SAM-HQ  
 4. **Inpainting** der Maskenbereiche (modell-wählbar)  
@@ -346,7 +346,7 @@ PYTHONPATH=tests pytest -q
 
 ## TODO-Liste (Auszug)
 
-* [ ] React-Galerie-Komponente fertigstellen
+* [x] React-Galerie-Komponente fertigstellen
 * [ ] Asynchrones Laden großer Ordner
 * [ ] Fortschritts-Overlay für Batch-Jobs
 * [ ] GPU-vs-CPU-Fallback automatisieren
