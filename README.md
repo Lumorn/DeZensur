@@ -297,6 +297,8 @@ Die GUI erlaubt das Importieren einzelner Bilder oder ganzer Ordner. Alle
 Bilder werden in `originals/` kopiert und in der Galerie als Thumbnails
 angezeigt. Einstellungen und Bildstatus werden in einer `.dezproj`-Datei im
 Projektordner gespeichert.
+Versucht man, ohne geöffnetes Projekt Bilder hinzuzufügen, erscheint nun eine
+Hinweismeldung.
 
 ---
 
