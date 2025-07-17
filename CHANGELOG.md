@@ -284,7 +284,14 @@ Alle Änderungen werden in diesem Dokument festgehalten.
 
 ## [1.4.31] – 2025-08-19
 ### Behoben
-- ``electron-reload`` wird nun in Version ``2.0.2`` installiert, da ``2.0.0`` nicht
-  mehr verfügbar ist.
+- ``electron-reload`` wird wieder in Version ``2.0.0`` installiert, da ``2.0.2``
+  nicht verfügbar ist.
 ### Geändert
-- README verweist auf die aktualisierte Abhängigkeit.
+- README verweist auf die angepasste Abhängigkeit.
+
+## [1.4.32] – 2025-08-20
+### Behoben
+- Fehlerhafte Version ``2.0.2`` von ``electron-reload`` entfernt und auf ``2.0.0``
+  zurückgesetzt.
+### Geändert
+- README entsprechend angepasst.
