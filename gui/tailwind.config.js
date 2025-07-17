@@ -1,20 +1,21 @@
 export default {
   content: [
     './index.html',
-    './src/**/*.{js,jsx}'
+    './src/**/*.{js,jsx,ts,tsx}',
   ],
   theme: {
     extend: {
       colors: {
-        'bg-primary': '#1E1E28',
-        'bg-secondary': '#2C2C36',
-        'surface-card': '#262630',
-        'accent-primary': '#4E9AF1',
-        'accent-positive': '#3FB889',
-        'accent-warning': '#E9A94B',
-        'accent-error': '#E3645B',
+        accent: '#00b894',
+        warn: '#ff6b6b',
+        success: '#4caf50',
+        'top-bar': '#1e1e2f',
+        'bottom-bar': '#0f1117',
+      },
+      fontFamily: {
+        sans: ['Inter', 'Roboto', 'sans-serif'],
       },
     },
   },
   plugins: [],
-}
+};

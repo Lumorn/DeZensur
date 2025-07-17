@@ -429,3 +429,8 @@ Alle Änderungen werden in diesem Dokument festgehalten.
   Desktop-Oberfläche (Front und Backstage).
 - README beschreibt, wie die Mockups genutzt werden können.
 
+
+## [1.6.0] – 2025-09-11
+### Hinzugefügt
+- Neues TypeScript-Frontend mit TanStack Router und Zustand-Stores.
+- Playwright-Smoke-Test und electron-trpc IPC-Gerüst.
