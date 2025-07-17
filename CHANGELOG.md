@@ -461,3 +461,8 @@ Alle Änderungen werden in diesem Dokument festgehalten.
 ### Hinzugefügt
 - `start.py` prüft nach `npm run build`, ob `gui/dist/index.html` vorhanden ist.
   Fehlt die Datei, erscheint eine Fehlermeldung.
+
+## [1.7.6] - 2025-09-18
+### Behoben
+- `vite.config.ts` enthält nun ebenfalls den Basis-Pfad `./`, womit Electron die
+  gebauten Assets fehlerfrei lädt.

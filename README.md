@@ -178,6 +178,9 @@ automatisch `npm audit` aus und weist bei Fehlern auf mögliche
 Sicherheitslücken hin.
 Ab Version 1.4.44 verwendet die Vite-Konfiguration den relativen Basis-Pfad
 `./`, damit die gebaute Electron-Oberfläche ihre Assets findet.
+Seit Version 1.7.6 steht dieser Pfad auch in `vite.config.ts`, sodass beide
+Konfigurationsdateien identisch sind und keine fehlenden Dateien mehr
+auftreten.
 Ab Version 1.4.45 prüft `start.py` das Git-Repository bereits vor dem Anlegen der
 virtuellen Umgebung und aktualisiert es gegebenenfalls.
 Ab Version 1.4.47 wird die React-Oberfläche automatisch gebaut, wenn noch kein
