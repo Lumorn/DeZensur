@@ -1,4 +1,4 @@
-import { app, BrowserWindow } from 'electron';
+import { app, BrowserWindow, ipcMain, dialog } from 'electron';
 import { join } from 'path';
 import { registerIpc } from './ipc';
 
@@ -25,6 +25,13 @@ function createWindow() {
 app.whenReady().then(() => {
   createWindow();
   registerIpc();
+  ipcMain.handle('dialog:openImages', async () => {
+    const result = await dialog.showOpenDialog({
+      filters: [{ name: 'Images', extensions: ['png', 'jpg', 'jpeg', 'webp', 'bmp'] }],
+      properties: ['openFile', 'multiSelections'],
+    });
+    return result.filePaths;
+  });
 });
 
 app.on('window-all-closed', () => {

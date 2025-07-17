@@ -1,10 +1,11 @@
 import React from 'react';
+import Gallery from './Gallery';
 
-// Platzhalter für die Bildergalerie
+// Anzeige der Thumbnails im Hauptbereich
 export default function GalleryPane() {
   return (
-    <section className="flex-1 overflow-auto p-4 bg-gray-900 text-white">
-      Galerie
+    <section className="flex-1 overflow-auto bg-gray-900 text-white">
+      <Gallery />
     </section>
   );
 }
