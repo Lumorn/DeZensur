@@ -389,10 +389,10 @@ def main() -> None:
             # Nach erfolgreicher Installation Sicherheitsprüfung ausführen
             run_npm_audit()
         except subprocess.CalledProcessError:
-            # Hinweis für den Nutzer, falls ein Paket wie electron-reload nicht verfügbar ist
+            # Hinweis für den Nutzer, falls ein Paket wie electron-trpc nicht verfügbar ist
             print(
                 "npm install schlug fehl. Bitte Prüfe die Internetverbindung "
-                "oder passe die Version von electron-reload im package.json an."
+                "oder passe die Version von electron-trpc im package.json an."
             )
             raise
     elif skip_npm:
