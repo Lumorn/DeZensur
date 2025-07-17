@@ -1,6 +1,6 @@
-import { app, BrowserWindow, ipcMain } from 'electron';
+import { app, BrowserWindow } from 'electron';
 import { join } from 'path';
-import { createContextBridge } from './preload';
+import { registerIpc } from './ipc';
 
 // Einfacher Main-Prozess mit Platzhaltern für IPC-Handler
 let mainWindow: BrowserWindow | null = null;
@@ -22,11 +22,12 @@ function createWindow() {
   }
 }
 
-app.whenReady().then(createWindow);
+app.whenReady().then(() => {
+  createWindow();
+  registerIpc();
+});
 
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') app.quit();
 });
 
-// Beispiel: ein simpler Echo-Handler über electron-trpc
-ipcMain.handle('ping', (_evt, msg: string) => msg);

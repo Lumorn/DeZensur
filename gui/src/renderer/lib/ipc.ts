@@ -1,5 +1,5 @@
-// Typed IPC Wrapper
-export async function ping(msg: string) {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  return (window as any).api.ping(msg) as Promise<string>;
-}
+import { createIPCClient } from 'electron-trpc/renderer';
+import type { AppRouter } from '../../main/ipc';
+
+// Client fuer den Zugriff auf die im Preload registrierten IPC-Routen
+export const ipc = createIPCClient<AppRouter>('api');
