@@ -295,3 +295,10 @@ Alle Änderungen werden in diesem Dokument festgehalten.
   zurückgesetzt.
 ### Geändert
 - README entsprechend angepasst.
+
+## [1.4.33] – 2025-08-21
+### Geändert
+- `start.py` gibt nun einen Hinweis aus, wenn `npm install` wegen fehlender
+  Pakete wie `electron-reload` scheitert.
+### Geändert
+- README um diese Info erweitert.
