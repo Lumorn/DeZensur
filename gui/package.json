@@ -27,7 +27,7 @@
     "react-dropzone": "^14.0.0",
     "react-router-dom": "^6.0.0",
     "concurrently": "^8.0.0",
-    "electron-reload": "^2.0.1",
+    "electron-reload": "2.0.0",
     "konva": "^9.3.0",
     "react-konva": "^19.0.24",
     "jest": "^29.0.0",

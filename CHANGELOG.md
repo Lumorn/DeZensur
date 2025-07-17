@@ -309,3 +309,10 @@ Alle Änderungen werden in diesem Dokument festgehalten.
   2.0.2 zu Problemen führten.
 ### Geändert
 - README entsprechend angepasst.
+
+## [1.4.35] – 2025-08-23
+### Behoben
+- Die Version ``2.0.1`` von ``electron-reload`` existiert nicht im NPM-Registry.
+  Das Paket wird daher wieder in Version ``2.0.0`` verwendet.
+### Geändert
+- README und ``package.json`` entsprechend angepasst.
