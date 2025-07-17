@@ -361,3 +361,9 @@ Alle Änderungen werden in diesem Dokument festgehalten.
 - `index.html` definiert nun eine Content-Security-Policy, wodurch die Electron-Warnung zu unsicheren Skripten verschwindet.
 ### Geändert
 - README weist auf die neue Content-Security-Policy hin.
+
+## [1.4.43] – 2025-08-31
+### Hinzugefügt
+- `start.py` ruft nach einem erfolgreichen `npm install` automatisch `npm audit` auf und meldet eventuelle Probleme.
+### Geändert
+- README beschreibt die neue Sicherheitsprüfung.

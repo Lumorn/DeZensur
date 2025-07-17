@@ -139,6 +139,17 @@ def check_npm() -> None:
         pass
 
 
+def run_npm_audit() -> None:
+    """Führt `npm audit` aus und weist bei Fehlern darauf hin."""
+
+    try:
+        run([npm_cmd, "audit"], cwd="gui", beschreibung="npm audit")
+    except subprocess.CalledProcessError:
+        print(
+            "npm audit schlug fehl. Bitte ggf. manuell mit Internetverbindung ausführen."
+        )
+
+
 def ensure_repo() -> None:
     """Klonen des Git-Repositories, falls die Dateien fehlen."""
 
@@ -255,6 +266,8 @@ def main() -> None:
         try:
             # npm-Abhängigkeiten installieren
             run([npm_cmd, "install"], cwd="gui", beschreibung="npm install")
+            # Nach erfolgreicher Installation Sicherheitsprüfung ausführen
+            run_npm_audit()
         except subprocess.CalledProcessError:
             # Hinweis für den Nutzer, falls ein Paket wie electron-reload nicht verfügbar ist
             print(
