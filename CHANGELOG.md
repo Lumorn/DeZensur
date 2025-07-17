@@ -423,3 +423,9 @@ Alle Änderungen werden in diesem Dokument festgehalten.
   Befehlsleiste und Seitenleisten.
 - Tailwind-Konfiguration enthält nun Farbtokens für das Dark-Theme.
 
+## [1.5.1] – 2025-09-10
+### Hinzugefügt
+- Ordner `mockups/` mit zwei HTML-Dateien als Vorschau auf die
+  Desktop-Oberfläche (Front und Backstage).
+- README beschreibt, wie die Mockups genutzt werden können.
+
