@@ -172,6 +172,8 @@ Installation korrekt.
 Ab Version 1.4.48 setzt `start.py` unter Windows automatisch
 `CSC_IDENTITY_AUTO_DISCOVERY=false`, damit `electron-builder`
 ohne Symlink-Rechte funktioniert.
+Ab Version 1.4.49 fordert `start.py` bei fehlenden Symlink-Rechten
+automatisch Administratorrechte an und startet sich neu.
 
 ## Automatische Zensur-Erkennung (Modul 3)
 

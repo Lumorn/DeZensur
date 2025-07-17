@@ -394,3 +394,10 @@ Alle Änderungen werden in diesem Dokument festgehalten.
 - Unter Windows schlug der Electron-Build fehl, wenn keine Symlink-Rechte vorhanden waren. `start.py` setzt nun `CSC_IDENTITY_AUTO_DISCOVERY=false`, damit kein Codesigning stattfindet.
 ### Geändert
 - README beschreibt diese neue Umgebungsvariable.
+
+## [1.4.49] – 2025-09-06
+### Hinzugefügt
+- `start.py` startet unter Windows automatisch mit Administratorrechten neu,
+  wenn Symlink-Rechte fehlen.
+### Geändert
+- README dokumentiert dieses Verhalten.
