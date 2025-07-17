@@ -342,3 +342,10 @@ Alle Änderungen werden in diesem Dokument festgehalten.
 - Version 1.6.0 von `electron-reload` ist im npm-Registry nicht vorhanden. Wir verwenden nun Version 1.5.0.
 ### Geändert
 - README und `package.json` wurden entsprechend angepasst.
+
+## [1.4.40] – 2025-08-28
+### Behoben
+- Die Abhängigkeit `react-konva` zeigte auf eine nicht existierende Version 19.0.24.
+  Jetzt verwenden wir Version 19.0.7 und passen `konva` auf 9.3.3 an.
+### Geändert
+- README und `package.json` führen die korrigierte Version auf.
