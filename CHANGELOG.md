@@ -443,3 +443,7 @@ Alle Änderungen werden in diesem Dokument festgehalten.
 ## [1.7.1] – 2025-09-13
 ### Geändert
 - Da Version 0.12.0 noch nicht veröffentlicht ist, nutzt die GUI `electron-trpc` jetzt fest Version 0.11.x.
+
+## [1.7.2] – 2025-09-14
+### Geändert
+- Das Startskript erwähnt bei einem fehlgeschlagenen `npm install` nun `electron-trpc` statt `electron-reload`.
