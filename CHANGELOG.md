@@ -316,3 +316,10 @@ Alle Änderungen werden in diesem Dokument festgehalten.
   Das Paket wird daher wieder in Version ``2.0.0`` verwendet.
 ### Geändert
 - README und ``package.json`` entsprechend angepasst.
+
+## [1.4.36] – 2025-08-24
+### Hinzugefügt
+- ``start.py`` bietet mit ``SKIP_NPM_INSTALL`` bzw. ``--skip-npm`` die Möglichkeit,
+  den `npm install`-Schritt zu überspringen.
+### Geändert
+- README beschreibt die neue Option.
