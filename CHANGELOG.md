@@ -401,3 +401,12 @@ Alle Änderungen werden in diesem Dokument festgehalten.
   wenn Symlink-Rechte fehlen.
 ### Geändert
 - README dokumentiert dieses Verhalten.
+
+## [1.4.50] – 2025-09-07
+### Behoben
+- Beim Aufruf von `npm start` erschien nur ein leeres Fenster, falls kein
+  Vite-Server lief. `gui/electron/main.js` prüft nun, ob der Server erreichbar
+  ist und zeigt andernfalls die gebaute Oberfläche oder einen Hinweis an.
+### Geändert
+- README erklärt den Unterschied zwischen `npm run dev` und `npm start`.
+

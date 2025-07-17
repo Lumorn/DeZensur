@@ -2,6 +2,8 @@
 import { app, BrowserWindow, ipcMain } from 'electron';
 import { spawn, execSync } from 'child_process';
 import path from 'path';
+import fs from 'fs';
+import http from 'http';
 import { fileURLToPath } from 'url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -36,7 +38,21 @@ function createWindow() {
 
   const dev = !app.isPackaged;
   if (dev) {
-    mainWindow.loadURL('http://localhost:5173');
+    // Versucht, den Vite-Server zu erreichen. Gelingt dies nicht, wird auf die
+    // gebaute GUI zurückgegriffen oder ein Hinweis angezeigt.
+    http.get('http://localhost:5173', () => {
+      mainWindow.loadURL('http://localhost:5173');
+    }).on('error', () => {
+      const dist = path.join(__dirname, '../dist/index.html');
+      if (fs.existsSync(dist)) {
+        mainWindow.loadFile(dist);
+      } else {
+        const msg = `<!doctype html><h1>GUI nicht gefunden</h1>
+        <p>Starte die Anwendung mit „npm run dev“ oder baue sie mit
+        „npm run build“.</p>`;
+        mainWindow.loadURL('data:text/html,' + encodeURIComponent(msg));
+      }
+    });
   } else {
     mainWindow.loadFile(path.join(__dirname, '../dist/index.html'));
   }
