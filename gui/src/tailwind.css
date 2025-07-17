@@ -1,3 +1,20 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  --bg-primary: #1E1E28;
+  --bg-secondary: #2C2C36;
+  --surface-card: #262630;
+  --accent-primary: #4E9AF1;
+  --accent-positive: #3FB889;
+  --accent-warning: #E9A94B;
+  --accent-error: #E3645B;
+}
+
+.neu {
+  box-shadow:
+    inset 0 0 2px rgba(255, 255, 255, 0.1),
+    0 0 4px rgba(0, 0, 0, 0.6);
+  border-radius: 12px;
+}

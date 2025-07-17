@@ -179,6 +179,8 @@ Ab Version 1.4.48 setzt `start.py` unter Windows automatisch
 ohne Symlink-Rechte funktioniert.
 Ab Version 1.4.49 fordert `start.py` bei fehlenden Symlink-Rechten
 automatisch Administratorrechte an und startet sich neu.
+Ab Version 1.5.0 verpasst die GUI ein neues Desktop-Layout mit Titelleiste,
+Befehlsleiste, Seitenleisten und Arbeitsbereich.
 
 ## Automatische Zensur-Erkennung (Modul 3)
 
