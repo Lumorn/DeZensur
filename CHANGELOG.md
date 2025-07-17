@@ -373,3 +373,8 @@ Alle Änderungen werden in diesem Dokument festgehalten.
 - `vite.config.js` setzt nun den Basis-Pfad auf `./`, damit die gebaute GUI ihre Assets korrekt findet.
 ### Geändert
 - README weist auf die neue `base`-Einstellung hin.
+
+## [1.4.45] – 2025-09-02
+### Geändert
+- `start.py` prüft das Git-Repository nun direkt beim Start und führt ggf. ein Update durch, bevor weitere Schritte erfolgen.
+- README beschreibt diese Änderung.

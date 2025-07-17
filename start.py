@@ -64,11 +64,17 @@ def ensure_clean_worktree() -> bool:
         print(f"Git-Status konnte nicht abgefragt werden: {exc}")
         return True
     if status:
-        tk.Tk().withdraw()
-        messagebox.showwarning(
-            "Uncommittete Änderungen",
-            "Bitte committe oder stash deine Änderungen, bevor ein Pull erfolgt.",
-        )
+        try:
+            tk.Tk().withdraw()
+            messagebox.showwarning(
+                "Uncommittete Änderungen",
+                "Bitte committe oder stash deine Änderungen, bevor ein Pull erfolgt.",
+            )
+        except tk.TclError:
+            # Fallback, falls keine GUI verfügbar ist
+            print(
+                "Uncommittete Änderungen gefunden. Bitte committe oder stash sie, bevor ein Pull erfolgt."
+            )
         return False
     return True
 
@@ -184,6 +190,8 @@ def ensure_repo() -> None:
 
 # Erst sicherstellen, dass das Repo vorhanden ist
 ensure_repo()
+# Vor allen weiteren Schritten prüfen wir, ob das Git-Repository aktuell ist
+update_repo()
 
 # Projektverzeichnis dem Modulpfad hinzufügen
 if str(project_root) not in sys.path:
@@ -219,8 +227,7 @@ def main() -> None:
         else:
             os.execv(str(python_bin), [str(python_bin), __file__] + sys.argv[1:])
 
-    # Repository pruefen und aktualisieren
-    update_repo()
+    # npm und Node-Version pruefen
     check_npm()
 
     # Python-Abhängigkeiten installieren
