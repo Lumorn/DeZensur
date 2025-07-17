@@ -66,8 +66,10 @@ DeZensur/
 
 Voraussetzung ist eine installierte **Node.js**-Umgebung (inkl. `npm`)
 ab Version **18**, da die GUI auf Electron basiert.
-Beachte: Das Preload-Skript `gui/electron/preload.js` muss im CommonJS-Stil 
+Ab Version 1.4.41 muss das Preload-Skript `gui/electron/preload.js` im CommonJS-Stil
 (`require` statt `import`) vorliegen, da Electron ES-Module dort nicht lädt.
+Seit Version 1.4.42 besitzt `gui/index.html` eine eigene Content-Security-Policy,
+welche die Electron-Warnung zu unsicheren Skripten unterbindet.
 
 ```bash
 # 1. Repo klonen (alternativ nur start.py herunterladen)
