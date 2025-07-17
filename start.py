@@ -5,13 +5,13 @@ herunterladen und danach wie gewohnt starten.
 """
 
 import os
+import shutil
 import subprocess
 import sys
+import time
 import tkinter as tk
 from pathlib import Path
 from tkinter import messagebox
-import shutil
-import time
 
 # Pfad zum npm-Binary; wird in check_npm ermittelt
 npm_cmd = "npm"
@@ -124,9 +124,15 @@ def update_repo(*, auto_stash: bool = False) -> None:
     finally:
         if stashed:
             try:
-                run(["git", "stash", "pop"], cwd=project_root, beschreibung="git stash pop")
+                run(
+                    ["git", "stash", "pop"],
+                    cwd=project_root,
+                    beschreibung="git stash pop",
+                )
             except subprocess.CalledProcessError:
-                print("Stash konnte nicht angewendet werden. Bitte manuell 'git stash pop' ausführen.")
+                print(
+                    "Stash konnte nicht angewendet werden. Bitte manuell 'git stash pop' ausführen."
+                )
 
 
 def check_npm() -> None:
@@ -179,6 +185,14 @@ def run_npm_audit() -> None:
         print(
             "npm audit schlug fehl. Bitte ggf. manuell mit Internetverbindung ausführen."
         )
+
+
+def ensure_gui_build() -> None:
+    """Baut das Frontend, falls noch keine Dist-Dateien vorhanden sind."""
+
+    dist_index = project_root / "gui" / "dist" / "index.html"
+    if not dist_index.exists():
+        run([npm_cmd, "run", "build"], cwd="gui", beschreibung="npm run build")
 
 
 def ensure_repo() -> None:
@@ -266,8 +280,8 @@ def main() -> None:
     )
 
     # Erst nach der Installation können wir die Module importieren
-    from core.dep_manager import ensure_model
     from core import censor_detector
+    from core.dep_manager import ensure_model
 
     try:
         ensure_model("anime_censor_detection")
@@ -317,6 +331,8 @@ def main() -> None:
     if "--dev" in sys.argv:
         run([npm_cmd, "run", "dev"], cwd="gui", beschreibung="npm run dev")
     else:
+        # Falls die gebaute Oberflaeche fehlt, wird sie nun erzeugt
+        ensure_gui_build()
         run([npm_cmd, "start"], cwd="gui", beschreibung="npm start")
 
 

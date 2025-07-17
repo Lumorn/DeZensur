@@ -384,3 +384,7 @@ Alle Änderungen werden in diesem Dokument festgehalten.
 - Option `--auto-stash` in `start.py`, die ungesicherte Änderungen automatisch vor dem `git pull` stasht und anschließend wieder einspielt.
 ### Geändert
 - README erläutert die neue Option.
+
+## [1.4.47] – 2025-09-04
+### Behoben
+- `start.py` baut die GUI nun automatisch, wenn `gui/dist` fehlt. Dadurch wird die Oberfläche korrekt angezeigt.

@@ -166,6 +166,9 @@ Ab Version 1.4.44 verwendet die Vite-Konfiguration den relativen Basis-Pfad
 `./`, damit die gebaute Electron-Oberfläche ihre Assets findet.
 Ab Version 1.4.45 prüft `start.py` das Git-Repository bereits vor dem Anlegen der
 virtuellen Umgebung und aktualisiert es gegebenenfalls.
+Ab Version 1.4.47 wird die React-Oberfläche automatisch gebaut, wenn noch kein
+`gui/dist`-Ordner existiert. Dadurch erscheint die GUI auch bei einer frischen
+Installation korrekt.
 
 ## Automatische Zensur-Erkennung (Modul 3)
 
