@@ -248,7 +248,16 @@ def main() -> None:
             and package_json.stat().st_mtime > node_modules.stat().st_mtime
         )
     ):
-        run([npm_cmd, "install"], cwd="gui", beschreibung="npm install")
+        try:
+            # npm-Abhängigkeiten installieren
+            run([npm_cmd, "install"], cwd="gui", beschreibung="npm install")
+        except subprocess.CalledProcessError:
+            # Hinweis für den Nutzer, falls ein Paket wie electron-reload nicht verfügbar ist
+            print(
+                "npm install schlug fehl. Bitte Prüfe die Internetverbindung "
+                "oder passe die Version von electron-reload im package.json an."
+            )
+            raise
 
     if "--dev" in sys.argv:
         run([npm_cmd, "run", "dev"], cwd="gui", beschreibung="npm run dev")

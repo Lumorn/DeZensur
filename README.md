@@ -137,6 +137,9 @@ Ab Version 1.4.30 kann der Pfad zu `npm` über die Umgebungsvariable
 ``NPM_PATH`` gesetzt werden, falls das Programm nicht im ``PATH`` liegt.
 Ab Version 1.4.31 setzt die GUI `electron-reload` wieder in Version 2.0.0 ein,
 da sich Version 2.0.2 nicht installieren ließ.
+Ab Version 1.4.33 weist `start.py` auf fehlgeschlagene `npm install`-Befehle hin,
+falls beispielsweise `electron-reload` in der geforderten Version nicht
+gefunden wird.
 
 ## Automatische Zensur-Erkennung (Modul 3)
 
