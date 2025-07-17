@@ -349,3 +349,9 @@ Alle Änderungen werden in diesem Dokument festgehalten.
   Jetzt verwenden wir Version 19.0.7 und passen `konva` auf 9.3.3 an.
 ### Geändert
 - README und `package.json` führen die korrigierte Version auf.
+
+## [1.4.41] – 2025-08-29
+### Behoben
+- `preload.js` verwendet jetzt CommonJS, damit Electron das Skript korrekt lädt.
+### Geändert
+- README erwähnt das CommonJS-Format des Preload-Skripts.

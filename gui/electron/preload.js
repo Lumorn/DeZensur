@@ -1,5 +1,5 @@
 // Bindet IPC-Funktionen für das Renderer-Frontend ein
-import { contextBridge, ipcRenderer } from 'electron';
+const { contextBridge, ipcRenderer } = require('electron');
 
 contextBridge.exposeInMainWorld('api', {
   openFileDialog: () => ipcRenderer.invoke('dialog:openFile'),
