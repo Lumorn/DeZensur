@@ -439,3 +439,7 @@ Alle Änderungen werden in diesem Dokument festgehalten.
 ### Hinzugefügt
 - IPC-Kommunikation nutzt jetzt **electron-trpc** mit Typsicherheit.
 - Preload und Renderer binden die IPC-Routen automatisch ein.
+
+## [1.7.1] – 2025-09-13
+### Geändert
+- Da Version 0.12.0 noch nicht veröffentlicht ist, nutzt die GUI `electron-trpc` jetzt fest Version 0.11.x.
