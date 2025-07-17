@@ -456,3 +456,8 @@ Alle Änderungen werden in diesem Dokument festgehalten.
 ## [1.7.4] - 2025-09-16
 ### Geändert
 - Electron deaktiviert jetzt das Autofill-Feature, um DevTools-Fehler zu vermeiden.
+
+## [1.7.5] - 2025-09-17
+### Hinzugefügt
+- `start.py` prüft nach `npm run build`, ob `gui/dist/index.html` vorhanden ist.
+  Fehlt die Datei, erscheint eine Fehlermeldung.

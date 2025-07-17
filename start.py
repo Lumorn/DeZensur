@@ -260,6 +260,15 @@ def ensure_gui_build() -> None:
             beschreibung="npm run build",
             env=env,
         )
+        # Nach dem Build sicherstellen, dass die Datei wirklich existiert
+        if not dist_index.exists():
+            msg = (
+                "GUI-Build fehlgeschlagen. Bitte 'npm run build' manuell im Ordner gui ausf\u00fchren."
+            )
+            print(msg)
+            tk.Tk().withdraw()
+            messagebox.showerror("Fehler", msg)
+            sys.exit(1)
 
 
 def ensure_repo() -> None:

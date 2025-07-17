@@ -85,6 +85,10 @@ Möchtest du die GUI direkt über Node starten, wechsle in den Ordner `gui` und
 führe `npm run dev` aus. Damit laufen Vite und Electron parallel. Der Befehl
 `npm start` hingegen lädt nur Electron und setzt voraus, dass zuvor `npm run
 build` ausgeführt wurde. Ohne diesen Build bleibt das Fenster leer.
+Seit Version 1.7.5 prüft `start.py` nach dem Bauen der Oberfläche, ob
+`gui/dist/index.html` existiert. Fehlt diese Datei, erscheint eine
+Fehlermeldung und du solltest `npm run build` manuell im `gui`-Ordner
+ausführen.
 
 Ab Version 1.3.3 nutzt die neue TypeScript-Oberflaeche mit TanStack Router. Nach `npm install` startest du die Entwicklung mit `npm run dev`. Der E2E-Test laeuft mit `npx playwright test`.
 Seit Version 1.7.0 kommuniziert das Frontend dank **electron-trpc** typisiert mit dem Python-Backend.
