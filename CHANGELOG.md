@@ -479,3 +479,9 @@ Alle Änderungen werden in diesem Dokument festgehalten.
 - Start-Button führt die Zensurerkennung für das gewählte Bild aus
 ### Geändert
 - README erwähnt die neuen Button-Funktionen
+
+## [1.7.9] - 2025-09-20
+### Geändert
+- Ordnerauswahl legt jetzt den Arbeitsordner im Zustand ab.
+- Start-Button nutzt den tRPC-Endpunkt `censorDetect`.
+- README beschreibt die beiden neuen Funktionen.

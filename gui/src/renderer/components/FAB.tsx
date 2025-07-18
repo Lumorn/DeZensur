@@ -13,7 +13,8 @@ export default function FAB() {
       alert('Bitte zuerst ein Bild auswählen.');
       return;
     }
-    await window.api.backend.call('/detect', { path: img.path.replace('file://', '') });
+    // tRPC-Aufruf zum Stub-Server
+    await window.api.censorDetect.mutate(img.path.replace('file://', ''));
     alert('Erkennung abgeschlossen.');
   }
 
