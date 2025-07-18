@@ -1,25 +1,32 @@
 import React, { useState, useEffect } from 'react';
 import { useGalleryStore } from '../stores/useGalleryStore';
+import { useProjectStore } from '../stores/useProjectStore';
 
 declare global {
   interface Window {
     dialogs: { openImages: () => Promise<string[]> };
-    api: {
-      openFolderDialog: () => Promise<string[]>;
-    };
+    // "api" umfasst die per electron-trpc bereitgestellten Aufrufe
+    api: any;
   }
 }
 
 // Oberste App-Bar mit Logo und Menüs
 export default function AppBar() {
   const addImages = useGalleryStore((s) => s.addImages);
+  const addProjImages = useProjectStore((s) => s.addImages);
+  const setProject = useProjectStore((s) => s.setProject);
   const [openFile, setOpenFile] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
   const [gpu, setGpu] = useState(true);
 
   async function handleAdd() {
+    // Bilder auswählen und sowohl in die Galerie
+    // als auch ins Projekt laden
     const paths = await window.dialogs.openImages();
-    if (paths && paths.length) addImages(paths);
+    if (paths && paths.length) {
+      addImages(paths);
+      addProjImages(paths);
+    }
   }
 
   // Öffnet die Einstellungen
@@ -34,7 +41,11 @@ export default function AppBar() {
 
   // Zeigt ein Dialog zum Auswählen eines Arbeitsordners
   async function chooseDir() {
-    await window.api.openFolderDialog();
+    const paths = await window.api.openFolderDialog();
+    if (paths && paths[0]) {
+      // Gewählten Ordner als aktuelles Projekt setzen
+      setProject(paths[0]);
+    }
   }
 
   useEffect(() => {

@@ -36,6 +36,8 @@ Es kombiniert modernste Open-Source-Modelle:
 5. **Batch-Modus** für ganze Verzeichnisse
 6. **Protokoll & Export** (Original, Maske, Ergebnis, Log)
 7. **Voll funktionsfähige Buttons** für Projektverwaltung und Fenstersteuerung (ab Version 1.7.8)
+   - Das Ordnersymbol in der App-Bar setzt nun den Arbeitsordner.
+   - Der ▶-Knopf startet die Zensurerkennung via tRPC.
 
 ---
 
