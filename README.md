@@ -33,8 +33,9 @@ Es kombiniert modernste Open-Source-Modelle:
 2. **Automatische Zensur-Erkennung** (Bounding-Boxen via `anime_censor_detection`)  
 3. **Masken-Verfeinerung** mit SAM-HQ  
 4. **Inpainting** der Maskenbereiche (modell-wählbar)  
-5. **Batch-Modus** für ganze Verzeichnisse  
+5. **Batch-Modus** für ganze Verzeichnisse
 6. **Protokoll & Export** (Original, Maske, Ergebnis, Log)
+7. **Voll funktionsfähige Buttons** für Projektverwaltung und Fenstersteuerung (ab Version 1.7.8)
 
 ---
 

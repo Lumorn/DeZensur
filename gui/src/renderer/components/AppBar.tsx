@@ -4,6 +4,9 @@ import { useGalleryStore } from '../stores/useGalleryStore';
 declare global {
   interface Window {
     dialogs: { openImages: () => Promise<string[]> };
+    api: {
+      openFolderDialog: () => Promise<string[]>;
+    };
   }
 }
 
@@ -11,10 +14,27 @@ declare global {
 export default function AppBar() {
   const addImages = useGalleryStore((s) => s.addImages);
   const [openFile, setOpenFile] = useState(false);
+  const [showSettings, setShowSettings] = useState(false);
+  const [gpu, setGpu] = useState(true);
 
   async function handleAdd() {
     const paths = await window.dialogs.openImages();
     if (paths && paths.length) addImages(paths);
+  }
+
+  // Öffnet die Einstellungen
+  function toggleSettings() {
+    setShowSettings(!showSettings);
+  }
+
+  // Wechselt zwischen GPU- und CPU-Modus
+  function toggleGpu() {
+    setGpu(!gpu);
+  }
+
+  // Zeigt ein Dialog zum Auswählen eines Arbeitsordners
+  async function chooseDir() {
+    await window.api.openFolderDialog();
   }
 
   useEffect(() => {
@@ -47,10 +67,15 @@ export default function AppBar() {
         <button className="hover:underline">Help</button>
       </nav>
       <div className="ml-auto flex space-x-2">
-        <button aria-label="Settings">⚙</button>
-        <button aria-label="GPU-Status">🖥</button>
-        <button aria-label="Working-Dir">📁</button>
+        <button aria-label="Settings" onClick={toggleSettings}>⚙</button>
+        <button aria-label="GPU-Status" onClick={toggleGpu}>{gpu ? '🖥' : '💻'}</button>
+        <button aria-label="Working-Dir" onClick={chooseDir}>📁</button>
       </div>
+      {showSettings && (
+        <div className="absolute right-2 top-12 bg-gray-800 border border-gray-700 p-2 z-10">
+          Einstellungen folgen…
+        </div>
+      )}
     </header>
   );
 }

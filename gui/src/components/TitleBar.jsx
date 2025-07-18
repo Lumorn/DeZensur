@@ -11,9 +11,21 @@ export default function TitleBar({ projectName }) {
         <span className="text-sm">DeZensur › {projectName || 'Kein Projekt'}</span>
       </div>
       <div className="flex gap-2">
-        <button className="w-3 h-3 rounded-full bg-red-500" aria-label="Schließen"></button>
-        <button className="w-3 h-3 rounded-full bg-yellow-500" aria-label="Minimieren"></button>
-        <button className="w-3 h-3 rounded-full bg-green-500" aria-label="Maximieren"></button>
+        <button
+          className="w-3 h-3 rounded-full bg-red-500"
+          aria-label="Schließen"
+          onClick={() => window.windowControls.close()}
+        ></button>
+        <button
+          className="w-3 h-3 rounded-full bg-yellow-500"
+          aria-label="Minimieren"
+          onClick={() => window.windowControls.minimize()}
+        ></button>
+        <button
+          className="w-3 h-3 rounded-full bg-green-500"
+          aria-label="Maximieren"
+          onClick={() => window.windowControls.maximize()}
+        ></button>
       </div>
     </div>
   );

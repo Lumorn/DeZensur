@@ -82,6 +82,21 @@ app.on('window-all-closed', function () {
   if (process.platform !== 'darwin') app.quit();
 });
 
+// IPC-Handler für Fensterfunktionen
+ipcMain.handle('window-minimize', () => {
+  mainWindow?.minimize();
+});
+ipcMain.handle('window-maximize', () => {
+  if (mainWindow?.isMaximized()) {
+    mainWindow.unmaximize();
+  } else {
+    mainWindow?.maximize();
+  }
+});
+ipcMain.handle('window-close', () => {
+  mainWindow?.close();
+});
+
 ipcMain.handle('dialog:openFile', async () => {
   const { dialog } = await import('electron');
   const result = await dialog.showOpenDialog({ properties: ['openFile', 'multiSelections'] });
