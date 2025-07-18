@@ -470,3 +470,12 @@ Alle Änderungen werden in diesem Dokument festgehalten.
 ## [1.7.7] - 2025-07-17
 ### Hinzugefügt
 - "Add Images" Dialog inklusive Galerie-Grid und Auswahlfunktion
+
+## [1.7.8] - 2025-09-19
+### Hinzugefügt
+- Fenstersteuerung über die Knöpfe der Titelleiste
+- Projektbefehle (Neu, Öffnen, Bilder, Batch, Export) in der CommandBar
+- AppBar mit Settings-Overlay, GPU-Umschalter und Ordnerauswahl
+- Start-Button führt die Zensurerkennung für das gewählte Bild aus
+### Geändert
+- README erwähnt die neuen Button-Funktionen
