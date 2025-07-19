@@ -242,6 +242,17 @@ def run_npm_audit() -> None:
         )
 
 
+def should_skip_npm_install(argv: list[str] | None = None) -> bool:
+    """Entscheidet, ob das NPM-Install ausgelassen werden darf."""
+
+    argv = argv or sys.argv
+    skip_requested = os.environ.get("SKIP_NPM_INSTALL") or "--skip-npm" in argv
+    if skip_requested and not os.environ.get("CI"):
+        print("Warnung: SKIP_NPM_INSTALL ist nur in CI erlaubt und wird ignoriert.")
+        return False
+    return bool(skip_requested)
+
+
 def ensure_gui_build() -> None:
     """Baut das Frontend, falls noch keine Dist-Dateien vorhanden sind."""
 
@@ -376,9 +387,8 @@ def main() -> None:
     package_json = Path("gui/package.json")
     node_modules = Path("gui/node_modules")
 
-    # Installation der NPM-Pakete kann über die Umgebungsvariable
-    # "SKIP_NPM_INSTALL" oder den Parameter "--skip-npm" übersprungen werden.
-    skip_npm = os.environ.get("SKIP_NPM_INSTALL") or "--skip-npm" in sys.argv
+    # Prüfen, ob npm-Install übersprungen werden soll
+    skip_npm = should_skip_npm_install()
 
     # NPM-Pakete installieren, falls erforderlich und nicht übersprungen
     if not skip_npm and (

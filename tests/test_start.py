@@ -84,3 +84,17 @@ def test_ensure_gui_build(monkeypatch, tmp_path):
         with mock.patch("tkinter.Tk"), mock.patch("tkinter.messagebox.showerror"):
             start.ensure_gui_build()
         m_run.assert_not_called()
+
+
+def test_should_skip_npm_install_ci(monkeypatch):
+    monkeypatch.setenv("SKIP_NPM_INSTALL", "1")
+    monkeypatch.setenv("CI", "true")
+    assert start.should_skip_npm_install(["--skip-npm"]) is True
+
+
+def test_should_skip_npm_install_local(monkeypatch, capsys):
+    monkeypatch.setenv("SKIP_NPM_INSTALL", "1")
+    monkeypatch.delenv("CI", raising=False)
+    assert start.should_skip_npm_install(["--skip-npm"]) is False
+    out = capsys.readouterr().out
+    assert "nur in CI erlaubt" in out

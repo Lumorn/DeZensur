@@ -409,9 +409,9 @@ _Nur Punkte, die **noch offen** sind – als kopier- & abhakbare Markdown-Checkb
   - **Tests:** `tests/models/test_checksum.py`.
 
 #### 3️⃣ Dev-Scripts & CI
-- [ ] **start.py überspringt _npm install_** wenn `SKIP_NPM_INSTALL` gesetzt  
-  - **Fix:** Flag nur für CI erlauben; Warnung im Terminal.  
-  - **Tests:** `tests/scripts/test_start_skip.py`.
+- [x] **start.py überspringt _npm install_** wenn `SKIP_NPM_INSTALL` gesetzt
+  - **Fix:** Flag nur für CI erlauben; Warnung im Terminal.
+  - **Tests:** `tests/test_start.py::test_should_skip_npm_install_*`.
 
 - [ ] **Code-Signing Pipeline**  
   - Windows EXE unsigniert → SmartScreen-Warnung.  
