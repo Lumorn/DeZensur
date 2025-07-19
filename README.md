@@ -106,6 +106,8 @@ Sollte nach dem Start nur ein weißes Fenster erscheinen, fehlt meist der
 Frontend-Build. Führe in diesem Fall `python start.py` oder alternativ
 `npm run build` im Ordner `gui/` aus. Komfortabler geht es mit dem Skript
 `python scripts/repair_gui.py`, das den Build automatisch nachholt.
+Rufe die GUI nicht direkt mit `npm start` auf, solange kein Build
+existiert – sonst bleibt das Fenster leer.
 
 ### Sprache umschalten
 
