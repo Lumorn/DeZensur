@@ -542,3 +542,9 @@ Alle Änderungen werden in diesem Dokument festgehalten.
 - Neuer Test `tests/test_segmenter_mobile_fallback.py`
 ### Geändert
 - TODO-Board markiert den MobileSAM-Fallback als erledigt
+
+## [1.8.8] - 2025-09-29
+### Hinzugefügt
+- Neuer Test `tests/test_segmenter_gpu_pipeline.py`
+### Geändert
+- README hakt die SAM-HQ GPU-Pipeline und den Lama-Fallback ab
