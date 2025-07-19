@@ -12,6 +12,8 @@ from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 from typing import Any, cast
 
+import yaml
+
 import requests
 import torch
 from huggingface_hub import (
@@ -129,6 +131,28 @@ MODEL_REGISTRY: dict[str, dict[str, str | list[str] | None]] = {
         "device": "gpu",
     },
 }
+
+# Pfad zur optionalen YAML-Datei mit erweiterten Angaben
+MODELS_YAML = Path(__file__).resolve().parent.parent / "models.yml"
+
+
+def apply_yaml_overrides(yaml_path: Path = MODELS_YAML) -> None:
+    """Aktualisiert die Registry anhand einer YAML-Datei."""
+
+    if not yaml_path.exists():
+        return
+    try:
+        data = yaml.safe_load(yaml_path.read_text(encoding="utf-8")) or {}
+    except Exception as exc:  # pragma: no cover - Fehler beim Parsen
+        logger.warning("models.yml konnte nicht geladen werden: %s", exc)
+        return
+    for key, info in data.items():
+        if key in MODEL_REGISTRY and isinstance(info, dict):
+            MODEL_REGISTRY[key].update(info)
+
+
+# YAML-Overrides direkt beim Import anwenden
+apply_yaml_overrides()
 
 
 def is_gpu_available() -> bool:

@@ -735,3 +735,11 @@ Alle Änderungen werden in diesem Dokument festgehalten.
 ### Geändert
 - README beschreibt das neue Skript und hakt den TODO-Punkt zu den
   i18n-Bundles ab.
+
+## [1.8.36] - 2025-10-27
+### Hinzugefügt
+- Datei `models.yml` verwaltet die Prüfsummen der Modelle zentral.
+- Test `tests/models/test_checksum.py` prüft das Einlesen der YAML.
+### Geändert
+- `core/dep_manager.py` lädt nun optionale YAML-Overrides.
+- README markiert den Punkt "Model-Manager Checksummen & Pfade" als erledigt.

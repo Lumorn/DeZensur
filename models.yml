@@ -1,0 +1,27 @@
+anime_censor_detection:
+  filename: censor_detect_v0.9_s/model.onnx
+  sha256: 2d711642b726b04401627ca9fbac32f5c8530fb1903cc4db02258717921a4881
+sam_vit_hq:
+  filename: model.safetensors
+  sha256: null
+sam_mobile:
+  filename: mobile_sam.pt
+  sha256: null
+animanga_inpaint:
+  filename: big-lama.zip
+  sha256: null
+iopaint_lama:
+  filename: big-lama.zip
+  sha256: null
+sd2_inpaint:
+  filename: model.safetensors
+  sha256: null
+revanimated_inpaint:
+  filename: revAnimated_v121Inp-inpainting.safetensors
+  sha256: null
+sd_controlnet:
+  filename: model.safetensors
+  sha256: null
+controlnet_canny:
+  filename: diffusion_pytorch_model.safetensors
+  sha256: null

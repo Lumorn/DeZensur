@@ -406,10 +406,10 @@ _Nur Punkte, die **noch offen** sind – als kopier- & abhakbare Markdown-Checkb
   - **Fix:** `de.json` & `en.json` per script synchronisieren.
   - **Tests:** Jest `i18n.keys.spec.ts` (Snapshot aller Keys).
 
-- [ ] **Model-Manager Checksummen & Pfade**  
-  - Torch 2.2.x ok, aber future 2.3 bricht ONNX.  
-  - **Fix:** `requirements.txt` mit `torch<2.3`. SHA-256 in `models.yml`.  
-  - **Tests:** `tests/models/test_checksum.py`.
+ - [x] **Model-Manager Checksummen & Pfade**
+    - Torch 2.2.x ok, aber future 2.3 bricht ONNX.
+    - **Fix:** `requirements.txt` mit `torch<2.3`. SHA-256 in `models.yml`.
+    - **Tests:** `tests/models/test_checksum.py`.
 
 #### 3️⃣ Dev-Scripts & CI
 - [x] **start.py überspringt _npm install_** wenn `SKIP_NPM_INSTALL` gesetzt
@@ -437,5 +437,7 @@ _Nur Punkte, die **noch offen** sind – als kopier- & abhakbare Markdown-Checkb
 | `controlnet_canny` | ControlNet Hint | SAFETENSORS | 1 GB | lllyasviel/control_v11p_sd15_canny |
 
  > **Tipp:** Modelle lassen sich über `python -m dezensor.fetch_model <key>` vorab offline cachen. Das Skript verwendet den internen Downloader mit Versions- und Prüfsummenprüfung.
+
+Die zugehörigen SHA-256-Werte und Dateinamen sind in `models.yml` hinterlegt und können dort angepasst werden.
 
 ---
