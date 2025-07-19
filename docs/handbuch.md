@@ -12,6 +12,8 @@ Dieses Handbuch dient als Einstieg in die Nutzung der Applikation. Es fasst die 
    ```bash
    python start.py
    ```
+   Unter Windows kannst du dazu einfach `start.py` oder das beiliegende
+   `start.cmd` doppelklicken.
 
 ## Grundlegender Workflow
 

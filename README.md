@@ -97,6 +97,9 @@ python start.py          # erstellt venv, lädt Modelle, baut GUI
 python start.py --dev    # Hot‑Reload für Front‑ und Backend
 ```
 
+Unter Windows kannst du das Programm auch bequem per Doppelklick starten.
+Nutze dazu entweder direkt `start.py` oder das neue Skript `start.cmd`.
+
 Sollte nach dem Start nur ein weißes Fenster erscheinen, fehlt meist der
 Frontend-Build. Führe in diesem Fall `python start.py` oder alternativ
 `npm run build` im Ordner `gui/` aus. Komfortabler geht es mit dem Skript
