@@ -755,3 +755,8 @@ Alle Änderungen werden in diesem Dokument festgehalten.
   verfügbar ist. Die Abhängigkeit wurde daher auf Version 1.5.0 gesetzt.
 ### Geändert
 - README und `package.json` führen die angepasste Version auf.
+
+## [1.8.39] - 2025-10-30
+### Geändert
+- README ergänzt: `npm start` ohne vorangegangenen Build führt zu einer leeren
+  Oberfläche. Empfohlene Befehle sind `python start.py` oder `npm run build`.
