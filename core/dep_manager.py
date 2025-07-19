@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import hashlib
+import json
 import logging
 import os
 import shutil
@@ -14,8 +15,8 @@ import torch
 from huggingface_hub import (
     hf_hub_download,
     hf_hub_url,
-    snapshot_download,
     list_repo_files,
+    snapshot_download,
 )
 from tqdm import tqdm
 
@@ -23,6 +24,39 @@ logger = logging.getLogger(__name__)
 
 # Basisordner für alle Modelle
 MODELS_DIR = Path("models")
+VERSIONS_FILE = MODELS_DIR / "versions.json"
+
+
+def _load_versions() -> dict[str, str]:
+    """Lädt die gespeicherten Modellversionen."""
+
+    if VERSIONS_FILE.exists():
+        try:
+            return json.loads(VERSIONS_FILE.read_text(encoding="utf-8"))
+        except Exception:
+            return {}
+    return {}
+
+
+def _save_versions(data: dict[str, str]) -> None:
+    """Schreibt die Modellversionen auf die Platte."""
+
+    VERSIONS_FILE.parent.mkdir(parents=True, exist_ok=True)
+    VERSIONS_FILE.write_text(json.dumps(data, ensure_ascii=False, indent=2))
+
+
+def _remote_etag(repo: str, filename: str) -> str | None:
+    """Fragt das aktuelle ETag eines Modells ab."""
+
+    url = hf_hub_url(repo, filename)
+    try:
+        resp = requests.head(url, allow_redirects=True, timeout=10)
+        if resp.ok:
+            return resp.headers.get("etag")
+    except Exception as exc:  # pragma: no cover - reine Warnung
+        logger.warning("Konnte ETag nicht abrufen: %s", exc)
+    return None
+
 
 # Registry mit bekannten Modellen und Metadaten
 # "alternatives" listet alternative Dateinamen auf, falls der Hauptname nicht
@@ -111,7 +145,9 @@ def _parallel_download(url: str, dest: Path, size: int, progress: bool) -> None:
 
     tmp_files = [dest.with_suffix(dest.suffix + f".part{i}") for i in range(4)]
 
-    bar = tqdm(total=size, disable=not progress, unit="B", unit_scale=True, desc=dest.name)
+    bar = tqdm(
+        total=size, disable=not progress, unit="B", unit_scale=True, desc=dest.name
+    )
 
     def worker(rng: tuple[int, int], out_file: Path) -> None:
         headers = {"Range": f"bytes={rng[0]}-{rng[1]}"}
@@ -215,9 +251,7 @@ def download_model(name: str, progress: bool = True) -> Path:
         try:
             snap = snapshot_download(repo_id=repo, cache_dir=models_dir, token=token)
         except Exception as exc:  # pragma: no cover - reiner Fehlerpfad
-            raise RuntimeError(
-                f"Download für {name} fehlgeschlagen: {exc}"
-            ) from exc
+            raise RuntimeError(f"Download für {name} fehlgeschlagen: {exc}") from exc
 
         found: Path | None = None
         for cand in candidates:
@@ -244,7 +278,10 @@ def ensure_model(name: str, prefer_gpu: bool = True) -> Path:
 
     info = MODEL_REGISTRY[name]
     target = MODELS_DIR / name / info["filename"]
-    if target.exists():
+    versions = _load_versions()
+    remote = _remote_etag(info["repo"], info["filename"])
+    local_ver = versions.get(name)
+    if target.exists() and local_ver == remote:
         if info.get("sha256") and not verify_checksum(target, info["sha256"]):
             logger.warning("Checksumme für %s fehlerhaft, lade neu", name)
             target.unlink()
@@ -257,7 +294,11 @@ def ensure_model(name: str, prefer_gpu: bool = True) -> Path:
             name,
         )
 
-    return download_model(name)
+    path = download_model(name)
+    if remote:
+        versions[name] = remote
+        _save_versions(versions)
+    return path
 
 
 def list_installed() -> dict[str, Path]:
@@ -269,4 +310,3 @@ def list_installed() -> dict[str, Path]:
         if path.exists():
             result[k] = path
     return result
-

@@ -528,3 +528,10 @@ Alle Änderungen werden in diesem Dokument festgehalten.
 - Test `tests/detector/test_thresholds.py`
 ### Geändert
 - README um den neuen Befehl ergänzt und TODOs aktualisiert
+
+## [1.8.6] - 2025-09-27
+### Hinzugefügt
+- Versionsprüfung im Dependency-Manager (`core.dep_manager`)
+- Neuer Test `tests/test_dep_manager.py::test_version_update`
+### Geändert
+- README hakt den Punkt "Dynamischer Model-Manager" ab

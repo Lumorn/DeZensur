@@ -1,25 +1,30 @@
 """Tests für den Dependency-Manager."""
 
+import hashlib
+import sys
+import types
 from pathlib import Path
 from unittest import mock
 
-import hashlib
-import sys
-
 from tests import requests_stub
-import types
 
-sys.modules['requests'] = requests_stub
-torch_stub = types.SimpleNamespace(cuda=types.SimpleNamespace(is_available=lambda: False))
-sys.modules['torch'] = torch_stub
+sys.modules["requests"] = requests_stub
+torch_stub = types.SimpleNamespace(
+    cuda=types.SimpleNamespace(is_available=lambda: False)
+)
+sys.modules["torch"] = torch_stub
 hub_stub = types.SimpleNamespace(
     hf_hub_download=lambda *a, **k: None,
     hf_hub_url=lambda *a, **k: "",
     snapshot_download=lambda *a, **k: None,
 )
-sys.modules['huggingface_hub'] = hub_stub
-tqdm_stub = types.SimpleNamespace(tqdm=lambda *a, **k: types.SimpleNamespace(update=lambda n=None: None, close=lambda: None))
-sys.modules['tqdm'] = tqdm_stub
+sys.modules["huggingface_hub"] = hub_stub
+tqdm_stub = types.SimpleNamespace(
+    tqdm=lambda *a, **k: types.SimpleNamespace(
+        update=lambda n=None: None, close=lambda: None
+    )
+)
+sys.modules["tqdm"] = tqdm_stub
 
 from core import dep_manager
 
@@ -137,3 +142,49 @@ def test_download_with_token(monkeypatch, tmp_path: Path) -> None:
     assert p.exists()
     assert captured["token"] == "secret"
 
+
+def test_version_update(monkeypatch, tmp_path: Path) -> None:
+    """Prüft, ob bei neuer Version ein erneuter Download erfolgt."""
+
+    calls: list[str] = []
+
+    class FakeHead:
+        ok = True
+        status_code = 200
+        headers = {"etag": "v1", "content-length": "1"}
+
+    monkeypatch.setattr(dep_manager.requests, "head", lambda *a, **k: FakeHead())
+
+    def fake_download(**kwargs) -> str:
+        calls.append("dl")
+        dest = tmp_path / "m.bin"
+        dest.parent.mkdir(parents=True, exist_ok=True)
+        dest.write_text("x")
+        return str(dest)
+
+    monkeypatch.setattr(dep_manager, "hf_hub_download", fake_download)
+    monkeypatch.setattr(dep_manager, "MODELS_DIR", tmp_path)
+    dep_manager.MODEL_REGISTRY["dummy"] = {
+        "repo": "repo/dummy",
+        "filename": "model.bin",
+        "sha256": None,
+        "device": "cpu",
+    }
+
+    p = dep_manager.ensure_model("dummy")
+    assert p.exists()
+    assert len(calls) == 1
+
+    # Zweiter Aufruf: gleiche Version, kein Download
+    p2 = dep_manager.ensure_model("dummy")
+    assert p2.exists()
+    assert len(calls) == 1
+
+    # Neue Version erzwingt Download
+    class FakeHead2(FakeHead):
+        headers = {"etag": "v2", "content-length": "1"}
+
+    monkeypatch.setattr(dep_manager.requests, "head", lambda *a, **k: FakeHead2())
+    p3 = dep_manager.ensure_model("dummy")
+    assert p3.exists()
+    assert len(calls) == 2
