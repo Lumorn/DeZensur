@@ -641,3 +641,9 @@ Alle Änderungen werden in diesem Dokument festgehalten.
 ### Geändert
 - README markiert die CI-Checks im TODO-Board als erledigt
 - Dokumentation der neuen Lint-Tools
+
+## [1.8.22] - 2025-10-13
+### Hinzugefügt
+- Umschaltbare Light/Dark-Themes in der GUI
+### Geändert
+- README hakt Dark-Theme und Test-Coverage im TODO-Board ab

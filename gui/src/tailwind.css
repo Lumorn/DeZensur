@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
+:root[data-theme='dark'] {
   --bg-primary: #1E1E28;
   --bg-secondary: #2C2C36;
   --surface-card: #262630;
@@ -10,6 +10,17 @@
   --accent-positive: #3FB889;
   --accent-warning: #E9A94B;
   --accent-error: #E3645B;
+}
+
+:root[data-theme='light'] {
+  --bg-primary: #f5f5f5;
+  --bg-secondary: #e0e0e0;
+  --surface-card: #ffffff;
+  --accent-primary: #007acc;
+  --accent-positive: #3FB889;
+  --accent-warning: #E9A94B;
+  --accent-error: #E3645B;
+  color: #000;
 }
 
 .neu {
