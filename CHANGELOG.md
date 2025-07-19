@@ -570,3 +570,9 @@ Alle Änderungen werden in diesem Dokument festgehalten.
 ### Geändert
 - README hakt den TODO-Eintrag fr den Settings-Test ab
 
+## [1.8.12] - 2025-10-03
+### Hinzugefügt
+- Erste Version des Benutzerhandbuchs unter `docs/handbuch.md`
+### Geändert
+- README verweist auf das Handbuch und markiert den Punkt im TODO-Board als erledigt
+
