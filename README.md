@@ -184,13 +184,14 @@ MIT – siehe [LICENSE](LICENSE)
   - [x] Konfigurierbare Schwelle + ROI‑Filtering
   - [x] Batch‑CLI `detect-batch`
   - [x] 🔬 `tests/detector/test_thresholds.py`
-- [ ] **Segmenter Module**
-  - [ ] SAM‑HQ GPU‑Pipeline
+- [x] **Segmenter Module**
+  - [x] SAM‑HQ GPU‑Pipeline
   - [x] MobileSAM Fallback (CPU)
   - [x] 🔬 `tests/segmenter/test_mobile_fallback.py`
+  - [x] 🔬 `tests/segmenter/test_gpu_pipeline.py`
 - [ ] **Inpainter**
   - [ ] Diffusers Pipeline mit ControlNet‑Aux
-  - [ ] Lama‑Cleaner Classical Fallback
+  - [x] Lama‑Cleaner Classical Fallback
   - [ ] 🔬 `tests/inpaint/test_seams.py`
 - [ ] **Render‑Engine**
   - [ ] Async Tile‑Renderer
