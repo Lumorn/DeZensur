@@ -24,14 +24,14 @@ Alle Modelle laufen **offline** auf deiner GPU / CPU – keine Cloud‑Abhä
 ## **Aktuelle TODO‑Liste**  
 *Markdown‑Checkboxen können direkt in GitHub oder VS Code abgehakt werden.*
 
-### Backend / Core
+-### Backend / Core
 
-- [ ] Integration **anime_censor_detection** (ONNX)  
-- [ ] HQ‑**SAM** Segmenter (`sam_vit_hq`)  
-- [ ] Option **MobileSAM** für schwache Hardware  
-- [ ] Anatomie‑Tag‑Ergänzer für bessere Prompts  
-- [ ] Dynamischer **Model‑Manager** (Download + Version‑Check)  
-- [ ] **Batch‑Runner** mit Fortschritts‑Overlay  
+- [x] Integration **anime_censor_detection** (ONNX)
+- [x] HQ‑**SAM** Segmenter (`sam_vit_hq`)
+- [x] Option **MobileSAM** für schwache Hardware
+- [x] Anatomie‑Tag‑Ergänzer für bessere Prompts
+- [ ] Dynamischer **Model‑Manager** (Download + Version‑Check)
+- [x] **Batch‑Runner** mit Fortschritts‑Overlay
 - [x] JSON‑/‑HTML‑**Report‑Generator**
 
 ### Frontend / GUI
@@ -46,7 +46,7 @@ Alle Modelle laufen **offline** auf deiner GPU / CPU – keine Cloud‑Abhä
 
 ### DevOps
 
-- [ ] **start.py** Bootstrapping (Git pull → venv → npm install)  
+- [x] **start.py** Bootstrapping (Git pull → venv → npm install)
 - [ ] Portable **EXE‑Build** (PyInstaller)  
 - [ ] Signierter Windows‑Installer  
 - [ ] > 90 % Test‑Coverage  
@@ -64,7 +64,7 @@ Eine kompakte Referenz für LLM‑Agents ohne Internet‑Zugriff.
 |-----------|-------|-------------|-------|--------|
 | `anime_censor_detection` | Zensur‑BBox | `deepghs/anime_censor_detection` → `*/model.onnx` | 45 MB | ✅ |
 | `sam_vit_hq` | Hochpräzise Masken | `syscv-community/sam-hq-vit-base` → `model.safetensors` | 380 MB | ✅ |
-| `mobile_sam` | CPU‑/Low‑VRAM‑Masken | `yuval-alaluf/mobile_sam` → `*.pth` | 91 MB | ⬜ |
+| `mobile_sam` | CPU‑/Low‑VRAM‑Masken | `yuval-alaluf/mobile_sam` → `*.pth` | 91 MB | ✅ |
 | `lama` | CNN‑Inpainting | PyPI: `iopaint[lama]` | 210 MB | ✅ |
 | `sd2_inpaint` | Stable Diffusion 2‑Inpaint | `stabilityai/stable-diffusion-2-inpainting` | 1.5 GB | ⬜ |
 | `revanimated` | Anime‑Inpaint (SD1.5) | `lnook/revAnimated-inpainting` | 2.1 GB | ✅ |
@@ -106,9 +106,10 @@ Der JSON- und optional der HTML-Report liegen anschließend im angegebenen Pfad.
 Mit dem Skript `dez.py` lässt sich ein kompletter Ordner analysieren:
 
 ```bash
-python dez.py detect bilder/ --out scan.json
+python dez.py detect bilder/ --out scan.json --roi 0.3,0.3,0.7,0.7
 ```
-Der erzeugte JSON-Bericht listet alle gefundenen Boxen pro Datei auf.
+Der Parameter `--roi` begrenzt die Suche optional auf einen Bereich
+(x1,y1,x2,y2, Werte 0‑1). Der JSON-Bericht listet alle gefundenen Boxen pro Datei auf.
 
 ### Inpainting per CLI
 

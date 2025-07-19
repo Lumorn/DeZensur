@@ -14,7 +14,12 @@ def _cmd_detect(args: argparse.Namespace) -> None:
     for img in sorted(folder.iterdir()):
         if img.suffix.lower() not in exts:
             continue
-        boxes = detect_censor(img, threshold=args.threshold)
+        roi = None
+        if args.roi:
+            parts = [float(v) for v in args.roi.split(",")]
+            if len(parts) == 4:
+                roi = tuple(parts)  # type: ignore[assignment]
+        boxes = detect_censor(img, threshold=args.threshold, roi=roi)
         data[img.name] = boxes
     out = json.dumps(data, ensure_ascii=False, indent=2)
     if args.out:
@@ -50,6 +55,7 @@ def main() -> int:
     p_detect.add_argument("folder")
     p_detect.add_argument("--out", help="Pfad für den JSON-Report")
     p_detect.add_argument("--threshold", type=float, default=0.3)
+    p_detect.add_argument("--roi", help="x1,y1,x2,y2 im Bereich 0-1")
     p_detect.set_defaults(func=_cmd_detect)
 
     p_inpaint = sub.add_parser("inpaint", help="Einzelnes Bild inpainten")

@@ -84,6 +84,7 @@ def detect_censor(
     image_path: Path,
     model_name: str = "anime_censor_detection",
     threshold: float = 0.3,
+    roi: tuple[float, float, float, float] | None = None,
 ) -> list[dict[str, Any]]:
     """Führt die Zensurerkennung für ein Bild aus."""
     img = Image.open(image_path).convert("RGB")
@@ -122,8 +123,14 @@ def detect_censor(
         b[2] = (b[2] - dx) / scale / w0
         b[3] = (b[3] - dy) / scale / h0
 
-    results = []
+    results: list[dict[str, Any]] = []
     for b, sc, cid in zip(boxes, scores, cls_ids):
+        if roi:
+            x1, y1, x2, y2 = roi
+            inter_w = max(0.0, min(b[2], x2) - max(b[0], x1))
+            inter_h = max(0.0, min(b[3], y2) - max(b[1], y1))
+            if inter_w * inter_h == 0:
+                continue
         label = LABELS[cid] if cid < len(LABELS) else str(cid)
         results.append({
             "label": label,
@@ -139,9 +146,15 @@ def cli_detect() -> None:
     parser.add_argument("image")
     parser.add_argument("--json", dest="json", help="Datei für die Ausgabe")
     parser.add_argument("--threshold", type=float, default=0.3)
+    parser.add_argument("--roi", help="Bereich als x1,y1,x2,y2 im Bereich 0-1")
     args = parser.parse_args()
 
-    boxes = detect_censor(Path(args.image), threshold=args.threshold)
+    roi_tuple = None
+    if args.roi:
+        parts = [float(v) for v in args.roi.split(",")]
+        if len(parts) == 4:
+            roi_tuple = tuple(parts)  # type: ignore[assignment]
+    boxes = detect_censor(Path(args.image), threshold=args.threshold, roi=roi_tuple)
     out = json.dumps(boxes, ensure_ascii=False)
     if args.json:
         Path(args.json).write_text(out, encoding="utf-8")
