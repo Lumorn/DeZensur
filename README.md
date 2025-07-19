@@ -26,8 +26,8 @@ Alle Modelle laufen **offline** auf deiner GPU / CPU – keine Cloud‑Abhä
 
 ### Backend / Core
 
-- [x] Integration **anime_censor_detection** (ONNX)  
-- [x] HQ‑**SAM** Segmenter (`sam_vit_hq`)  
+- [ ] Integration **anime_censor_detection** (ONNX)  
+- [ ] HQ‑**SAM** Segmenter (`sam_vit_hq`)  
 - [ ] Option **MobileSAM** für schwache Hardware  
 - [ ] Anatomie‑Tag‑Ergänzer für bessere Prompts  
 - [ ] Dynamischer **Model‑Manager** (Download + Version‑Check)  
@@ -36,8 +36,8 @@ Alle Modelle laufen **offline** auf deiner GPU / CPU – keine Cloud‑Abhä
 
 ### Frontend / GUI
 
-- [x] Dark‑Theme‑Layout (AppBar | Gallery | SidePanel)  
-- [x] Projekt‑Handling (Neu / Öffnen / Speichern)  
+- [ ] Dark‑Theme‑Layout (AppBar | Gallery | SidePanel)  
+- [ ] Projekt‑Handling (Neu / Öffnen / Speichern)  
 - [ ] **Masken‑Editor** (Zeichnen / Radieren / Undo‑Redo)  
 - [ ] Zoom & Pan‑Werkzeuge  
 - [ ] Fortschritts‑Modal für lange Tasks  
@@ -46,7 +46,7 @@ Alle Modelle laufen **offline** auf deiner GPU / CPU – keine Cloud‑Abhä
 
 ### DevOps
 
-- [x] **start.py** Bootstrapping (Git pull → venv → npm install)  
+- [ ] **start.py** Bootstrapping (Git pull → venv → npm install)  
 - [ ] Portable **EXE‑Build** (PyInstaller)  
 - [ ] Signierter Windows‑Installer  
 - [ ] > 90 % Test‑Coverage  
