@@ -647,3 +647,9 @@ Alle Änderungen werden in diesem Dokument festgehalten.
 - Umschaltbare Light/Dark-Themes in der GUI
 ### Geändert
 - README hakt Dark-Theme und Test-Coverage im TODO-Board ab
+
+## [1.8.23] - 2025-10-14
+### Hinzugefügt
+- Paket-Metadaten im `pyproject.toml` ermöglichen den PyPI-Build
+### Geändert
+- README erklärt das Erzeugen eines Wheels und markiert den TODO-Punkt als erledigt
