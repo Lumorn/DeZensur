@@ -485,3 +485,8 @@ Alle Änderungen werden in diesem Dokument festgehalten.
 - Ordnerauswahl legt jetzt den Arbeitsordner im Zustand ab.
 - Start-Button nutzt den tRPC-Endpunkt `censorDetect`.
 - README beschreibt die beiden neuen Funktionen.
+
+## [1.8.0] - 2025-09-21
+### Hinzugefügt
+- HTML-Export im Batch-Report (`core.report.render_html` und `generate_report.py --html`)
+- README führt das neue Kommando unter "Batch-Reports erstellen" auf

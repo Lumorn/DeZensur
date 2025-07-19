@@ -3,6 +3,8 @@ import statistics
 import datetime
 from pathlib import Path
 
+HTML_TEMPLATE = """<html><head><meta charset='utf-8'><title>Batch Report {batch_id}</title></head><body><h1>Batch Report {batch_id}</h1><ul><li>Bilder: {images}</li><li>Durchschnittszeit: {avg_sec} s</li><li>Fehler: {errors}</li></ul><table border='1'><tr><th>Modell</th><th>Anzahl</th></tr>{rows}</table></body></html>"""
+
 
 def summarize_batch(project_root: Path, batch_id: str):
     """Fasst ein Batch-Log in einem Report zusammen."""
@@ -28,6 +30,19 @@ def summarize_batch(project_root: Path, batch_id: str):
     with open(rpath, "w", encoding="utf-8") as fd:
         json.dump(report, fd, indent=2)
     return rpath
+
+
+def render_html(report_json: Path, html_path: Path) -> Path:
+    """Erzeugt eine einfache HTML-Ansicht des Reports."""
+
+    data = json.loads(report_json.read_text())
+    rows = "".join(
+        f"<tr><td>{model}</td><td>{count}</td></tr>"
+        for model, count in data.get("models", {}).items()
+    )
+    html = HTML_TEMPLATE.format(**data, rows=rows)
+    html_path.write_text(html, encoding="utf-8")
+    return html_path
 
 
 if __name__ == "__main__":

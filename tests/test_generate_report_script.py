@@ -21,6 +21,7 @@ def test_generate_report_creates_file(tmp_path: Path) -> None:
     logger.bind(img="a", model="lama").info("done", duration_ms=500)
 
     out_file = tmp_path / "report.json"
+    html_file = tmp_path / "report.html"
     env = os.environ.copy()
     test_path = Path(__file__).resolve().parent
     env["PYTHONPATH"] = os.pathsep.join([str(test_path), env.get("PYTHONPATH", "")])
@@ -32,6 +33,8 @@ def test_generate_report_creates_file(tmp_path: Path) -> None:
             batch_id,
             "--report",
             str(out_file),
+            "--html",
+            str(html_file),
         ],
         env=env,
     )
@@ -39,3 +42,4 @@ def test_generate_report_creates_file(tmp_path: Path) -> None:
     assert out_file.exists()
     data = json.loads(out_file.read_text())
     assert data["batch_id"] == batch_id
+    assert html_file.exists()

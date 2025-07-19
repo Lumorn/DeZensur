@@ -32,7 +32,7 @@ Alle Modelle laufen **offline** auf deiner GPU / CPU – keine Cloud‑Abhä
 - [ ] Anatomie‑Tag‑Ergänzer für bessere Prompts  
 - [ ] Dynamischer **Model‑Manager** (Download + Version‑Check)  
 - [ ] **Batch‑Runner** mit Fortschritts‑Overlay  
-- [ ] JSON‑/‑HTML‑**Report‑Generator**
+- [x] JSON‑/‑HTML‑**Report‑Generator**
 
 ### Frontend / GUI
 
@@ -91,6 +91,15 @@ python start.py          # erstellt venv, lädt Modelle, baut GUI
 # Dev‑Modus:
 python start.py --dev    # Hot‑Reload für Front‑ und Backend
 ```
+
+### Batch-Reports erstellen
+
+Nach einem Batch-Lauf kann ein zusammenfassender Bericht erzeugt werden.
+
+```bash
+python generate_report.py projekt.dezproj 20240719 --report batch.json --html batch.html
+```
+Der JSON- und optional der HTML-Report liegen anschließend im angegebenen Pfad.
 
 ---
 
