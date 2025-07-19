@@ -685,3 +685,10 @@ Alle Änderungen werden in diesem Dokument festgehalten.
 ### Geändert
 - README markiert die Side-Panel-Punkte im TODO-Board als erledigt und beschreibt die Funktion
 
+## [1.8.29] - 2025-10-20
+### Geändert
+- IPC nutzt jetzt `exposeElectronTRPC` im Preload und `createTRPCProxyClient`
+  im Renderer.
+### Behoben
+- Build-Fehler durch fehlenden `createIPCClient`-Export behoben.
+
