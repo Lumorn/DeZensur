@@ -52,7 +52,7 @@ Eine ausführliche Schritt‑für‑Schritt‑Anleitung findest du im [Handbuch]
 - [ ] Portable **EXE‑Build** (PyInstaller)  
 - [ ] Signierter Windows‑Installer  
 - [ ] > 90 % Test‑Coverage  
-- [ ] Automatisches Changelog‑Release (GitHub‑Action)
+- [x] Automatisches Changelog‑Release (GitHub‑Action)
 
 ---
 

@@ -626,3 +626,10 @@ Alle Änderungen werden in diesem Dokument festgehalten.
 - Caching für HuggingFace-Modelle
 ### Geändert
 - README markiert die GitHub-Actions-Punkte im TODO-Board als erledigt
+
+## [1.8.20] - 2025-10-11
+### Hinzugefügt
+- GitHub-Action `release.yml` erstellt Releases aus dem CHANGELOG
+- Skript `scripts/extract_changelog.py` extrahiert die Notizen
+### Geändert
+- README hakt das automatische Changelog-Release ab
