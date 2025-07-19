@@ -78,7 +78,7 @@ Eine kompakte Referenz für LLM‑Agents ohne Internet‑Zugriff.
 
 | Paket | Version | Grund |
 |-------|---------|-------|
-| `electron-reload` | `2.0.2` (Fallback 2.0.0) | kompatibel mit Electron 28 |
+| `electron-reload` | `1.5.0` (Fallback 2.0.0) | kompatibel mit Electron 28 |
 | `electron` | `28.2.0` | stable Release |
 | `electron-trpc` | `0.7.1` | neuere Versionen nicht im Registry |
 | `react-konva` | `19.0.7` | 19.0.24 nie veröffentlicht |
@@ -376,7 +376,7 @@ _Nur Punkte, die **noch offen** sind – als kopier- & abhakbare Markdown-Checkb
   - **Tests:** Storybook Screenshot-Diff.
 
 - [x] **Incompatible NPM-Versions**
-  - `electron-reload` ^1.5.0 → 2.0.2  
+  - `electron-reload` ^1.5.0 → 1.5.0
   - `electron-trpc` ^0.11.0 → 0.7.1 (letzte veröffentlichte)  
   - `react-konva` ^19.0.7 → **19.0.7** (Caret entfernen)  
   - `electron` “latest” → 28.2.x pinnen  

@@ -748,3 +748,10 @@ Alle Änderungen werden in diesem Dokument festgehalten.
 ### Behoben
 - Download des Modells `anime_censor_detection` schlägt nicht mehr wegen
   falscher Prüfsumme fehl. Die Prüfsumme wird nun ignoriert.
+
+## [1.8.38] - 2025-10-29
+### Behoben
+- `npm install` schlug fehl, weil `electron-reload` in Version 2.0.2 nicht
+  verfügbar ist. Die Abhängigkeit wurde daher auf Version 1.5.0 gesetzt.
+### Geändert
+- README und `package.json` führen die angepasste Version auf.
