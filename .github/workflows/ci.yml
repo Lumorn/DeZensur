@@ -31,14 +31,16 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
-          pip install black isort flake8
+          pip install black isort flake8 mypy ruff
       # Code-Qualität prüfen und Unit-Tests starten
       - name: Linting & Tests ausführen
         run: |
           black --check .
           isort --check-only .
           flake8
-          pytest
+          ruff check .
+          mypy --ignore-missing-imports core
+          pytest --cov=. --cov-report=xml --cov-fail-under=85
 
   node:
     name: Node-Tests

@@ -2,15 +2,17 @@ import json
 import statistics
 import datetime
 from pathlib import Path
+from typing import Any
 
 HTML_TEMPLATE = """<html><head><meta charset='utf-8'><title>Batch Report {batch_id}</title></head><body><h1>Batch Report {batch_id}</h1><ul><li>Bilder: {images}</li><li>Durchschnittszeit: {avg_sec} s</li><li>Fehler: {errors}</li></ul><table border='1'><tr><th>Modell</th><th>Anzahl</th></tr>{rows}</table></body></html>"""
 
 
-def summarize_batch(project_root: Path, batch_id: str):
+def summarize_batch(project_root: Path, batch_id: str) -> Path:
     """Fasst ein Batch-Log in einem Report zusammen."""
+
     log_path = max((project_root / "logs").glob(f"run_{batch_id}*.jsonl"))
-    stats = {"images": 0, "avg_sec": 0, "errors": 0, "models": {}}
-    durations = []
+    stats: dict[str, Any] = {"images": 0, "avg_sec": 0, "errors": 0, "models": {}}
+    durations: list[float] = []
     with open(log_path, "r", encoding="utf-8") as f:
         for line in f:
             rec = json.loads(line)

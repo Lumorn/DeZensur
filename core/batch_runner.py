@@ -7,6 +7,7 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 from rich.progress import Progress, BarColumn, TimeRemainingColumn
 from contextlib import nullcontext
 import sys
+from typing import cast
 from core.project_manager import Project
 from core.censor_detector import detect_censor
 from core.segmenter import generate_mask, save_mask_png
@@ -40,7 +41,8 @@ def _process_image(
 
     try:
         boxes = detect_censor(img_path, model_name=model_detector)
-        labels = {b.get("label") for b in boxes}
+        label_set = {b.get("label") for b in boxes}
+        labels = [str(lb) for lb in label_set if lb is not None]
         prompts = boxes_to_prompts(boxes)
         mask = generate_mask(img_path, prompts, model_sam)
         mask_path = project.get_mask_path(img_id)
@@ -48,7 +50,7 @@ def _process_image(
         result = inpaint(
             img_path,
             mask_path,
-            labels=list(labels),
+            labels=labels,
             model_key=model_inpaint,
             user_prompt=batch_user_prompt,
         )
@@ -102,6 +104,7 @@ def run_batch(
         else nullcontext()
     )
     with progress_ctx as progress:
+        progress = cast(Progress, progress)
         task = progress.add_task("[cyan]Batch-Job", total=len(todo)) if show_progress else None
         with ThreadPoolExecutor(max_workers=max_workers) as exe:
             futures = {
@@ -120,7 +123,7 @@ def run_batch(
             for fut in as_completed(futures):
                 img = futures[fut]
                 fut.result()
-                if show_progress:
+                if show_progress and task is not None:
                     progress.update(task, advance=1, description=f"[green]{img['id']}")
         rep_path = summarize_batch(project.root, batch_id)
         logger.info(f"Report saved: {rep_path}")

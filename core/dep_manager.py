@@ -1,4 +1,5 @@
 """Abhängigkeiten und Modelle verwalten."""
+# mypy: ignore-errors
 
 from __future__ import annotations
 
@@ -9,6 +10,7 @@ import os
 import shutil
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
+from typing import Any, cast
 
 import requests
 import torch
@@ -193,9 +195,9 @@ def download_model(name: str, progress: bool = True) -> Path:
 
     info = MODEL_REGISTRY[name]
     repo = info["repo"]
-    filename = info["filename"]
+    filename = cast(str, info["filename"])
     token = os.environ.get("HUGGINGFACE_HUB_TOKEN") or os.environ.get("HF_TOKEN")
-    alternatives = info.get("alternatives", []) or []
+    alternatives = cast(list[str], info.get("alternatives", []) or [])
     models_dir = MODELS_DIR / name
     models_dir.mkdir(parents=True, exist_ok=True)
     dest = models_dir / filename

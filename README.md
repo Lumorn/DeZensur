@@ -18,7 +18,7 @@ Eine ausführliche Schritt‑für‑Schritt‑Anleitung findest du im [Handbuch]
 | 🧩 **Modulare Pipeline** (Detection → Segmentation → Inpainting) | ⬜ |
 | ⚡ **start.py** erledigt Git + `pip install` + GUI‑Build | ✅ |
 | 📦 **Self‑Updater** & automatischer Modell‑Download | ⬜ |
-| 📝 **Tests + CI** (black, isort, flake8, pytest) | ✅ |
+| 📝 **Tests + CI** (black, isort, flake8, ruff, mypy, pytest-cov) | ✅ |
 | 🧪 **Erweiterbar** (Video‑Support, LoRA‑Modelle) | ⬜ |
 
 ---
@@ -200,10 +200,10 @@ DeZensur/
 
 ## Contributing
 
-1. **Fork → Branch → PR** (Conventional Commits)  
-2. Lint: `black`, `isort`, `flake8`  
-3. Jeder PR braucht Tests (`pytest`)  
-4. CI‑Pipeline muss grün sein  
+1. **Fork → Branch → PR** (Conventional Commits)
+2. Lint: `black`, `isort`, `flake8`, `ruff`, `mypy`
+3. Jeder PR braucht Tests (`pytest`)
+4. CI‑Pipeline muss grün sein
 
 ---
 
@@ -275,7 +275,7 @@ MIT – siehe [LICENSE](LICENSE)
 - [ ] PyPI Build (`dezensor` Wheel)
 - [ ] Windows x64 Portable `.exe` (PyInstaller + --add‑data assets)
 - [ ] Code‑Signing Setup (signtool)
-- [ ] 🔬 CI checks: mypy, Ruff, pytest‑cov ≥ 85 %
+ - [x] 🔬 CI checks: mypy, Ruff, pytest‑cov ≥ 85 %
 
 -### 5️⃣ Dokumentation & Samples
 - [x] **Handbuch** (`docs/handbuch.md`)
