@@ -497,3 +497,10 @@ Alle Änderungen werden in diesem Dokument festgehalten.
 - Testskript unter `tests/cli/test_help.py`
 ### Geändert
 - README beschreibt den neuen CLI-Aufruf und hakt das TODO ab
+
+## [1.8.2] - 2025-09-23
+### Hinzugefügt
+- Neuer CLI-Befehl `inpaint` zum Bearbeiten einzelner Bilder
+- Test `tests/cli/test_inpaint_cli.py`
+### Geändert
+- README ergänzt CLI-Beispiel und hakt das TODO ab
