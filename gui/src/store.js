@@ -7,4 +7,7 @@ export const useStore = create((set) => ({
   prefs: {},
   setProject: (p) => set({ project: p }),
   setImages: (imgs) => set({ images: imgs }),
+  // Aktualisiert einzelne Einstellungen
+  updatePrefs: (patch) =>
+    set((state) => ({ prefs: { ...state.prefs, ...patch } })),
 }));

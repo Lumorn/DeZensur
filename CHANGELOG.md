@@ -611,3 +611,11 @@ Alle Änderungen werden in diesem Dokument festgehalten.
 - Unit-Test `tests/render/test_resume.py`
 ### Geändert
 - README hakt die Render-Engine im TODO-Board ab
+
+## [1.8.18] - 2025-10-09
+### Hinzugefügt
+- Modell-Selector im Side-Panel (`RightInspector`)
+- Jest-Test `rightInspector.spec.tsx`
+### Geändert
+- README markiert Projekt-Handling, Masken-Editor und Einstellungs-Dialog als erledigt
+- TODO-Board vermerkt den Modell-Selector
