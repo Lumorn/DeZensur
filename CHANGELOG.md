@@ -653,3 +653,9 @@ Alle Änderungen werden in diesem Dokument festgehalten.
 - Paket-Metadaten im `pyproject.toml` ermöglichen den PyPI-Build
 ### Geändert
 - README erklärt das Erzeugen eines Wheels und markiert den TODO-Punkt als erledigt
+
+## [1.8.24] - 2025-10-15
+### Hinzugefügt
+- Galerie unterstützt Drag-&-Drop zum Hinzufügen von Bildern
+### Geändert
+- README beschreibt den Import per Drag-&-Drop und hakt den TODO-Punkt ab
