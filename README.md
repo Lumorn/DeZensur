@@ -118,6 +118,11 @@ Bilder kannst du direkt per Drag-&-Drop in die Galerie ziehen. Alternativ öffne
 Beim ersten Anzeigen erzeugt ein Web Worker automatisch verkleinerte Vorschaubilder.
 Beispielbilder findest du im Ordner `demo_assets/`.
 
+### Side-Panel
+
+Nach dem Anklicken eines Bildes erscheinen rechts dessen Eigenschaften
+(ID und Dateiname). Dort wählst du auch das Inpainting-Modell aus.
+
 ### Batch-Reports erstellen
 
 Nach einem Batch-Lauf kann ein zusammenfassender Bericht erzeugt werden.
@@ -283,10 +288,10 @@ MIT – siehe [LICENSE](LICENSE)
   - [x] Zeichen‑Tool, Radierer, Shortcut (⌘Z)
   - [x] Zoom & Pan (Ctrl + Wheel)
   - [x] 🔬 `e2e/editor.spec.ts`
-- [ ] **Side‑Panel**
-  - [ ] Kontextabhängige Property‑Leisten
+- [x] **Side‑Panel**
+  - [x] Kontextabhängige Property‑Leisten
   - [x] Modell‑Selector Dropdown
-  - [ ] 🔬 `e2e/sidepanel.spec.ts`
+  - [x] 🔬 `e2e/sidepanel.spec.ts`
 - [x] **Einstellungs‑Dialog**
   - [x] GPU Auswahl / CPU‑Fallback
   - [x] Modelle nach­laden (+ Checksum)
