@@ -520,3 +520,11 @@ Alle Änderungen werden in diesem Dokument festgehalten.
 - Neue Tests für die ROI-Filterung
 ### Geändert
 - TODO-Liste im README aktualisiert
+
+## [1.8.5] - 2025-09-26
+### Hinzugefügt
+- Alias `detect-batch` für die CLI
+- Test `tests/cli/test_detect_batch_cli.py`
+- Test `tests/detector/test_thresholds.py`
+### Geändert
+- README um den neuen Befehl ergänzt und TODOs aktualisiert

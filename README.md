@@ -111,6 +111,12 @@ python dez.py detect bilder/ --out scan.json --roi 0.3,0.3,0.7,0.7
 Der Parameter `--roi` begrenzt die Suche optional auf einen Bereich
 (x1,y1,x2,y2, Werte 0‑1). Der JSON-Bericht listet alle gefundenen Boxen pro Datei auf.
 
+Alternativ kann der Befehl auch als `detect-batch` ausgeführt werden:
+
+```bash
+python dez.py detect-batch bilder/ --out scan.json
+```
+
 ### Inpainting per CLI
 
 Ein einzelnes Bild kann direkt über die Kommandozeile bearbeitet werden:
@@ -175,9 +181,9 @@ MIT – siehe [LICENSE](LICENSE)
   - [x] Migration v1 → v2 Script
   - [x] 🔬 `tests/core/test_project_roundtrip.py`
 - [ ] **Censor‑Detector v2**
-  - [ ] Konfigurierbare Schwelle + ROI‑Filtering
-  - [ ] Batch‑CLI `detect-batch`
-  - [ ] 🔬 `tests/detector/test_thresholds.py`
+  - [x] Konfigurierbare Schwelle + ROI‑Filtering
+  - [x] Batch‑CLI `detect-batch`
+  - [x] 🔬 `tests/detector/test_thresholds.py`
 - [ ] **Segmenter Module**
   - [ ] SAM‑HQ GPU‑Pipeline
   - [ ] MobileSAM Fallback (CPU)
