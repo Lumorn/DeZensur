@@ -490,3 +490,10 @@ Alle Änderungen werden in diesem Dokument festgehalten.
 ### Hinzugefügt
 - HTML-Export im Batch-Report (`core.report.render_html` und `generate_report.py --html`)
 - README führt das neue Kommando unter "Batch-Reports erstellen" auf
+
+## [1.8.1] - 2025-09-22
+### Hinzugefügt
+- Einfaches CLI `dez.py` mit Befehl `detect`
+- Testskript unter `tests/cli/test_help.py`
+### Geändert
+- README beschreibt den neuen CLI-Aufruf und hakt das TODO ab

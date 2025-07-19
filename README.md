@@ -101,6 +101,15 @@ python generate_report.py projekt.dezproj 20240719 --report batch.json --html ba
 ```
 Der JSON- und optional der HTML-Report liegen anschließend im angegebenen Pfad.
 
+### Zensur-Scan per CLI
+
+Mit dem Skript `dez.py` lässt sich ein kompletter Ordner analysieren:
+
+```bash
+python dez.py detect bilder/ --out scan.json
+```
+Der erzeugte JSON-Bericht listet alle gefundenen Boxen pro Datei auf.
+
 ---
 
 ## Ordnerstruktur
@@ -184,9 +193,9 @@ MIT – siehe [LICENSE](LICENSE)
   - [ ] 🔬 `tests/i18n/test_loader.py`
 
 ### 3️⃣ CLI‑&‑Batch‑Tools
-- [ ] `dez detect <folder>` → JSON Report
+- [x] `dez detect <folder>` → JSON Report
 - [ ] `dez inpaint --mask *.png`
-- [ ] 🔬 `tests/cli/test_help.py`
+- [x] 🔬 `tests/cli/test_help.py`
 
 ### 4️⃣ DevOps & Release
 - [ ] GitHub Actions
