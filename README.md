@@ -78,7 +78,8 @@ Eine kompakte Referenz für LLM‑Agents ohne Internet‑Zugriff.
 | Paket | Version | Grund |
 |-------|---------|-------|
 | `electron-reload` | `2.0.2` (Fallback 2.0.0) | kompatibel mit Electron 28 |
-| `electron-trpc` | `^0.7.1` | neuere Versionen nicht im Registry |
+| `electron` | `28.2.0` | stable Release |
+| `electron-trpc` | `0.7.1` | neuere Versionen nicht im Registry |
 | `react-konva` | `19.0.7` | 19.0.24 nie veröffentlicht |
 | `vite` | `5.x` | benötigt by Electron‑Vite‑Template |
 
@@ -335,12 +336,12 @@ MIT – siehe [LICENSE](LICENSE)
 _Nur Punkte, die **noch offen** sind – als kopier- & abhakbare Markdown-Checkboxen._
 
 #### 1️⃣ GUI / Electron + React
-- [ ] **Frontend-Build fehlt**  
+- [x] **Frontend-Build fehlt**
   - Datei `gui/dist/index.html` wird nicht erzeugt → weißes Fenster.  
   - **Fix:** `npm run build` (oder `python start.py`) in _gui/_ automatisieren.  
   - **Tests:** Playwright `e2e/window-load.spec.ts` sorgt dafür, dass `document.title` ≠ "" ist.
 
-- [ ] **Preload-Skript (`gui/electron/preload.js`) fehlt**  
+- [x] **Preload-Skript (`gui/electron/preload.js`) fehlt**
   - `main.js` erwartet `preload.js` mit `contextBridge`.  
   - **Fix:** neue Datei mit  
     ```js
@@ -350,7 +351,7 @@ _Nur Punkte, die **noch offen** sind – als kopier- & abhakbare Markdown-Checkb
     ```  
   - **Tests:** Jest `preload.test.ts` prüft, dass `window.trpc` existiert.
 
-- [ ] **Electron-TRPC Client nicht initialisiert**  
+- [x] **Electron-TRPC Client nicht initialisiert**
   - Renderer hat keinen `createTRPCProxyClient`.  
   - **Fix:** in `gui/src/main.tsx`  
     ```ts
@@ -359,19 +360,19 @@ _Nur Punkte, die **noch offen** sind – als kopier- & abhakbare Markdown-Checkb
     ```  
   - **Tests:** React-Testing-Library `trpc.spec.tsx` mockt Ping-Procedure.
 
-- [ ] **Falscher Vite-Alias**  
+- [x] **Falscher Vite-Alias**
   - `@` zeigt auf `./src/renderer`, Code liegt in `./src`.  
   - **Fix:** in `gui/vite.config.ts`  
     ```ts
     resolve:{ alias:{ '@': path.resolve(__dirname,'./src') } }
     ```  
 
-- [ ] **Tailwind CSS nicht konfiguriert**  
+- [x] **Tailwind CSS nicht konfiguriert**
   - Klassen wie `bg-bg-primary` ohne `tailwind.config.js`.  
   - **Fix:** Config mit `content:['./src/**/*.{ts,tsx}']`, Theme-Farben definieren.  
   - **Tests:** Storybook Screenshot-Diff.
 
-- [ ] **Incompatible NPM-Versions**  
+- [x] **Incompatible NPM-Versions**
   - `electron-reload` ^1.5.0 → 2.0.2  
   - `electron-trpc` ^0.11.0 → 0.7.1 (letzte veröffentlichte)  
   - `react-konva` ^19.0.7 → **19.0.7** (Caret entfernen)  
@@ -383,17 +384,17 @@ _Nur Punkte, die **noch offen** sind – als kopier- & abhakbare Markdown-Checkb
   - **Fix:** React-Komponente `GalleryView` fertigstellen (Grid, Select, Open).  
   - **Tests:** E2E `e2e/gallery.spec.ts` (Drag-&-Drop, Klick).
 
-#### 2️⃣ Backend / Core
-- [ ] **Stable-Diffusion-Inpainting fehlt**  
+-#### 2️⃣ Backend / Core
+- [x] **Stable-Diffusion-Inpainting fehlt**
   - Auswahl `sd2_inpaint` führt zu 404.  
   - **Fix:** Diffusers-Pipeline (`StableDiffusionInpaintPipeline.from_pretrained`) integrieren.  
   - **Tests:** `tests/inpaint/test_sd2.py` (dummy-mask).
 
-- [ ] **tsconfig.json fehlt**  
+- [x] **tsconfig.json fehlt**
   - TypeScript-Abhängigkeit ohne Config → Vite-Errors.  
   - **Fix:** Minimal `tsconfig.json` per `tsc --init`, Pfade auf _src/_ setzen.
 
-- [ ] **Project-IPC-Handler (`gui/electron/project.js`) fehlt**  
+- [x] **Project-IPC-Handler (`gui/electron/project.js`) fehlt**
   - `ProjectIPC(ipcMain)` Aufrufe verpuffen.  
   - **Fix:** Handler implementieren: open/save dialog, returns path.  
   - **Tests:** Spectron `ipc-project.spec.ts`.

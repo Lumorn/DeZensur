@@ -717,3 +717,12 @@ Alle Änderungen werden in diesem Dokument festgehalten.
 - `start.py` verweigert `SKIP_NPM_INSTALL` außerhalb von CI und warnt den Nutzer.
 ### Hinzugefügt
 - Tests `test_should_skip_npm_install_*` und README-TODO aktualisiert.
+
+## [1.8.34] - 2025-10-25
+### Geändert
+- `gui/vite.config.ts` nutzt nun den Alias `./src`.
+- `gui/package.json` pinnt `electron` auf Version 28.2.0,
+  `electron-reload` auf 2.0.2 und `react-konva` auf 19.0.7.
+### Hinzugefügt
+- README markiert die erledigten Punkte im TODO-Board und
+  listet die neuen Paketversionen auf.
