@@ -110,6 +110,15 @@ python dez.py detect bilder/ --out scan.json
 ```
 Der erzeugte JSON-Bericht listet alle gefundenen Boxen pro Datei auf.
 
+### Inpainting per CLI
+
+Ein einzelnes Bild kann direkt über die Kommandozeile bearbeitet werden:
+
+```bash
+python dez.py inpaint bild.png --mask maske.png --out ergebnis.png
+```
+Das Ergebnisbild landet im angegebenen Pfad.
+
 ---
 
 ## Ordnerstruktur
@@ -194,7 +203,7 @@ MIT – siehe [LICENSE](LICENSE)
 
 ### 3️⃣ CLI‑&‑Batch‑Tools
 - [x] `dez detect <folder>` → JSON Report
-- [ ] `dez inpaint --mask *.png`
+- [x] `dez inpaint --mask *.png`
 - [x] 🔬 `tests/cli/test_help.py`
 
 ### 4️⃣ DevOps & Release
