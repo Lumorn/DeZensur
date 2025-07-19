@@ -97,6 +97,10 @@ python start.py          # erstellt venv, lädt Modelle, baut GUI
 python start.py --dev    # Hot‑Reload für Front‑ und Backend
 ```
 
+Sollte nach dem Start nur ein weißes Fenster erscheinen, fehlt meist der
+Frontend-Build. Führe in diesem Fall `python start.py` oder alternativ
+`npm run build` im Ordner `gui/` aus.
+
 ### Sprache umschalten
 
 Oben rechts in der GUI kannst du zwischen **DE** und **EN** wählen. Die zugehörigen
