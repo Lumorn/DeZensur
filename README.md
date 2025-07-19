@@ -269,9 +269,9 @@ MIT – siehe [LICENSE](LICENSE)
 - [x] 🔬 `tests/cli/test_help.py`
 
 ### 4️⃣ DevOps & Release
-- [ ] GitHub Actions
-  - [ ] Matrix (windows‑latest / ubuntu‑latest)
-  - [ ] Cashing von HF‑Modellen
+- [x] GitHub Actions
+  - [x] Matrix (windows‑latest / ubuntu‑latest)
+  - [x] Cashing von HF‑Modellen
 - [ ] PyPI Build (`dezensor` Wheel)
 - [ ] Windows x64 Portable `.exe` (PyInstaller + --add‑data assets)
 - [ ] Code‑Signing Setup (signtool)
