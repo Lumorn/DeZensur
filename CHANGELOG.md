@@ -711,3 +711,9 @@ Alle Änderungen werden in diesem Dokument festgehalten.
 - `start.cmd` ermöglicht den Start per Doppelklick unter Windows.
 ### Geändert
 - README und Handbuch beschreiben das neue Skript.
+
+## [1.8.33] - 2025-10-24
+### Geändert
+- `start.py` verweigert `SKIP_NPM_INSTALL` außerhalb von CI und warnt den Nutzer.
+### Hinzugefügt
+- Tests `test_should_skip_npm_install_*` und README-TODO aktualisiert.
