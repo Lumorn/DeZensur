@@ -185,6 +185,16 @@ proj = Project.load("meinprojekt.dezproj")
 proj.save()  # schreibt im neuen Format
 ```
 
+### Wheel erzeugen
+
+Mit dem Standardwerkzeug **build** kann ein installierbares Wheel erstellt werden:
+
+```bash
+pip install build
+python -m build
+```
+Das Paketarchiv landet danach im Ordner `dist/`.
+
 ---
 
 ## Ordnerstruktur
@@ -277,9 +287,9 @@ MIT – siehe [LICENSE](LICENSE)
 - [x] GitHub Actions
   - [x] Matrix (windows‑latest / ubuntu‑latest)
   - [x] Cashing von HF‑Modellen
-- [ ] PyPI Build (`dezensor` Wheel)
-- [ ] Windows x64 Portable `.exe` (PyInstaller + --add‑data assets)
-- [ ] Code‑Signing Setup (signtool)
+ - [x] PyPI Build (`dezensor` Wheel)
+  - [ ] Windows x64 Portable `.exe` (PyInstaller + --add‑data assets)
+  - [ ] Code‑Signing Setup (signtool)
  - [x] 🔬 CI checks: mypy, Ruff, pytest‑cov ≥ 85 %
 
 -### 5️⃣ Dokumentation & Samples

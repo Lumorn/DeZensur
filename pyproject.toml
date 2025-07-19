@@ -7,3 +7,38 @@ select = ["E9", "F63", "F7", "F82"]
 [tool.mypy]
 python_version = "3.11"
 ignore_missing_imports = true
+
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "dezensor"
+version = "1.8.23"
+description = "Toolkit zur automatischen Entfernung von Zensur"
+authors = [{name = "Lumorn"}]
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.11"
+dependencies = [
+    "gitpython",
+    "virtualenv",
+    "onnxruntime>=1.17",
+    "numpy",
+    "torch>=2.2,<2.3",
+    "opencv-python",
+    "pillow",
+    "tqdm",
+    "huggingface-hub>=0.24.0",
+    "flask",
+    "requests",
+    "aiohttp",
+    "segment-anything @ git+https://github.com/facebookresearch/segment-anything.git",
+    "iopaint[lama]==1.6.0",
+    "diffusers==0.27.2",
+    "rich>=13.6",
+    "loguru>=0.7",
+]
+
+[project.scripts]
+dez = "dez:main"
