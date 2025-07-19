@@ -131,6 +131,15 @@ python dez.py inpaint bild.png --mask maske.png --out ergebnis.png
 ```
 Das Ergebnisbild landet im angegebenen Pfad.
 
+### Modelle vorab herunterladen
+
+Zum Offline-Betrieb können die benötigten Gewichte schon vorher geladen werden:
+
+```bash
+python -m dezensor.fetch_model sam_vit_hq
+```
+Der Pfad zum heruntergeladenen Modell wird nach Abschluss ausgegeben.
+
 ### Projektdateien aktualisieren
 
 Beim Laden einer alten Projektdatei wird diese automatisch auf Schema v2 gehoben:
@@ -218,7 +227,7 @@ MIT – siehe [LICENSE](LICENSE)
   - [ ] 🔬 `e2e/sidepanel.spec.ts`
 - [ ] **Einstellungs‑Dialog**
   - [ ] GPU Auswahl / CPU‑Fallback
-  - [ ] Modelle nach­laden (+ Checksum)
+  - [x] Modelle nach­laden (+ Checksum)
   - [ ] 🔬 Unit `src/__tests__/settings.spec.tsx`
  - [x] **i18n**
   - [x] Deutsch / Englisch JSON Bundles
@@ -256,6 +265,6 @@ MIT – siehe [LICENSE](LICENSE)
 | `lama_cleaner` | Inpainting CNN | Wheel | 2 MB | iopaint[lama] |
 | `stable_diffusion_inpaint` | Inpainting Diffusion | SAFETENSORS | 4 GB | runwayml/stable-diffusion-inpainting |
 
-> **Tipp:** Modelle lassen sich über `python -m dezensor.fetch_model <key>` vorab offline cachen.
+ > **Tipp:** Modelle lassen sich über `python -m dezensor.fetch_model <key>` vorab offline cachen. Das Skript verwendet den internen Downloader mit Versions- und Prüfsummenprüfung.
 
 ---
