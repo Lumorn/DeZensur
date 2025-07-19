@@ -671,3 +671,10 @@ Alle Änderungen werden in diesem Dokument festgehalten.
 - Skript `scripts/build_windows_exe.py` und `pyinstaller.spec` erzeugen eine portable EXE.
 ### Geändert
 - README erklärt den EXE-Build und hakt den TODO-Punkt ab
+
+## [1.8.27] - 2025-10-18
+### Hinzugefügt
+- Galerie generiert Vorschaubilder asynchron im Web Worker
+- Platzhalter-Demo-Assets unter `demo_assets/`
+### Geändert
+- README markiert Lazy Thumb Generation und Demo Assets im TODO-Board als erledigt

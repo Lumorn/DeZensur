@@ -17,7 +17,7 @@ export default function Thumb({ image }: { image: ImageMeta }) {
     >
       {inView && (
         <img
-          src={image.path}
+          src={image.thumb || image.path}
           alt={image.name}
           className="w-full h-full object-cover"
         />

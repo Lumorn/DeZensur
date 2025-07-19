@@ -115,6 +115,8 @@ machen. Halte **Strg** gedrückt und nutze das Mausrad zum Zoomen. Mit gedrückt
 
 Bilder kannst du direkt per Drag-&-Drop in die Galerie ziehen. Alternativ öffnest du
 **File → Add Images…** oder drückst **Ctrl+O**.
+Beim ersten Anzeigen erzeugt ein Web Worker automatisch verkleinerte Vorschaubilder.
+Beispielbilder findest du im Ordner `demo_assets/`.
 
 ### Batch-Reports erstellen
 
@@ -275,7 +277,7 @@ MIT – siehe [LICENSE](LICENSE)
 ### 2️⃣ Desktop‑GUI (Electron + React Konva)
 - [ ] **Galerie‑View**
   - [x] Drag‑&‑Drop Import
-  - [ ] Lazy Thumb Generation (Worker)
+  - [x] Lazy Thumb Generation (Worker)
   - [x] 🔬 Playwright E2E `e2e/gallery.spec.ts`
   - [x] **Masken‑Editor**
   - [x] Zeichen‑Tool, Radierer, Shortcut (⌘Z)
@@ -310,7 +312,7 @@ MIT – siehe [LICENSE](LICENSE)
 
 -### 5️⃣ Dokumentation & Samples
 - [x] **Handbuch** (`docs/handbuch.md`)
-- [ ] Demo Assets (blurred + unblurred)
+- [x] Demo Assets (blurred + unblurred)
 - [ ] Video Walk‑Through (YouTube unlisted)
 
 ---
