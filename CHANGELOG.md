@@ -548,3 +548,11 @@ Alle Änderungen werden in diesem Dokument festgehalten.
 - Neuer Test `tests/test_segmenter_gpu_pipeline.py`
 ### Geändert
 - README hakt die SAM-HQ GPU-Pipeline und den Lama-Fallback ab
+
+## [1.8.9] - 2025-09-30
+### Hinzugefügt
+- Einfache i18n-Unterstützung mit `de` und `en` JSON-Bundles
+- Zustands-Store zur Laufzeitumschaltung der Sprache
+- Neuer Test `tests/i18n/test_loader.py`
+### Geändert
+- README erklärt den Sprachwechsel und markiert das TODO als erledigt
