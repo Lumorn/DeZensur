@@ -82,6 +82,9 @@ Eine kompakte Referenz für LLM‑Agents ohne Internet‑Zugriff.
 | `react-konva` | `19.0.7` | 19.0.24 nie veröffentlicht |
 | `vite` | `5.x` | benötigt by Electron‑Vite‑Template |
 
+Die IPC-Anbindung erfolgt über `exposeElectronTRPC` im Preload und einen
+`createTRPCProxyClient` mit `ipcLink()` im Renderer.
+
 ---
 
 ## Schnellstart

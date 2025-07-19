@@ -1,5 +1,8 @@
-import { createIPCClient } from 'electron-trpc/renderer';
+import { createTRPCProxyClient } from '@trpc/client';
+import { ipcLink } from 'electron-trpc/renderer';
 import type { AppRouter } from '../../main/ipc';
 
-// Client fuer den Zugriff auf die im Preload registrierten IPC-Routen
-export const ipc = createIPCClient<AppRouter>('api');
+// Baut den tRPC-Client für die IPC-Kommunikation auf
+export const ipc = createTRPCProxyClient<AppRouter>({
+  links: [ipcLink()],
+});
