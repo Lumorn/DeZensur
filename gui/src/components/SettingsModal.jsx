@@ -5,13 +5,16 @@ export default function SettingsModal() {
   const [model, setModel] = React.useState('lama');
   const [prompt, setPrompt] = React.useState('');
   const [autoTags, setAutoTags] = React.useState(true);
+  const [device, setDevice] = React.useState('gpu');
   const { prefs } = useStore();
 
   React.useEffect(() => {
+    // Einstellungen im globalen Store aktualisieren
     prefs.inpaintModel = model;
     prefs.prompt = prompt;
     prefs.autoTags = autoTags;
-  }, [model, prompt, autoTags, prefs]);
+    prefs.device = device;
+  }, [model, prompt, autoTags, device, prefs]);
 
   function handleModelChange(e) {
     const val = e.target.value;
@@ -51,6 +54,15 @@ export default function SettingsModal() {
         />
         Automatische Anatomie-Tags
       </label>
+      <label className="block mt-4">Hardware</label>
+      <select
+        value={device}
+        onChange={(e) => setDevice(e.target.value)}
+        className="border p-1"
+      >
+        <option value="gpu">GPU</option>
+        <option value="cpu">CPU</option>
+      </select>
     </div>
   );
 }

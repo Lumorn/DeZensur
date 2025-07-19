@@ -147,6 +147,16 @@ python -m dezensor.fetch_model sam_vit_hq
 ```
 Der Pfad zum heruntergeladenen Modell wird nach Abschluss ausgegeben.
 
+### GPU- oder CPU-Modus wählen
+
+Standardmäßig nutzt DeZensur die GPU, falls verfügbar. Mit der
+Umgebungsvariable `DEZENSUR_DEVICE` lässt sich dies überschreiben:
+
+```bash
+DEZENSUR_DEVICE=cpu python dez.py detect bilder/
+```
+Mögliche Werte sind `gpu` oder `cpu`.
+
 ### Projektdateien aktualisieren
 
 Beim Laden einer alten Projektdatei wird diese automatisch auf Schema v2 gehoben:
@@ -233,7 +243,7 @@ MIT – siehe [LICENSE](LICENSE)
   - [ ] Modell‑Selector Dropdown
   - [ ] 🔬 `e2e/sidepanel.spec.ts`
 - [ ] **Einstellungs‑Dialog**
-  - [ ] GPU Auswahl / CPU‑Fallback
+  - [x] GPU Auswahl / CPU‑Fallback
   - [x] Modelle nach­laden (+ Checksum)
   - [x] 🔬 Unit `src/__tests__/settings.spec.tsx`
  - [x] **i18n**

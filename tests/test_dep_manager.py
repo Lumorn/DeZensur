@@ -33,6 +33,13 @@ def test_gpu_check() -> None:
     assert isinstance(dep_manager.is_gpu_available(), bool)
 
 
+def test_device_override(monkeypatch) -> None:
+    monkeypatch.setenv("DEZENSUR_DEVICE", "cpu")
+    assert dep_manager.is_gpu_available() is False
+    monkeypatch.setenv("DEZENSUR_DEVICE", "gpu")
+    assert dep_manager.is_gpu_available() is True
+
+
 def test_verify_checksum(tmp_path: Path) -> None:
     f = tmp_path / "a.txt"
     f.write_text("hello")

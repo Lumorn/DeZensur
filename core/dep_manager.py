@@ -130,8 +130,11 @@ MODEL_REGISTRY: dict[str, dict[str, str | list[str] | None]] = {
 
 
 def is_gpu_available() -> bool:
-    """Prüft, ob eine GPU vorhanden ist."""
+    """Prüft, ob eine GPU gewünscht und verfügbar ist."""
 
+    override = os.environ.get("DEZENSUR_DEVICE")
+    if override:
+        return override.lower() == "gpu"
     return torch.cuda.is_available()
 
 

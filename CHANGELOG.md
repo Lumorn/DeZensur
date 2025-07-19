@@ -589,3 +589,11 @@ Alle Änderungen werden in diesem Dokument festgehalten.
 - Unit-Test `tests/inpaint/test_seams.py`
 ### Geändert
 - README ergänzt das ControlNet-Modell und markiert TODOs als erledigt
+
+## [1.8.15] - 2025-10-06
+### Hinzugefügt
+- Auswahl zwischen GPU und CPU über das neue `DEZENSUR_DEVICE` Environment-Flag
+- GUI-Option für Hardware im Einstellungsdialog
+- Test `test_device_override` prüft die Variable
+### Geändert
+- README erklärt die Option und hakt den TODO-Punkt ab

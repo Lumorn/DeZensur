@@ -10,11 +10,15 @@ describe('SettingsModal', () => {
   });
 
   test('aktualisiert das Prefs-Objekt', () => {
-    const { getByRole, getByLabelText, getByPlaceholderText } = render(<SettingsModal />);
+    const { getByLabelText, getByPlaceholderText } = render(<SettingsModal />);
 
-    const select = getByRole('combobox');
-    fireEvent.change(select, { target: { value: 'revanimated' } });
+    const modelSelect = getByLabelText('Inpainting-Modell');
+    fireEvent.change(modelSelect, { target: { value: 'revanimated' } });
     expect(useStore.getState().prefs.inpaintModel).toBe('revanimated');
+
+    const deviceSelect = getByLabelText('Hardware');
+    fireEvent.change(deviceSelect, { target: { value: 'cpu' } });
+    expect(useStore.getState().prefs.device).toBe('cpu');
 
     const checkbox = getByLabelText('Automatische Anatomie-Tags');
     fireEvent.click(checkbox);
