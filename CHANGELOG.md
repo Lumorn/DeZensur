@@ -535,3 +535,10 @@ Alle Änderungen werden in diesem Dokument festgehalten.
 - Neuer Test `tests/test_dep_manager.py::test_version_update`
 ### Geändert
 - README hakt den Punkt "Dynamischer Model-Manager" ab
+
+## [1.8.7] - 2025-09-28
+### Hinzugefügt
+- Automatischer Fallback auf **MobileSAM** bei fehlender GPU
+- Neuer Test `tests/test_segmenter_mobile_fallback.py`
+### Geändert
+- TODO-Board markiert den MobileSAM-Fallback als erledigt

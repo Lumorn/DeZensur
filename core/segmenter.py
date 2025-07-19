@@ -22,6 +22,11 @@ LOGGER = get_logger(__name__)
 def load_sam(model_key: str) -> SamPredictor:
     """Lädt ein SAM-Modell und cached den Predictor."""
 
+    # Bei fehlender GPU automatisch auf MobileSAM ausweichen
+    if model_key == "sam_vit_hq" and not is_gpu_available():
+        LOGGER.info("GPU nicht vorhanden, nutze MobileSAM")
+        model_key = "sam_mobile"
+
     model_path = ensure_model(model_key)
     model_type = "vit_t" if model_key == "sam_mobile" else "vit_h"
     LOGGER.info("Lade SAM-Modell {}", model_path)
