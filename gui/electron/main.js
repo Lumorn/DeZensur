@@ -57,7 +57,16 @@ function createWindow() {
       }
     });
   } else {
-    mainWindow.loadFile(path.join(__dirname, '../dist/index.html'));
+    // Im Produktivmodus die gebaute Oberflaeche laden
+    const dist = path.join(__dirname, '../dist/index.html');
+    if (fs.existsSync(dist)) {
+      mainWindow.loadFile(dist);
+    } else {
+      // Falls der Build fehlt, bekommt der Nutzer einen Hinweis
+      const msg = `<!doctype html><h1>GUI nicht gefunden</h1>
+      <p>Bitte "npm run build" oder "python start.py" ausführen.</p>`;
+      mainWindow.loadURL('data:text/html,' + encodeURIComponent(msg));
+    }
   }
 }
 

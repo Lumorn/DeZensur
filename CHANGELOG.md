@@ -692,3 +692,10 @@ Alle Änderungen werden in diesem Dokument festgehalten.
 ### Behoben
 - Build-Fehler durch fehlenden `createIPCClient`-Export behoben.
 
+## [1.8.30] - 2025-10-21
+### Behoben
+- Fehlt der `dist`-Ordner, zeigt die Anwendung nun einen Hinweis statt eines
+  weißen Fensters.
+### Geändert
+- README erläutert diesen Hinweis und wie der Build nachgeholt werden kann.
+
