@@ -18,6 +18,9 @@ class Image(SimpleNamespace):
     def copy(self):
         return Image(self.size)
 
+    def crop(self, box):
+        return Image((box[2]-box[0], box[3]-box[1]))
+
     def paste(self, img, pos):
         pass
 
