@@ -111,6 +111,11 @@ Werkzeugleiste lässt sich die Pinselgröße anpassen und per Undo/Redo rückgä
 machen. Halte **Strg** gedrückt und nutze das Mausrad zum Zoomen. Mit gedrückter
 **Leertaste** lässt sich die Ansicht verschieben.
 
+### Bilder importieren
+
+Bilder kannst du direkt per Drag-&-Drop in die Galerie ziehen. Alternativ öffnest du
+**File → Add Images…** oder drückst **Ctrl+O**.
+
 ### Batch-Reports erstellen
 
 Nach einem Batch-Lauf kann ein zusammenfassender Bericht erzeugt werden.
@@ -258,9 +263,9 @@ MIT – siehe [LICENSE](LICENSE)
 
 ### 2️⃣ Desktop‑GUI (Electron + React Konva)
 - [ ] **Galerie‑View**
-  - [ ] Drag‑&‑Drop Import
+  - [x] Drag‑&‑Drop Import
   - [ ] Lazy Thumb Generation (Worker)
-  - [ ] 🔬 Playwright E2E `e2e/gallery.spec.ts`
+  - [x] 🔬 Playwright E2E `e2e/gallery.spec.ts`
   - [x] **Masken‑Editor**
   - [x] Zeichen‑Tool, Radierer, Shortcut (⌘Z)
   - [x] Zoom & Pan (Ctrl + Wheel)
