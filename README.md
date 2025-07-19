@@ -99,7 +99,8 @@ python start.py --dev    # Hot‑Reload für Front‑ und Backend
 
 Sollte nach dem Start nur ein weißes Fenster erscheinen, fehlt meist der
 Frontend-Build. Führe in diesem Fall `python start.py` oder alternativ
-`npm run build` im Ordner `gui/` aus.
+`npm run build` im Ordner `gui/` aus. Komfortabler geht es mit dem Skript
+`python scripts/repair_gui.py`, das den Build automatisch nachholt.
 
 ### Sprache umschalten
 
