@@ -331,6 +331,95 @@ MIT – siehe [LICENSE](LICENSE)
 - [x] Demo Assets (blurred + unblurred)
 - [ ] Video Walk‑Through (YouTube unlisted)
 
+### 🛠️ DeZensur Bug- & Fix-Liste (Stand 2025-07-19)
+_Nur Punkte, die **noch offen** sind – als kopier- & abhakbare Markdown-Checkboxen._
+
+#### 1️⃣ GUI / Electron + React
+- [ ] **Frontend-Build fehlt**  
+  - Datei `gui/dist/index.html` wird nicht erzeugt → weißes Fenster.  
+  - **Fix:** `npm run build` (oder `python start.py`) in _gui/_ automatisieren.  
+  - **Tests:** Playwright `e2e/window-load.spec.ts` sorgt dafür, dass `document.title` ≠ "" ist.
+
+- [ ] **Preload-Skript (`gui/electron/preload.js`) fehlt**  
+  - `main.js` erwartet `preload.js` mit `contextBridge`.  
+  - **Fix:** neue Datei mit  
+    ```js
+    const { contextBridge, ipcRenderer } = require('electron');
+    const { exposeElectronTRPC } = require('electron-trpc/preload');
+    exposeElectronTRPC({ ipcRenderer });
+    ```  
+  - **Tests:** Jest `preload.test.ts` prüft, dass `window.trpc` existiert.
+
+- [ ] **Electron-TRPC Client nicht initialisiert**  
+  - Renderer hat keinen `createTRPCProxyClient`.  
+  - **Fix:** in `gui/src/main.tsx`  
+    ```ts
+    import { createTRPCProxyClient, ipcLink } from 'electron-trpc/client';
+    export const trpc = createTRPCProxyClient<AppRouter>({ links:[ipcLink()] });
+    ```  
+  - **Tests:** React-Testing-Library `trpc.spec.tsx` mockt Ping-Procedure.
+
+- [ ] **Falscher Vite-Alias**  
+  - `@` zeigt auf `./src/renderer`, Code liegt in `./src`.  
+  - **Fix:** in `gui/vite.config.ts`  
+    ```ts
+    resolve:{ alias:{ '@': path.resolve(__dirname,'./src') } }
+    ```  
+
+- [ ] **Tailwind CSS nicht konfiguriert**  
+  - Klassen wie `bg-bg-primary` ohne `tailwind.config.js`.  
+  - **Fix:** Config mit `content:['./src/**/*.{ts,tsx}']`, Theme-Farben definieren.  
+  - **Tests:** Storybook Screenshot-Diff.
+
+- [ ] **Incompatible NPM-Versions**  
+  - `electron-reload` ^1.5.0 → 2.0.2  
+  - `electron-trpc` ^0.11.0 → 0.7.1 (letzte veröffentlichte)  
+  - `react-konva` ^19.0.7 → **19.0.7** (Caret entfernen)  
+  - `electron` “latest” → 28.2.x pinnen  
+  - **Fix:** `package.json` & `package-lock.json` anpassen; `npm ci` in CI.
+
+- [ ] **Galerie-View unvollständig**  
+  - Thumbnails werden generiert, UI zeigt aber nichts an.  
+  - **Fix:** React-Komponente `GalleryView` fertigstellen (Grid, Select, Open).  
+  - **Tests:** E2E `e2e/gallery.spec.ts` (Drag-&-Drop, Klick).
+
+#### 2️⃣ Backend / Core
+- [ ] **Stable-Diffusion-Inpainting fehlt**  
+  - Auswahl `sd2_inpaint` führt zu 404.  
+  - **Fix:** Diffusers-Pipeline (`StableDiffusionInpaintPipeline.from_pretrained`) integrieren.  
+  - **Tests:** `tests/inpaint/test_sd2.py` (dummy-mask).
+
+- [ ] **tsconfig.json fehlt**  
+  - TypeScript-Abhängigkeit ohne Config → Vite-Errors.  
+  - **Fix:** Minimal `tsconfig.json` per `tsc --init`, Pfade auf _src/_ setzen.
+
+- [ ] **Project-IPC-Handler (`gui/electron/project.js`) fehlt**  
+  - `ProjectIPC(ipcMain)` Aufrufe verpuffen.  
+  - **Fix:** Handler implementieren: open/save dialog, returns path.  
+  - **Tests:** Spectron `ipc-project.spec.ts`.
+
+- [ ] **i18n-Bundles prüfen**  
+  - Fehlende Keys lösen React-Warnungen aus.  
+  - **Fix:** `de.json` & `en.json` per script synchronisieren.  
+  - **Tests:** Jest `i18n.keys.spec.ts` (Snapshot aller Keys).
+
+- [ ] **Model-Manager Checksummen & Pfade**  
+  - Torch 2.2.x ok, aber future 2.3 bricht ONNX.  
+  - **Fix:** `requirements.txt` mit `torch<2.3`. SHA-256 in `models.yml`.  
+  - **Tests:** `tests/models/test_checksum.py`.
+
+#### 3️⃣ Dev-Scripts & CI
+- [ ] **start.py überspringt _npm install_** wenn `SKIP_NPM_INSTALL` gesetzt  
+  - **Fix:** Flag nur für CI erlauben; Warnung im Terminal.  
+  - **Tests:** `tests/scripts/test_start_skip.py`.
+
+- [ ] **Code-Signing Pipeline**  
+  - Windows EXE unsigniert → SmartScreen-Warnung.  
+  - **Fix:** GH Action mit `signtool` / EV-Zertifikat einrichten.  
+  - **Tests:** Artifact-Hash-Check nach Signierung.
+
+
+
 ---
 
 ### 🧠 Offline Modell‑Katalog
