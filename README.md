@@ -5,6 +5,8 @@
 **DeZensur** ist ein rein lokales Toolkit zur automatischen Entfernung von Zensur in Anime‑ und Comicbildern.  
 Alle Modelle laufen **offline** auf deiner GPU / CPU – keine Cloud‑Abhängigkeiten.
 
+Eine ausführliche Schritt‑für‑Schritt‑Anleitung findest du im [Handbuch](docs/handbuch.md).
+
 ---
 
 ## Projektziele
@@ -248,8 +250,8 @@ MIT – siehe [LICENSE](LICENSE)
 - [ ] Code‑Signing Setup (signtool)
 - [ ] 🔬 CI checks: mypy, Ruff, pytest‑cov ≥ 85 %
 
-### 5️⃣ Dokumentation & Samples
-- [ ] **Handbuch** (`docs/handbuch.md`)
+-### 5️⃣ Dokumentation & Samples
+- [x] **Handbuch** (`docs/handbuch.md`)
 - [ ] Demo Assets (blurred + unblurred)
 - [ ] Video Walk‑Through (YouTube unlisted)
 
