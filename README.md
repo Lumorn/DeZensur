@@ -71,7 +71,8 @@ Eine kompakte Referenz für LLM‑Agents ohne Internet‑Zugriff.
 | `sd2_inpaint` | Stable Diffusion 2‑Inpaint | `stabilityai/stable-diffusion-2-inpainting` | 1.5 GB | ⬜ |
 | `revanimated` | Anime‑Inpaint (SD1.5) | `lnook/revAnimated-inpainting` | 2.1 GB | ✅ |
 
-> Modelle werden beim ersten Start nach `models/` heruntergeladen (SHA‑256‑Check).
+> Modelle werden beim ersten Start nach `models/` heruntergeladen
+> und falls vorhanden per SHA‑256 überprüft.
 
 ### Gepinnte NPM‑Pakete
 
@@ -438,6 +439,7 @@ _Nur Punkte, die **noch offen** sind – als kopier- & abhakbare Markdown-Checkb
 
  > **Tipp:** Modelle lassen sich über `python -m dezensor.fetch_model <key>` vorab offline cachen. Das Skript verwendet den internen Downloader mit Versions- und Prüfsummenprüfung.
 
-Die zugehörigen SHA-256-Werte und Dateinamen sind in `models.yml` hinterlegt und können dort angepasst werden.
+Die zugehörigen SHA-256-Werte und Dateinamen sind in `models.yml` hinterlegt und
+können dort angepasst werden. Fehlt ein Wert, entfällt die Prüfung.
 
 ---

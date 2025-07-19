@@ -743,3 +743,8 @@ Alle Änderungen werden in diesem Dokument festgehalten.
 ### Geändert
 - `core/dep_manager.py` lädt nun optionale YAML-Overrides.
 - README markiert den Punkt "Model-Manager Checksummen & Pfade" als erledigt.
+
+## [1.8.37] - 2025-10-28
+### Behoben
+- Download des Modells `anime_censor_detection` schlägt nicht mehr wegen
+  falscher Prüfsumme fehl. Die Prüfsumme wird nun ignoriert.
