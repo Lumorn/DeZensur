@@ -556,3 +556,10 @@ Alle Änderungen werden in diesem Dokument festgehalten.
 - Neuer Test `tests/i18n/test_loader.py`
 ### Geändert
 - README erklärt den Sprachwechsel und markiert das TODO als erledigt
+
+## [1.8.10] - 2025-10-01
+### Hinzugefügt
+- CLI-Skript `python -m dezensor.fetch_model` zum manuellen Herunterladen von Modellen
+- Test `tests/test_fetch_model_cli.py`
+### Geändert
+- README beschreibt das Skript und hakt den Punkt "Modelle nachladen" ab
