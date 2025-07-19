@@ -269,7 +269,7 @@ MIT – siehe [LICENSE](LICENSE)
   - [x] **Masken‑Editor**
   - [x] Zeichen‑Tool, Radierer, Shortcut (⌘Z)
   - [x] Zoom & Pan (Ctrl + Wheel)
-  - [ ] 🔬 `e2e/editor.spec.ts`
+  - [x] 🔬 `e2e/editor.spec.ts`
 - [ ] **Side‑Panel**
   - [ ] Kontextabhängige Property‑Leisten
   - [x] Modell‑Selector Dropdown
