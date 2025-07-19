@@ -699,3 +699,9 @@ Alle Änderungen werden in diesem Dokument festgehalten.
 ### Geändert
 - README erläutert diesen Hinweis und wie der Build nachgeholt werden kann.
 
+
+## [1.8.31] - 2025-10-22
+### Hinzugefügt
+- Skript `scripts/repair_gui.py` erstellt den Frontend-Build automatisch nach.
+### Geändert
+- README erwähnt das neue Reparatur-Skript.
