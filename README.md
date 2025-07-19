@@ -39,11 +39,11 @@ Eine ausführliche Schritt‑für‑Schritt‑Anleitung findest du im [Handbuch]
 ### Frontend / GUI
 
 - [ ] Dark‑Theme‑Layout (AppBar | Gallery | SidePanel)  
-- [ ] Projekt‑Handling (Neu / Öffnen / Speichern)  
-- [ ] **Masken‑Editor** (Zeichnen / Radieren / Undo‑Redo)
+- [x] Projekt‑Handling (Neu / Öffnen / Speichern)
+- [x] **Masken‑Editor** (Zeichnen / Radieren / Undo‑Redo)
 - [x] Zoom & Pan‑Werkzeuge
 - [x] Fortschritts‑Modal für lange Tasks
-- [ ] Einstellungs‑Dialog (Modelle, Hardware, Pfade)
+- [x] Einstellungs‑Dialog (Modelle, Hardware, Pfade)
 - [x] Mehrsprachigkeit (i18n)
 
 ### DevOps
@@ -246,15 +246,15 @@ MIT – siehe [LICENSE](LICENSE)
   - [ ] Drag‑&‑Drop Import
   - [ ] Lazy Thumb Generation (Worker)
   - [ ] 🔬 Playwright E2E `e2e/gallery.spec.ts`
-- [ ] **Masken‑Editor**
-- [ ] Zeichen‑Tool, Radierer, Shortcut (⌘Z)
+  - [x] **Masken‑Editor**
+  - [x] Zeichen‑Tool, Radierer, Shortcut (⌘Z)
   - [x] Zoom & Pan (Ctrl + Wheel)
   - [ ] 🔬 `e2e/editor.spec.ts`
 - [ ] **Side‑Panel**
   - [ ] Kontextabhängige Property‑Leisten
-  - [ ] Modell‑Selector Dropdown
+  - [x] Modell‑Selector Dropdown
   - [ ] 🔬 `e2e/sidepanel.spec.ts`
-- [ ] **Einstellungs‑Dialog**
+- [x] **Einstellungs‑Dialog**
   - [x] GPU Auswahl / CPU‑Fallback
   - [x] Modelle nach­laden (+ Checksum)
   - [x] 🔬 Unit `src/__tests__/settings.spec.tsx`
