@@ -131,7 +131,12 @@ Ein einzelnes Bild kann direkt über die Kommandozeile bearbeitet werden:
 ```bash
 python dez.py inpaint bild.png --mask maske.png --out ergebnis.png
 ```
-Das Ergebnisbild landet im angegebenen Pfad.
+Das Ergebnisbild landet im angegebenen Pfad. Alternativ kann mit dem neuen Modell
+`sd_controlnet` gearbeitet werden:
+
+```bash
+python dez.py inpaint bild.png --mask maske.png --model sd_controlnet --out ergebnis.png
+```
 
 ### Modelle vorab herunterladen
 
@@ -206,9 +211,9 @@ MIT – siehe [LICENSE](LICENSE)
   - [x] 🔬 `tests/segmenter/test_mobile_fallback.py`
   - [x] 🔬 `tests/segmenter/test_gpu_pipeline.py`
 - [ ] **Inpainter**
-  - [ ] Diffusers Pipeline mit ControlNet‑Aux
+  - [x] Diffusers Pipeline mit ControlNet‑Aux
   - [x] Lama‑Cleaner Classical Fallback
-  - [ ] 🔬 `tests/inpaint/test_seams.py`
+  - [x] 🔬 `tests/inpaint/test_seams.py`
 - [ ] **Render‑Engine**
   - [ ] Async Tile‑Renderer
   - [ ] Abort/Resume Support
@@ -266,6 +271,7 @@ MIT – siehe [LICENSE](LICENSE)
 | `mobile_sam` | Segmentation CPU | PTH | 91 MB | yuval-alaluf/mobile_sam |
 | `lama_cleaner` | Inpainting CNN | Wheel | 2 MB | iopaint[lama] |
 | `stable_diffusion_inpaint` | Inpainting Diffusion | SAFETENSORS | 4 GB | runwayml/stable-diffusion-inpainting |
+| `controlnet_canny` | ControlNet Hint | SAFETENSORS | 1 GB | lllyasviel/control_v11p_sd15_canny |
 
  > **Tipp:** Modelle lassen sich über `python -m dezensor.fetch_model <key>` vorab offline cachen. Das Skript verwendet den internen Downloader mit Versions- und Prüfsummenprüfung.
 

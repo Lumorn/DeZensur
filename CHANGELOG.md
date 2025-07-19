@@ -582,3 +582,10 @@ Alle Änderungen werden in diesem Dokument festgehalten.
 ### Geändert
 - README hakt den Punkt "Fortschritts-Modal" ab.
 
+
+## [1.8.14] - 2025-10-05
+### Hinzugefügt
+- ControlNet-Unterstützung im Inpainter (`sd_controlnet`)
+- Unit-Test `tests/inpaint/test_seams.py`
+### Geändert
+- README ergänzt das ControlNet-Modell und markiert TODOs als erledigt
