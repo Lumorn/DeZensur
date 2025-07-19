@@ -705,3 +705,9 @@ Alle Änderungen werden in diesem Dokument festgehalten.
 - Skript `scripts/repair_gui.py` erstellt den Frontend-Build automatisch nach.
 ### Geändert
 - README erwähnt das neue Reparatur-Skript.
+
+## [1.8.32] - 2025-10-23
+### Hinzugefügt
+- `start.cmd` ermöglicht den Start per Doppelklick unter Windows.
+### Geändert
+- README und Handbuch beschreiben das neue Skript.
