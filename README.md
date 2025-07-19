@@ -109,7 +109,9 @@ Frontend-Build. Führe in diesem Fall `python start.py` oder alternativ
 ### Sprache umschalten
 
 Oben rechts in der GUI kannst du zwischen **DE** und **EN** wählen. Die zugehörigen
-JSON-Dateien findest du unter `gui/src/i18n/`.
+JSON-Dateien findest du unter `gui/src/i18n/`. Mit
+`python scripts/sync_i18n.py` stellst du sicher, dass beide Dateien dieselben
+Schlüssel enthalten.
 
 ### Theme wechseln
 
@@ -399,9 +401,9 @@ _Nur Punkte, die **noch offen** sind – als kopier- & abhakbare Markdown-Checkb
   - **Fix:** Handler implementieren: open/save dialog, returns path.  
   - **Tests:** Spectron `ipc-project.spec.ts`.
 
-- [ ] **i18n-Bundles prüfen**  
-  - Fehlende Keys lösen React-Warnungen aus.  
-  - **Fix:** `de.json` & `en.json` per script synchronisieren.  
+ - [x] **i18n-Bundles prüfen**
+  - Fehlende Keys lösen React-Warnungen aus.
+  - **Fix:** `de.json` & `en.json` per script synchronisieren.
   - **Tests:** Jest `i18n.keys.spec.ts` (Snapshot aller Keys).
 
 - [ ] **Model-Manager Checksummen & Pfade**  

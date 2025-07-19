@@ -726,3 +726,12 @@ Alle Änderungen werden in diesem Dokument festgehalten.
 ### Hinzugefügt
 - README markiert die erledigten Punkte im TODO-Board und
   listet die neuen Paketversionen auf.
+
+## [1.8.35] - 2025-10-26
+### Hinzugefügt
+- Skript `scripts/sync_i18n.py` gleicht die Sprachdateien ab.
+- Jest-Test `i18n.keys.spec.ts` prüft identische Schlüssel und wird über
+  `tests/i18n/test_keys.py` ausgeführt.
+### Geändert
+- README beschreibt das neue Skript und hakt den TODO-Punkt zu den
+  i18n-Bundles ab.
