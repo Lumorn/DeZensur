@@ -1,15 +1,9 @@
 # DeZensur
+
 ![CI](https://github.com/Lumorn/DeZensur/actions/workflows/ci.yml/badge.svg)
 
-**DeZensur** ist ein rein lokales Windows-(optionaler Cross-Platform-Support)-Tool‑Kit,  
-das Zensur in Anime- und Comicbildern **vollautomatisch** erkennt und entfernt.  
-Es kombiniert modernste Open‑Source‑Modelle:
-
-* **anime_censor_detection** (ONNX) – erkennt Zensurbalken / Mosaik / Blur  
-* **SAM-HQ** – präzise Maskensegmentierung auf Knopfdruck  
-* **Inpainting-Modelle** (AnimeMangaInpainting, revAnimated, LaMa, Stable Diffusion) – rekonstruiert verdeckte Bereiche
-
-> Alles läuft **offline** auf deiner GPU/CPU, keine Cloud‑Abhängigkeit.
+**DeZensur** ist ein rein lokales Toolkit zur automatischen Entfernung von Zensur in Anime‑ und Comicbildern.  
+Alle Modelle laufen **offline** auf deiner GPU / CPU – keine Cloud‑Abhängigkeiten.
 
 ---
 
@@ -17,69 +11,114 @@ Es kombiniert modernste Open‑Source‑Modelle:
 
 | Ziel | Status |
 |------|--------|
-| 🔄 Volle **Automatisierung** ohne manuelle Klicks | ⬜ |
-| 🖼️ Intuitive **GUI** für Einzel‑ & Batch‑Modus (Electron + React) | ⬜ |
-| 🧩 **Modular** – jeder Verarbeitungsschritt als eigenständiges Modul | ⬜ |
-| ⚡ **Schnellstart**: `start.py` erledigt Git‑Pull + `pip install` | ✅ |
-| 📦 **Selbst‑Updater** & automatischer Modell‑Download | ⬜ |
-| 📝 Saubere **Code‑Doku**, **Tests** & **CI** | ✅ |
-| 🧪 **Erweiterbar** (Video‑Support, neue Modelle, LoRAs) | ⬜ |
+| 🔄 Volle **End‑to‑End‑Automatisierung** | ⬜ |
+| 🖼️ Intuitive **Electron + React GUI** | ⬜ |
+| 🧩 **Modulare Pipeline** (Detection → Segmentation → Inpainting) | ⬜ |
+| ⚡ **start.py** erledigt Git + `pip install` + GUI‑Build | ✅ |
+| 📦 **Self‑Updater** & automatischer Modell‑Download | ⬜ |
+| 📝 **Tests + CI** (black, isort, flake8, pytest) | ✅ |
+| 🧪 **Erweiterbar** (Video‑Support, LoRA‑Modelle) | ⬜ |
 
 ---
 
-## Funktionsübersicht
+## **Aktuelle TODO‑Liste**  
+*Markdown‑Checkboxen können direkt in GitHub oder VS Code abgehakt werden.*
 
-1. **Bild-/Ordner‑Import** über `File → Add Images…` oder Drag & Drop  
-2. **Automatische Zensur‑Erkennung** (Bounding‑Boxen via `anime_censor_detection`)  
-3. **Masken‑Verfeinerung** mit SAM‑HQ  
-4. **Inpainting** der Maskenbereiche (modell‑wählbar)  
-5. **Batch‑Modus** für ganze Verzeichnisse  
-6. **Protokoll & Export** (Original, Maske, Ergebnis, Log)  
-7. **Voll funktionsfähige Buttons** für Projektverwaltung und Fenstersteuerung (ab Version 1.7.8)  
-   - Das Ordnersymbol in der App‑Bar setzt nun den Arbeitsordner.  
-   - Der ▶‑Knopf startet die Zensurerkennung via tRPC.  
+### Backend / Core
+
+- [x] Integration **anime_censor_detection** (ONNX)  
+- [x] HQ‑**SAM** Segmenter (`sam_vit_hq`)  
+- [ ] Option **MobileSAM** für schwache Hardware  
+- [ ] Anatomie‑Tag‑Ergänzer für bessere Prompts  
+- [ ] Dynamischer **Model‑Manager** (Download + Version‑Check)  
+- [ ] **Batch‑Runner** mit Fortschritts‑Overlay  
+- [ ] JSON‑/‑HTML‑**Report‑Generator**
+
+### Frontend / GUI
+
+- [x] Dark‑Theme‑Layout (AppBar | Gallery | SidePanel)  
+- [x] Projekt‑Handling (Neu / Öffnen / Speichern)  
+- [ ] **Masken‑Editor** (Zeichnen / Radieren / Undo‑Redo)  
+- [ ] Zoom & Pan‑Werkzeuge  
+- [ ] Fortschritts‑Modal für lange Tasks  
+- [ ] Einstellungs‑Dialog (Modelle, Hardware, Pfade)  
+- [ ] Mehrsprachigkeit (i18n)
+
+### DevOps
+
+- [x] **start.py** Bootstrapping (Git pull → venv → npm install)  
+- [ ] Portable **EXE‑Build** (PyInstaller)  
+- [ ] Signierter Windows‑Installer  
+- [ ] > 90 % Test‑Coverage  
+- [ ] Automatisches Changelog‑Release (GitHub‑Action)
 
 ---
 
-## TODO‑Liste (vollständig)
+## **Offline‑Wissensbasis**
 
-> **So nutzt du die Liste:**  
-> Jede Aufgabe ist als GitHub‑Checkbox angelegt.  
-> Wenn du etwas fertiggestellt hast, ersetze das `[ ]` durch `[x]` und committe die Änderung – GitHub zeigt sie dann ✅ an.
+Eine kompakte Referenz für LLM‑Agents ohne Internet‑Zugriff.
 
-### 1 — Kern‑Pipeline
-- [ ] **Bild‑Import** (Dialog & Drag‑&‑Drop) landet in `originals/`
-- [ ] **Projektverwaltung** (Neu / Öffnen / Speichern `.dezproj`)
-- [ ] **Zensur‑Erkennung** (anime_censor_detection) aus GUI triggern
-- [ ] **Maske verfeinern** mit SAM‑HQ
-- [ ] **Masken‑Editor** (Konva) inkl. Undo / Redo
-- [ ] **Inpainting** (LaMa, revAnimated, SD2) inkl. Prompt‑Eingabe
-- [ ] **GPU/CPU Auto‑Fallback** & Modell‑Auswahl
-- [ ] **Batch‑Modus** (ganze Ordner, Parallel‑Worker)
-- [ ] **Fortschritts‑Overlay** & Job‑Queue
+### KI‑Modelle
 
-### 2 — GUI & UX
-- [ ] Desktop‑Layout mit Titelleiste / Menü / Sidepanel
-- [ ] Galerie‑Komponente mit Thumbnails
-- [ ] Sidepanel‑Einstellungen (Modelle, Output‑Ordner, Anatomie‑Tags)
-- [ ] Einstellungen speichern / laden pro Projekt
-- [ ] Kontext‑Menü & Shortcuts (Ctrl+O, Ctrl+S, …)
-- [ ] Mehrsprachigkeit (i18n) – EN/DE
+| Schlüssel | Zweck | Repo / Datei | Größe | Status |
+|-----------|-------|-------------|-------|--------|
+| `anime_censor_detection` | Zensur‑BBox | `deepghs/anime_censor_detection` → `*/model.onnx` | 45 MB | ✅ |
+| `sam_vit_hq` | Hochpräzise Masken | `syscv-community/sam-hq-vit-base` → `model.safetensors` | 380 MB | ✅ |
+| `mobile_sam` | CPU‑/Low‑VRAM‑Masken | `yuval-alaluf/mobile_sam` → `*.pth` | 91 MB | ⬜ |
+| `lama` | CNN‑Inpainting | PyPI: `iopaint[lama]` | 210 MB | ✅ |
+| `sd2_inpaint` | Stable Diffusion 2‑Inpaint | `stabilityai/stable-diffusion-2-inpainting` | 1.5 GB | ⬜ |
+| `revanimated` | Anime‑Inpaint (SD1.5) | `lnook/revAnimated-inpainting` | 2.1 GB | ✅ |
 
-### 3 — Erweiterungen
-- [ ] **Video‑Pipeline** (ffmpeg, frame‑by‑frame)
-- [ ] **Self‑Updater** (Python + npm Abhängigkeitsmanager)
-- [ ] **Portable EXE** (PyInstaller) & Cross‑Platform‑Builds
-- [ ] **Plugin‑System** (LoRA‑/Model‑Hot‑Swap)
+> Modelle werden beim ersten Start nach `models/` heruntergeladen (SHA‑256‑Check).
 
-### 4 — Qualität
-- [ ] Automatische Modell‑Downloads mit SHA‑Check
-- [ ] Bootstrap‑Script `start.py` inkl. venv & Git‑Pull
-- [ ] End‑to‑End‑Tests (Playwright)
-- [ ] Unit‑/Integration‑Tests (PyTest) für alle Module
-- [ ] CI/CD Release‑Pipeline (GitHub Actions, Signierte Builds)
+### Gepinnte NPM‑Pakete
+
+| Paket | Version | Grund |
+|-------|---------|-------|
+| `electron-reload` | `2.0.2` (Fallback 2.0.0) | kompatibel mit Electron 28 |
+| `electron-trpc` | `^0.7.1` | neuere Versionen nicht im Registry |
+| `react-konva` | `19.0.7` | 19.0.24 nie veröffentlicht |
+| `vite` | `5.x` | benötigt by Electron‑Vite‑Template |
+
+---
+
+## Schnellstart
+
+```bash
+git clone https://github.com/<EuerRepo>/DeZensur.git
+cd DeZensur
+python start.py          # erstellt venv, lädt Modelle, baut GUI
+# Dev‑Modus:
+python start.py --dev    # Hot‑Reload für Front‑ und Backend
+```
+
+---
+
+## Ordnerstruktur
+
+```
+DeZensur/
+├─ start.py              # Bootstrap‑Script
+├─ requirements.txt
+├─ gui/                  # Electron/React‑Frontend
+├─ core/                 # Python‑Module
+│  ├─ censor_detector.py │  sam & Inpainting etc.
+│  └─ …
+├─ models/               # Automatisch geladene Gewichte
+└─ tests/
+```
+
+---
+
+## Contributing
+
+1. **Fork → Branch → PR** (Conventional Commits)  
+2. Lint: `black`, `isort`, `flake8`  
+3. Jeder PR braucht Tests (`pytest`)  
+4. CI‑Pipeline muss grün sein  
 
 ---
 
 ## Lizenz
-MIT – siehe [LICENSE](LICENSE).
+
+MIT – siehe [LICENSE](LICENSE)
