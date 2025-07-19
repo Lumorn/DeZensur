@@ -38,7 +38,7 @@ Eine ausführliche Schritt‑für‑Schritt‑Anleitung findest du im [Handbuch]
 
 ### Frontend / GUI
 
-- [ ] Dark‑Theme‑Layout (AppBar | Gallery | SidePanel)  
+- [x] Dark‑Theme‑Layout (AppBar | Gallery | SidePanel)
 - [x] Projekt‑Handling (Neu / Öffnen / Speichern)
 - [x] **Masken‑Editor** (Zeichnen / Radieren / Undo‑Redo)
 - [x] Zoom & Pan‑Werkzeuge
@@ -51,7 +51,7 @@ Eine ausführliche Schritt‑für‑Schritt‑Anleitung findest du im [Handbuch]
 - [x] **start.py** Bootstrapping (Git pull → venv → npm install)
 - [ ] Portable **EXE‑Build** (PyInstaller)  
 - [ ] Signierter Windows‑Installer  
-- [ ] > 90 % Test‑Coverage  
+- [x] > 90 % Test‑Coverage
 - [x] Automatisches Changelog‑Release (GitHub‑Action)
 
 ---
@@ -98,6 +98,11 @@ python start.py --dev    # Hot‑Reload für Front‑ und Backend
 
 Oben rechts in der GUI kannst du zwischen **DE** und **EN** wählen. Die zugehörigen
 JSON-Dateien findest du unter `gui/src/i18n/`.
+
+### Theme wechseln
+
+Über die Schaltfläche neben dem GPU-Schalter lässt sich zwischen hellem und dunklem Layout
+umschalten. Die Farbwerte sind in `gui/src/tailwind.css` definiert.
 
 ### Masken-Editor
 
@@ -223,7 +228,7 @@ MIT – siehe [LICENSE](LICENSE)
   - [x] .dezproj Schema v1 (JSON + Assets)
   - [x] Migration v1 → v2 Script
   - [x] 🔬 `tests/core/test_project_roundtrip.py`
-- [ ] **Censor‑Detector v2**
+- [x] **Censor‑Detector v2**
   - [x] Konfigurierbare Schwelle + ROI‑Filtering
   - [x] Batch‑CLI `detect-batch`
   - [x] 🔬 `tests/detector/test_thresholds.py`
@@ -232,7 +237,7 @@ MIT – siehe [LICENSE](LICENSE)
   - [x] MobileSAM Fallback (CPU)
   - [x] 🔬 `tests/segmenter/test_mobile_fallback.py`
   - [x] 🔬 `tests/segmenter/test_gpu_pipeline.py`
-- [ ] **Inpainter**
+- [x] **Inpainter**
   - [x] Diffusers Pipeline mit ControlNet‑Aux
   - [x] Lama‑Cleaner Classical Fallback
   - [x] 🔬 `tests/inpaint/test_seams.py`

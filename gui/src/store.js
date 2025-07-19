@@ -4,7 +4,8 @@ import create from 'zustand';
 export const useStore = create((set) => ({
   project: null,
   images: [],
-  prefs: {},
+  // Voreinstellungen inklusive Design-Theme
+  prefs: { theme: 'dark' },
   setProject: (p) => set({ project: p }),
   setImages: (imgs) => set({ images: imgs }),
   // Aktualisiert einzelne Einstellungen

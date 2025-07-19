@@ -10,6 +10,8 @@ export default function CommandBar() {
   const images = useStore((s) => s.images);
   const setImages = useStore((s) => s.setImages);
   const [gpu, setGpu] = React.useState(true);
+  const theme = useStore((s) => s.prefs.theme || 'dark');
+  const updatePrefs = useStore((s) => s.updatePrefs);
 
   // Legt ein neues Projekt an
   async function handleNew() {
@@ -69,6 +71,10 @@ export default function CommandBar() {
     alert('Projekt gespeichert.');
   }
 
+  function toggleTheme() {
+    updatePrefs({ theme: theme === 'dark' ? 'light' : 'dark' });
+  }
+
   function folderPath(proj, rel) {
     return proj.root ? proj.root + '/' + rel : rel;
   }
@@ -87,6 +93,9 @@ export default function CommandBar() {
           GPU
           <input type="checkbox" className="ml-1" checked={gpu} onChange={(e) => setGpu(e.target.checked)} />
         </label>
+        <button className="neu px-2 text-xs" onClick={toggleTheme}>
+          {theme === 'dark' ? 'Light' : 'Dark'}
+        </button>
         <select className="bg-bg-secondary text-white text-xs">
           <option>DE</option>
           <option>EN</option>
