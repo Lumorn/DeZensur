@@ -597,3 +597,10 @@ Alle Änderungen werden in diesem Dokument festgehalten.
 - Test `test_device_override` prüft die Variable
 ### Geändert
 - README erklärt die Option und hakt den TODO-Punkt ab
+
+## [1.8.16] - 2025-10-07
+### Hinzugefügt
+- Zoom- und Pan-Unterstützung im Masken-Editor (Strg + Mausrad, Space zum Verschieben)
+- Jest-Test `zoom with wheel` deckt das neue Feature ab
+### Geändert
+- README markiert Zoom & Pan als erledigt

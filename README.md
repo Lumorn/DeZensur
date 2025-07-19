@@ -40,8 +40,8 @@ Eine ausführliche Schritt‑für‑Schritt‑Anleitung findest du im [Handbuch]
 
 - [ ] Dark‑Theme‑Layout (AppBar | Gallery | SidePanel)  
 - [ ] Projekt‑Handling (Neu / Öffnen / Speichern)  
-- [ ] **Masken‑Editor** (Zeichnen / Radieren / Undo‑Redo)  
-- [ ] Zoom & Pan‑Werkzeuge
+- [ ] **Masken‑Editor** (Zeichnen / Radieren / Undo‑Redo)
+- [x] Zoom & Pan‑Werkzeuge
 - [x] Fortschritts‑Modal für lange Tasks
 - [ ] Einstellungs‑Dialog (Modelle, Hardware, Pfade)
 - [x] Mehrsprachigkeit (i18n)
@@ -98,6 +98,13 @@ python start.py --dev    # Hot‑Reload für Front‑ und Backend
 
 Oben rechts in der GUI kannst du zwischen **DE** und **EN** wählen. Die zugehörigen
 JSON-Dateien findest du unter `gui/src/i18n/`.
+
+### Masken-Editor
+
+Im integrierten Masken-Editor kannst du Bereiche zeichnen oder radieren. Über die
+Werkzeugleiste lässt sich die Pinselgröße anpassen und per Undo/Redo rückgängig
+machen. Halte **Strg** gedrückt und nutze das Mausrad zum Zoomen. Mit gedrückter
+**Leertaste** lässt sich die Ansicht verschieben.
 
 ### Batch-Reports erstellen
 
@@ -235,8 +242,8 @@ MIT – siehe [LICENSE](LICENSE)
   - [ ] Lazy Thumb Generation (Worker)
   - [ ] 🔬 Playwright E2E `e2e/gallery.spec.ts`
 - [ ] **Masken‑Editor**
-  - [ ] Zeichen‑Tool, Radierer, Shortcut (⌘Z)
-  - [ ] Zoom & Pan (Ctrl + Wheel)
+- [ ] Zeichen‑Tool, Radierer, Shortcut (⌘Z)
+  - [x] Zoom & Pan (Ctrl + Wheel)
   - [ ] 🔬 `e2e/editor.spec.ts`
 - [ ] **Side‑Panel**
   - [ ] Kontextabhängige Property‑Leisten

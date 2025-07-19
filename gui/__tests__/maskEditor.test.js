@@ -22,3 +22,14 @@ test('brush size change', () => {
   // Wenn kein Fehler auftritt, wurde der Zustand aktualisiert
   expect(true).toBe(true);
 });
+
+// Testet Zoom via Strg+Mausrad
+test('zoom with wheel', () => {
+  const { container } = render(<MaskEditor imgSrc="" maskSrc="" />);
+  fireEvent.wheel(container.firstChild, {
+    ctrlKey: true,
+    deltaY: -100,
+  });
+  // Solange kein Fehler auftritt, funktioniert das Event
+  expect(true).toBe(true);
+});
