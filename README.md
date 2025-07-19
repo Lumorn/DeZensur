@@ -41,10 +41,10 @@ Eine ausführliche Schritt‑für‑Schritt‑Anleitung findest du im [Handbuch]
 - [ ] Dark‑Theme‑Layout (AppBar | Gallery | SidePanel)  
 - [ ] Projekt‑Handling (Neu / Öffnen / Speichern)  
 - [ ] **Masken‑Editor** (Zeichnen / Radieren / Undo‑Redo)  
-- [ ] Zoom & Pan‑Werkzeuge  
-- [ ] Fortschritts‑Modal für lange Tasks  
-- [ ] Einstellungs‑Dialog (Modelle, Hardware, Pfade)  
- - [x] Mehrsprachigkeit (i18n)
+- [ ] Zoom & Pan‑Werkzeuge
+- [x] Fortschritts‑Modal für lange Tasks
+- [ ] Einstellungs‑Dialog (Modelle, Hardware, Pfade)
+- [x] Mehrsprachigkeit (i18n)
 
 ### DevOps
 
