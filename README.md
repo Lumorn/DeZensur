@@ -30,7 +30,7 @@ Alle Modelle laufen **offline** auf deiner GPU / CPU – keine Cloud‑Abhä
 - [x] HQ‑**SAM** Segmenter (`sam_vit_hq`)
 - [x] Option **MobileSAM** für schwache Hardware
 - [x] Anatomie‑Tag‑Ergänzer für bessere Prompts
-- [ ] Dynamischer **Model‑Manager** (Download + Version‑Check)
+- [x] Dynamischer **Model‑Manager** (Download + Version‑Check)
 - [x] **Batch‑Runner** mit Fortschritts‑Overlay
 - [x] JSON‑/‑HTML‑**Report‑Generator**
 
