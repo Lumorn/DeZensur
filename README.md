@@ -228,7 +228,7 @@ MIT – siehe [LICENSE](LICENSE)
 - [ ] **Einstellungs‑Dialog**
   - [ ] GPU Auswahl / CPU‑Fallback
   - [x] Modelle nach­laden (+ Checksum)
-  - [ ] 🔬 Unit `src/__tests__/settings.spec.tsx`
+  - [x] 🔬 Unit `src/__tests__/settings.spec.tsx`
  - [x] **i18n**
   - [x] Deutsch / Englisch JSON Bundles
   - [x] Runtime‑Language Switch

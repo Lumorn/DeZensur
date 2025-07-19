@@ -563,3 +563,10 @@ Alle Änderungen werden in diesem Dokument festgehalten.
 - Test `tests/test_fetch_model_cli.py`
 ### Geändert
 - README beschreibt das Skript und hakt den Punkt "Modelle nachladen" ab
+
+## [1.8.11] - 2025-10-02
+### Hinzugefügt
+- Unit-Test `gui/src/__tests__/settings.spec.tsx` und Wrapper `tests/test_settings_modal.py`
+### Geändert
+- README hakt den TODO-Eintrag fr den Settings-Test ab
+
