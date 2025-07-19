@@ -1,5 +1,6 @@
 import React from 'react';
 import { useStore } from '../store.js';
+import { useTaskStore } from '../renderer/stores/useTaskStore';
 
 // Befehlsleiste mit den Hauptaktionen
 export default function CommandBar() {
@@ -57,7 +58,9 @@ export default function CommandBar() {
       alert('Kein Projekt geöffnet.');
       return;
     }
-    await window.api.backend.call('/batch', { project: project.root });
+    const setProgress = useTaskStore.getState().setProgress;
+    setProgress(0);
+    window.api.startDummy.mutate();
   }
 
   // Speichert das Projekt

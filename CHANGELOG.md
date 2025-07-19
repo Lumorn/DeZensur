@@ -576,3 +576,9 @@ Alle Änderungen werden in diesem Dokument festgehalten.
 ### Geändert
 - README verweist auf das Handbuch und markiert den Punkt im TODO-Board als erledigt
 
+## [1.8.13] - 2025-10-04
+### Hinzugefügt
+- Fortschritts-Modal zeigt den Status laufender Aufgaben in der GUI.
+### Geändert
+- README hakt den Punkt "Fortschritts-Modal" ab.
+
