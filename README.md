@@ -119,6 +119,17 @@ python dez.py inpaint bild.png --mask maske.png --out ergebnis.png
 ```
 Das Ergebnisbild landet im angegebenen Pfad.
 
+### Projektdateien aktualisieren
+
+Beim Laden einer alten Projektdatei wird diese automatisch auf Schema v2 gehoben:
+
+```python
+from core.project import Project
+
+proj = Project.load("meinprojekt.dezproj")
+proj.save()  # schreibt im neuen Format
+```
+
 ---
 
 ## Ordnerstruktur
@@ -158,10 +169,10 @@ MIT – siehe [LICENSE](LICENSE)
 > Jede Zeile besitzt daneben einen **🔬 Test‑Job** Indikator, der in  `tests/` nach­gezogen werden muss.
 
 ### 1️⃣ Core‑Backend
-- [ ] **Projekt‑Loader/Saver** (`core/project.py`)
-  - [ ] .dezproj Schema v1 (JSON + Assets)
-  - [ ] Migration v1 → v2 Script
-  - [ ] 🔬 `tests/core/test_project_roundtrip.py`
+- [x] **Projekt‑Loader/Saver** (`core/project.py`)
+  - [x] .dezproj Schema v1 (JSON + Assets)
+  - [x] Migration v1 → v2 Script
+  - [x] 🔬 `tests/core/test_project_roundtrip.py`
 - [ ] **Censor‑Detector v2**
   - [ ] Konfigurierbare Schwelle + ROI‑Filtering
   - [ ] Batch‑CLI `detect-batch`

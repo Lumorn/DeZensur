@@ -504,3 +504,10 @@ Alle Änderungen werden in diesem Dokument festgehalten.
 - Test `tests/cli/test_inpaint_cli.py`
 ### Geändert
 - README ergänzt CLI-Beispiel und hakt das TODO ab
+
+## [1.8.3] - 2025-09-24
+### Hinzugefügt
+- Neues Modul `core.project` mit Schema-Version 2 und automatischer Migration
+- Test `tests/core/test_project_roundtrip.py`
+### Geändert
+- README erklärt die Migration und hakt das TODO-Board ab
