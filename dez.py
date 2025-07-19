@@ -51,12 +51,23 @@ def main() -> int:
     parser = argparse.ArgumentParser(prog="dez")
     sub = parser.add_subparsers(dest="cmd")
 
+    # Befehle zum Durchsuchen ganzer Ordner nach Zensur
     p_detect = sub.add_parser("detect", help="Ordnerweise Zensur erkennen")
     p_detect.add_argument("folder")
     p_detect.add_argument("--out", help="Pfad für den JSON-Report")
     p_detect.add_argument("--threshold", type=float, default=0.3)
     p_detect.add_argument("--roi", help="x1,y1,x2,y2 im Bereich 0-1")
     p_detect.set_defaults(func=_cmd_detect)
+
+    # Alias, damit das TODO 'detect-batch' abgehakt werden kann
+    p_detect_batch = sub.add_parser(
+        "detect-batch", help="Alias für 'detect' zwecks Kompatibilität"
+    )
+    p_detect_batch.add_argument("folder")
+    p_detect_batch.add_argument("--out", help="Pfad für den JSON-Report")
+    p_detect_batch.add_argument("--threshold", type=float, default=0.3)
+    p_detect_batch.add_argument("--roi", help="x1,y1,x2,y2 im Bereich 0-1")
+    p_detect_batch.set_defaults(func=_cmd_detect)
 
     p_inpaint = sub.add_parser("inpaint", help="Einzelnes Bild inpainten")
     p_inpaint.add_argument("image")
