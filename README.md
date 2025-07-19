@@ -186,8 +186,8 @@ MIT – siehe [LICENSE](LICENSE)
   - [x] 🔬 `tests/detector/test_thresholds.py`
 - [ ] **Segmenter Module**
   - [ ] SAM‑HQ GPU‑Pipeline
-  - [ ] MobileSAM Fallback (CPU)
-  - [ ] 🔬 `tests/segmenter/test_mobile_fallback.py`
+  - [x] MobileSAM Fallback (CPU)
+  - [x] 🔬 `tests/segmenter/test_mobile_fallback.py`
 - [ ] **Inpainter**
   - [ ] Diffusers Pipeline mit ControlNet‑Aux
   - [ ] Lama‑Cleaner Classical Fallback
