@@ -114,6 +114,18 @@ MODEL_REGISTRY: dict[str, dict[str, str | list[str] | None]] = {
         "sha256": None,
         "device": "gpu",
     },
+    "sd_controlnet": {
+        "repo": "stabilityai/stable-diffusion-2-inpainting",
+        "filename": "model.safetensors",
+        "sha256": None,
+        "device": "gpu",
+    },
+    "controlnet_canny": {
+        "repo": "lllyasviel/control_v11p_sd15_canny",
+        "filename": "diffusion_pytorch_model.safetensors",
+        "sha256": None,
+        "device": "gpu",
+    },
 }
 
 

@@ -32,6 +32,27 @@ class Image(SimpleNamespace):
     def new(mode, size, color=None):
         return Image(size)
 
+    def filter(self, *args, **kwargs):
+        return self
+
+    @staticmethod
+    def composite(im1, im2, mask):
+        return im1
+
+    @staticmethod
+    def blend(im1, im2, alpha):
+        return im1
+
+
+class ImageFilter:
+    class GaussianBlur:
+        def __init__(self, radius):
+            self.radius = radius
+
+    @staticmethod
+    def new(mode, size, color=None):
+        return Image(size)
+
 def new(mode, size, color=None):
     return Image.new(mode, size, color)
 
