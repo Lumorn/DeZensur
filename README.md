@@ -42,7 +42,7 @@ Alle Modelle laufen **offline** auf deiner GPU / CPU – keine Cloud‑Abhä
 - [ ] Zoom & Pan‑Werkzeuge  
 - [ ] Fortschritts‑Modal für lange Tasks  
 - [ ] Einstellungs‑Dialog (Modelle, Hardware, Pfade)  
-- [ ] Mehrsprachigkeit (i18n)
+ - [x] Mehrsprachigkeit (i18n)
 
 ### DevOps
 
@@ -91,6 +91,11 @@ python start.py          # erstellt venv, lädt Modelle, baut GUI
 # Dev‑Modus:
 python start.py --dev    # Hot‑Reload für Front‑ und Backend
 ```
+
+### Sprache umschalten
+
+Oben rechts in der GUI kannst du zwischen **DE** und **EN** wählen. Die zugehörigen
+JSON-Dateien findest du unter `gui/src/i18n/`.
 
 ### Batch-Reports erstellen
 
@@ -215,10 +220,10 @@ MIT – siehe [LICENSE](LICENSE)
   - [ ] GPU Auswahl / CPU‑Fallback
   - [ ] Modelle nach­laden (+ Checksum)
   - [ ] 🔬 Unit `src/__tests__/settings.spec.tsx`
-- [ ] **i18n**
-  - [ ] Deutsch / Englisch JSON Bundles
-  - [ ] Runtime‑Language Switch
-  - [ ] 🔬 `tests/i18n/test_loader.py`
+ - [x] **i18n**
+  - [x] Deutsch / Englisch JSON Bundles
+  - [x] Runtime‑Language Switch
+  - [x] 🔬 `tests/i18n/test_loader.py`
 
 ### 3️⃣ CLI‑&‑Batch‑Tools
 - [x] `dez detect <folder>` → JSON Report
