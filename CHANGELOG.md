@@ -678,3 +678,10 @@ Alle Änderungen werden in diesem Dokument festgehalten.
 - Platzhalter-Demo-Assets unter `demo_assets/`
 ### Geändert
 - README markiert Lazy Thumb Generation und Demo Assets im TODO-Board als erledigt
+## [1.8.28] - 2025-10-19
+### Hinzugefügt
+- Kontextabhängige Eigenschaften im Side-Panel
+- End-to-end-Test `e2e/sidepanel.spec.ts`
+### Geändert
+- README markiert die Side-Panel-Punkte im TODO-Board als erledigt und beschreibt die Funktion
+

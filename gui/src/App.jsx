@@ -10,9 +10,10 @@ import FooterBar from './components/FooterBar.jsx';
 
 export default function App() {
   const images = useStore((s) => s.images);
+  const activeId = useStore((s) => s.activeImageId);
   const project = useStore((s) => s.project);
   const theme = useStore((s) => s.prefs.theme || 'dark');
-  const activeImage = images[0];
+  const activeImage = images.find((img) => img.id === activeId);
   return (
     <div className="h-screen flex flex-col bg-bg-primary" data-theme={theme}>
       <TitleBar projectName={project?.title} />
