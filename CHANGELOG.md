@@ -511,3 +511,12 @@ Alle Änderungen werden in diesem Dokument festgehalten.
 - Test `tests/core/test_project_roundtrip.py`
 ### Geändert
 - README erklärt die Migration und hakt das TODO-Board ab
+
+## [1.8.4] - 2025-09-25
+### Hinzugefügt
+- `detect_censor` unterstützt nun ein optionales ROI-Argument
+  und die CLI kennt `--roi`
+- Beispiel in der README angepasst
+- Neue Tests für die ROI-Filterung
+### Geändert
+- TODO-Liste im README aktualisiert
