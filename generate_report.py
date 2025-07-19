@@ -18,7 +18,12 @@ def main() -> None:
         "--report",
         required=True,
         type=Path,
-        help="Zielpfad f\xFCr den Report",
+        help="Zielpfad f\xFCr den JSON-Report",
+    )
+    parser.add_argument(
+        "--html",
+        type=Path,
+        help="Optionaler Pfad f\xFCr eine HTML-Variante",
     )
     args = parser.parse_args()
 
@@ -31,7 +36,13 @@ def main() -> None:
     src = Path(result)
     args.report.parent.mkdir(parents=True, exist_ok=True)
     src.replace(args.report)
-    print(args.report)
+    if args.html:
+        from core.report import render_html
+
+        render_html(args.report, args.html)
+        print(args.html)
+    else:
+        print(args.report)
 
 
 if __name__ == "__main__":
