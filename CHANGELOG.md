@@ -619,3 +619,10 @@ Alle Änderungen werden in diesem Dokument festgehalten.
 ### Geändert
 - README markiert Projekt-Handling, Masken-Editor und Einstellungs-Dialog als erledigt
 - TODO-Board vermerkt den Modell-Selector
+
+## [1.8.19] - 2025-10-10
+### Hinzugefügt
+- GitHub-Action `ci.yml` mit Windows- und Ubuntu-Matrix
+- Caching für HuggingFace-Modelle
+### Geändert
+- README markiert die GitHub-Actions-Punkte im TODO-Board als erledigt
