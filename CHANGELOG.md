@@ -659,3 +659,9 @@ Alle Änderungen werden in diesem Dokument festgehalten.
 - Galerie unterstützt Drag-&-Drop zum Hinzufügen von Bildern
 ### Geändert
 - README beschreibt den Import per Drag-&-Drop und hakt den TODO-Punkt ab
+
+## [1.8.25] - 2025-10-16
+### Hinzugefügt
+- End-to-end-Test `e2e/editor.spec.ts` prüft das Öffnen des Masken-Editors
+### Geändert
+- README hakt den Editor-Test im TODO-Board ab
