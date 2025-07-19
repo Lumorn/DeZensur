@@ -49,7 +49,7 @@ Eine ausführliche Schritt‑für‑Schritt‑Anleitung findest du im [Handbuch]
 ### DevOps
 
 - [x] **start.py** Bootstrapping (Git pull → venv → npm install)
-- [ ] Portable **EXE‑Build** (PyInstaller)  
+- [x] Portable **EXE‑Build** (PyInstaller)
 - [ ] Signierter Windows‑Installer  
 - [x] > 90 % Test‑Coverage
 - [x] Automatisches Changelog‑Release (GitHub‑Action)
@@ -200,6 +200,17 @@ python -m build
 ```
 Das Paketarchiv landet danach im Ordner `dist/`.
 
+### Windows-EXE erzeugen
+
+Mit **PyInstaller** lässt sich eine portable Windows-EXE erzeugen. Das
+Skript `scripts/build_windows_exe.py` übernimmt den Aufruf:
+
+```bash
+pip install pyinstaller
+python scripts/build_windows_exe.py
+```
+Die fertige Datei befindet sich anschließend in `dist/dezensor.exe`.
+
 ---
 
 ## Ordnerstruktur
@@ -293,7 +304,7 @@ MIT – siehe [LICENSE](LICENSE)
   - [x] Matrix (windows‑latest / ubuntu‑latest)
   - [x] Cashing von HF‑Modellen
  - [x] PyPI Build (`dezensor` Wheel)
-  - [ ] Windows x64 Portable `.exe` (PyInstaller + --add‑data assets)
+   - [x] Windows x64 Portable `.exe` (PyInstaller + --add‑data assets)
   - [ ] Code‑Signing Setup (signtool)
  - [x] 🔬 CI checks: mypy, Ruff, pytest‑cov ≥ 85 %
 

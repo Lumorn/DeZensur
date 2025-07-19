@@ -665,3 +665,9 @@ Alle Änderungen werden in diesem Dokument festgehalten.
 - End-to-end-Test `e2e/editor.spec.ts` prüft das Öffnen des Masken-Editors
 ### Geändert
 - README hakt den Editor-Test im TODO-Board ab
+
+## [1.8.26] - 2025-10-17
+### Hinzugefügt
+- Skript `scripts/build_windows_exe.py` und `pyinstaller.spec` erzeugen eine portable EXE.
+### Geändert
+- README erklärt den EXE-Build und hakt den TODO-Punkt ab
