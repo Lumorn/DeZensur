@@ -633,3 +633,11 @@ Alle Änderungen werden in diesem Dokument festgehalten.
 - Skript `scripts/extract_changelog.py` extrahiert die Notizen
 ### Geändert
 - README hakt das automatische Changelog-Release ab
+
+## [1.8.21] - 2025-10-12
+### Hinzugefügt
+- Mypy- und Ruff-Prüfung im CI-Workflow
+- Coverage-Check mit Mindestwert 85 %
+### Geändert
+- README markiert die CI-Checks im TODO-Board als erledigt
+- Dokumentation der neuen Lint-Tools

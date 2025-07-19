@@ -3,6 +3,7 @@ from __future__ import annotations
 """Verwaltet Projekte im neuen Schema v2."""
 
 import datetime
+from typing import Any
 import json
 import shutil
 from pathlib import Path
@@ -16,7 +17,7 @@ class Project:
     def __init__(self, root: Path) -> None:
         self.root = root
         self.file = root.with_suffix(".dezproj")
-        self.data = {
+        self.data: dict[str, Any] = {
             "schema": SCHEMA_VERSION,
             "meta": {
                 "title": root.name,

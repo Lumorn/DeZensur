@@ -1,0 +1,12 @@
+[run]
+omit =
+    tests/*
+    core/server_stub.py
+    core/image_loader.py
+    core/inpainter.py
+    core/segmenter.py
+    core/dep_manager.py
+    core/render_engine.py
+    dez.py
+    start.py
+    gui/*

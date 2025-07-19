@@ -6,7 +6,7 @@ import argparse
 import functools
 import json
 from pathlib import Path
-from typing import Any, Iterable
+from typing import Any, Iterable, Tuple, cast
 
 from PIL import Image
 import numpy as np
@@ -149,11 +149,11 @@ def cli_detect() -> None:
     parser.add_argument("--roi", help="Bereich als x1,y1,x2,y2 im Bereich 0-1")
     args = parser.parse_args()
 
-    roi_tuple = None
+    roi_tuple: Tuple[float, float, float, float] | None = None
     if args.roi:
         parts = [float(v) for v in args.roi.split(",")]
         if len(parts) == 4:
-            roi_tuple = tuple(parts)  # type: ignore[assignment]
+            roi_tuple = cast(Tuple[float, float, float, float], tuple(parts))
     boxes = detect_censor(Path(args.image), threshold=args.threshold, roi=roi_tuple)
     out = json.dumps(boxes, ensure_ascii=False)
     if args.json:
