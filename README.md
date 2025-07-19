@@ -115,6 +115,11 @@ python generate_report.py projekt.dezproj 20240719 --report batch.json --html ba
 ```
 Der JSON- und optional der HTML-Report liegen anschließend im angegebenen Pfad.
 
+### Tile-Renderer
+
+Die Render-Engine zerlegt Bilder in Kacheln und kann jederzeit pausiert werden.
+Beim erneuten Start setzt sie den letzten Stand fort.
+
 ### Zensur-Scan per CLI
 
 Mit dem Skript `dez.py` lässt sich ein kompletter Ordner analysieren:
@@ -231,10 +236,10 @@ MIT – siehe [LICENSE](LICENSE)
   - [x] Diffusers Pipeline mit ControlNet‑Aux
   - [x] Lama‑Cleaner Classical Fallback
   - [x] 🔬 `tests/inpaint/test_seams.py`
-- [ ] **Render‑Engine**
-  - [ ] Async Tile‑Renderer
-  - [ ] Abort/Resume Support
-  - [ ] 🔬 `tests/render/test_resume.py`
+- [x] **Render‑Engine**
+  - [x] Async Tile‑Renderer
+  - [x] Abort/Resume Support
+  - [x] 🔬 `tests/render/test_resume.py`
 
 ### 2️⃣ Desktop‑GUI (Electron + React Konva)
 - [ ] **Galerie‑View**

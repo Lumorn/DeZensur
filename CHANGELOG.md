@@ -604,3 +604,10 @@ Alle Änderungen werden in diesem Dokument festgehalten.
 - Jest-Test `zoom with wheel` deckt das neue Feature ab
 ### Geändert
 - README markiert Zoom & Pan als erledigt
+
+## [1.8.17] - 2025-10-08
+### Hinzugefügt
+- Asynchrone Tile-Render-Engine mit Abbruch- und Resume-Funktion
+- Unit-Test `tests/render/test_resume.py`
+### Geändert
+- README hakt die Render-Engine im TODO-Board ab
