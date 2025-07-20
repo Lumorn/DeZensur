@@ -38,6 +38,7 @@ dependencies = [
     "diffusers==0.27.2",
     "rich>=13.6",
     "loguru>=0.7",
+    "pyyaml",
 ]
 
 [project.scripts]
