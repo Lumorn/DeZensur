@@ -1,9 +1,10 @@
 import { contextBridge, ipcRenderer } from 'electron';
-import { exposeElectronTRPC } from 'electron-trpc/main';
+import { exposeElectronTRPC } from 'electron-trpc/preload';
 
 // Initialisiert electron-trpc und macht es dem Renderer zugänglich
 process.once('loaded', () => {
-  exposeElectronTRPC();
+  // Bindet die electron-trpc Schnittstelle an das Fenster
+  exposeElectronTRPC({ ipcRenderer });
 });
 
 // Stellt eine Funktion bereit, um Bilddateien auszuwählen

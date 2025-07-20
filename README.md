@@ -384,8 +384,12 @@ _Nur Punkte, die **noch offen** sind – als kopier- & abhakbare Markdown-Checkb
   - `electron-reload` ^1.5.0 → 1.5.0
   - `electron-trpc` ^0.11.0 → 0.7.1 (letzte veröffentlichte)  
   - `react-konva` ^19.0.7 → **19.0.7** (Caret entfernen)  
-  - `electron` “latest” → 28.2.x pinnen  
+  - `electron` “latest” → 28.2.x pinnen
   - **Fix:** `package.json` & `package-lock.json` anpassen; `npm ci` in CI.
+
+- [x] **electron-trpc Preload Import fehlerhaft**
+  - `window.electronTRPC` fehlte, weil `exposeElectronTRPC` aus `electron-trpc/main` aufgerufen wurde.
+  - **Fix:** `gui/src/main/preload.ts` nutzt nun `electron-trpc/preload` und übergibt `ipcRenderer`.
 
 - [ ] **Galerie-View unvollständig**  
   - Thumbnails werden generiert, UI zeigt aber nichts an.  
