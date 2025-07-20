@@ -804,3 +804,8 @@ Alle Ãnderungen werden in diesem Dokument festgehalten.
   Das Paket `PyYAML` ist nun in `requirements.txt` enthalten.
 ### Geändert
 - README führt PyYAML als neue Abhängigkeit auf.
+
+## [1.8.46] - 2025-11-06
+### Geändert
+- Repository erneut mit `isort .` formatiert; es waren keine Anpassungen nötig.
+  Alle Tests laufen jetzt lokal durch.

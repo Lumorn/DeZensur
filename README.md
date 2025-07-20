@@ -260,8 +260,9 @@ DeZensur/
 
 1. **Fork → Branch → PR** (Conventional Commits)
 2. Lint: `black`, `isort`, `flake8`, `ruff`, `mypy`
-3. Jeder PR braucht Tests (`pytest`)
-4. CI‑Pipeline muss grün sein
+3. Führe bei Importfehlern einfach `isort .` aus
+4. Jeder PR braucht Tests (`pytest`)
+5. CI‑Pipeline muss grün sein
 
 ---
 
