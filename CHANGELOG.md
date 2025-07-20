@@ -821,3 +821,7 @@ Alle Ãnderungen werden in diesem Dokument festgehalten.
 ### Geändert
 - Codebasis erneut mit `black` und `isort` formatiert.
 
+## [1.8.49] - 2025-11-09
+### Behoben
+- Importreihenfolge in `core/dep_manager.py` und `core/inpainter.py` korrigiert.
+
