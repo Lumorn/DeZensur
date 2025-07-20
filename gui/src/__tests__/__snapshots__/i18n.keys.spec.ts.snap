@@ -1,0 +1,8 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`de.json und en.json besitzen identische Keys 1`] = `
+[
+  "add_images",
+  "file",
+]
+`;

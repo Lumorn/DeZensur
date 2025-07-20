@@ -780,3 +780,13 @@ Alle Ãnderungen werden in diesem Dokument festgehalten.
   Neue Dateien `gui/babel.config.cjs` und `gui/jest.config.cjs` stellen die Transformation sicher.
 ### Geändert
 - README führt die Babel- und Jest-Konfiguration als behobenen Fehler auf.
+
+## [1.8.43] - 2025-11-03
+### Behoben
+- `galleryStore.addImages` legte doppelte Bilder an.
+  Pfade werden nun innerhalb eines Aufrufs dedupliziert.
+- Fehlende Playwright-Abhängigkeit führte zu Modulfehlern.
+  `@playwright/test` ist jetzt in den Dev-Dependencies.
+### Geändert
+- Jest ignoriert `tests/e2e/` damit Playwright separat läuft.
+- README ergänzt Bugfix zur Galerie.

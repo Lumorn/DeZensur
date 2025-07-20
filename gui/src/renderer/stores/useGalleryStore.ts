@@ -41,8 +41,11 @@ export const useGalleryStore = create<GalleryState>((set, get) => ({
   images: [],
   selectedId: null,
   addImages: (paths) => {
+    // Bereits geladene Pfade
     const existing = new Set(get().images.map((i) => i.path));
-    const added = paths
+    // Doppelte innerhalb des Aufrufs entfernen
+    const unique = Array.from(new Set(paths));
+    const added = unique
       .filter((p) => !existing.has(p))
       .map((p) => ({
         id: uuidv4(),

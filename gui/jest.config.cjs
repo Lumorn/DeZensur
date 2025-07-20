@@ -4,4 +4,6 @@ module.exports = {
     '^.+\\.(t|j)sx?$': 'babel-jest',
   },
   testEnvironment: 'jsdom',
+  // Playwright-Tests sollen nicht von Jest ausgeführt werden
+  testPathIgnorePatterns: ['<rootDir>/tests/e2e/'],
 };

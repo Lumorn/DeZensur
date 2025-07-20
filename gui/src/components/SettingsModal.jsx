@@ -26,8 +26,9 @@ export default function SettingsModal() {
 
   return (
     <div>
-      <label className="block mb-2">Inpainting-Modell</label>
+      <label htmlFor="model" className="block mb-2">Inpainting-Modell</label>
       <select
+        id="model"
         value={model}
         onChange={handleModelChange}
         className="border p-1 mb-4"
@@ -54,8 +55,9 @@ export default function SettingsModal() {
         />
         Automatische Anatomie-Tags
       </label>
-      <label className="block mt-4">Hardware</label>
+      <label htmlFor="device" className="block mt-4">Hardware</label>
       <select
+        id="device"
         value={device}
         onChange={(e) => setDevice(e.target.value)}
         className="border p-1"

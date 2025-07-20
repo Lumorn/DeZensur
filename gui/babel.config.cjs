@@ -5,4 +5,8 @@ module.exports = {
     '@babel/preset-typescript',
     '@babel/preset-react',
   ],
+  plugins: [
+    // Ermöglicht die Verwendung von import.meta im Testumfeld
+    'babel-plugin-transform-import-meta',
+  ],
 };

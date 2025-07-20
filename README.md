@@ -430,6 +430,10 @@ _Nur Punkte, die **noch offen** sind – als kopier- & abhakbare Markdown-Checkb
   - Beim CI-Lauf erschienen "Cannot use import statement outside a module".
   - **Fix:** `gui/babel.config.cjs` und `gui/jest.config.cjs` konfigurieren Babel-Jest.
   - **Tests:** `npm test` läuft nun ohne Syntaxfehler.
+- [x] **GalleryStore filtert doppelte Pfade**
+  - `addImages()` legte bei mehrfachen Pfaden auch Duplikate an.
+  - **Fix:** In `useGalleryStore.ts` werden Pfade vorab dedupliziert.
+  - **Tests:** `galleryStore.test.ts` prüft die einzigartige Anzahl korrekt.
 
 - [ ] **Code-Signing Pipeline**  
   - Windows EXE unsigniert → SmartScreen-Warnung.  
