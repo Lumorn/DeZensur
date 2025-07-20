@@ -85,6 +85,12 @@ def test_ensure_gui_build(monkeypatch, tmp_path):
             start.ensure_gui_build()
         m_run.assert_not_called()
 
+    # Mit force=True sollte der Build erneut angestossen werden
+    with mock.patch.object(start, "run") as m_run:
+        with mock.patch("tkinter.Tk"), mock.patch("tkinter.messagebox.showerror"):
+            start.ensure_gui_build(force=True)
+        m_run.assert_called_once()
+
 
 def test_should_skip_npm_install_ci(monkeypatch):
     monkeypatch.setenv("SKIP_NPM_INSTALL", "1")
