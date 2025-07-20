@@ -828,3 +828,8 @@ Alle Ãnderungen werden in diesem Dokument festgehalten.
 ## [1.8.50] - 2025-11-10
 ### Behoben
 - Imports erneut mit `isort` geprüft, um CI-Fehler zu verhindern.
+
+## [1.8.51] - 2025-11-11
+### Behoben
+- Importreihenfolge in `core/dep_manager.py` und `core/inpainter.py` nochmals
+  angepasst, sodass `isort` ohne Beanstandungen durchläuft.
