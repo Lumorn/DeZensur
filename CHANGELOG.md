@@ -773,3 +773,10 @@ Alle Ãnderungen werden in diesem Dokument festgehalten.
 - Preload importierte versehentlich `electron-trpc/main`, wodurch das `electronTRPC`-Objekt im Renderer fehlte.
 ### Geändert
 - README erläutert den korrigierten Import in der Bug-Liste.
+
+## [1.8.42] - 2025-11-02
+### Behoben
+- Jest brach mit "Cannot use import statement outside a module" ab.
+  Neue Dateien `gui/babel.config.cjs` und `gui/jest.config.cjs` stellen die Transformation sicher.
+### Geändert
+- README führt die Babel- und Jest-Konfiguration als behobenen Fehler auf.

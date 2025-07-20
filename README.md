@@ -426,6 +426,11 @@ _Nur Punkte, die **noch offen** sind – als kopier- & abhakbare Markdown-Checkb
   - **Fix:** Flag nur für CI erlauben; Warnung im Terminal.
   - **Tests:** `tests/test_start.py::test_should_skip_npm_install_*`.
 
+- [x] **Jest unterstützt ESModule-Imports**
+  - Beim CI-Lauf erschienen "Cannot use import statement outside a module".
+  - **Fix:** `gui/babel.config.cjs` und `gui/jest.config.cjs` konfigurieren Babel-Jest.
+  - **Tests:** `npm test` läuft nun ohne Syntaxfehler.
+
 - [ ] **Code-Signing Pipeline**  
   - Windows EXE unsigniert → SmartScreen-Warnung.  
   - **Fix:** GH Action mit `signtool` / EV-Zertifikat einrichten.  
