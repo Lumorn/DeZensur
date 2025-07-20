@@ -797,3 +797,10 @@ Alle Ãnderungen werden in diesem Dokument festgehalten.
   `isort .` korrigiert nun automatisch alle Dateien.
 ### Geändert
 - README erwähnt den isort-Fix.
+
+## [1.8.45] - 2025-11-05
+### Behoben
+- Pytest meldete `ModuleNotFoundError: yaml`.
+  Das Paket `PyYAML` ist nun in `requirements.txt` enthalten.
+### Geändert
+- README führt PyYAML als neue Abhängigkeit auf.

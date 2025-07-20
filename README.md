@@ -437,6 +437,9 @@ _Nur Punkte, die **noch offen** sind – als kopier- & abhakbare Markdown-Checkb
 - [x] **Imports sind konsistent sortiert**
   - CI schlug wegen falsch angeordneter `import`-Blöcke fehl.
   - **Fix:** `isort .` stellt eine einheitliche Reihenfolge sicher.
+- [x] **PyYAML als Testabhängigkeit**
+  - Pytest konnte `yaml` nicht finden.
+  - **Fix:** Paket `PyYAML` zu den Abhängigkeiten hinzugefügt.
 
 - [ ] **Code-Signing Pipeline**
   - Windows EXE unsigniert → SmartScreen-Warnung.  
