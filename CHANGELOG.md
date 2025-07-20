@@ -760,3 +760,10 @@ Alle Änderungen werden in diesem Dokument festgehalten.
 ### Geändert
 - README ergänzt: `npm start` ohne vorangegangenen Build führt zu einer leeren
   Oberfläche. Empfohlene Befehle sind `python start.py` oder `npm run build`.
+
+## [1.8.40] - 2025-10-31
+### Hinzugefügt
+- Option `--force-build` in `start.py` erzwingt einen neuen GUI-Build.
+- `scripts/repair_gui.py` nutzt diese Option und baut stets neu.
+### Geändert
+- README beschreibt die neue Option.

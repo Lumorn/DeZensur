@@ -253,11 +253,14 @@ def should_skip_npm_install(argv: list[str] | None = None) -> bool:
     return bool(skip_requested)
 
 
-def ensure_gui_build() -> None:
-    """Baut das Frontend, falls noch keine Dist-Dateien vorhanden sind."""
+def ensure_gui_build(force: bool = False) -> None:
+    """Baut das Frontend, falls noch keine Dist-Dateien vorhanden sind.
+
+    Parameter ``force`` erzwingt einen Neu-Build auch bei vorhandenen Dateien.
+    """
 
     dist_index = project_root / "gui" / "dist" / "index.html"
-    if not dist_index.exists():
+    if force or not dist_index.exists():
         # Unter Windows kann das Electron-Build scheitern, wenn keine
         # Berechtigung zum Anlegen von Symlinks vorhanden ist. Durch Setzen
         # dieser Umgebungsvariable wird das Codesigning deaktiviert und der
@@ -323,6 +326,10 @@ ensure_repo()
 auto_stash_flag = "--auto-stash" in sys.argv
 if auto_stash_flag:
     sys.argv.remove("--auto-stash")
+# Option zum Erzwingen eines GUI-Rebuilds auswerten
+force_build_flag = "--force-build" in sys.argv
+if force_build_flag:
+    sys.argv.remove("--force-build")
 # Vor allen weiteren Schritten prüfen wir, ob das Git-Repository aktuell ist
 update_repo(auto_stash=auto_stash_flag)
 
@@ -420,8 +427,9 @@ def main() -> None:
     if "--dev" in sys.argv:
         run([npm_cmd, "run", "dev"], cwd="gui", beschreibung="npm run dev")
     else:
-        # Falls die gebaute Oberflaeche fehlt, wird sie nun erzeugt
-        ensure_gui_build()
+        # Falls die gebaute Oberflaeche fehlt oder der Nutzer einen Neu-Build
+        # erzwingen moechte, wird dieser nun ausgefuehrt
+        ensure_gui_build(force=force_build_flag)
         run([npm_cmd, "start"], cwd="gui", beschreibung="npm start")
 
 

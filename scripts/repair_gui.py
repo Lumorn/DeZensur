@@ -24,7 +24,7 @@ def main() -> None:
         print("Frontend-Build ist bereits vorhanden.")
     else:
         print("Baue fehlenden Frontend-Build...")
-        ensure_gui_build()
+        ensure_gui_build(force=True)
         print("Build abgeschlossen.")
 
     print("Starte die Anwendung anschlie\u00dfend mit 'python start.py'.")
