@@ -809,3 +809,10 @@ Alle Ãnderungen werden in diesem Dokument festgehalten.
 ### Geändert
 - Repository erneut mit `isort .` formatiert; es waren keine Anpassungen nötig.
   Alle Tests laufen jetzt lokal durch.
+
+## [1.8.47] - 2025-11-07
+### Behoben
+- `start.py` erkennt nun beschädigte oder sehr kleine `gui/dist/index.html`
+  und baut die Oberfläche automatisch neu.
+### Geändert
+- README beschreibt den automatischen Neu-Build bei weißem Fenster.

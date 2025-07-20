@@ -83,6 +83,13 @@ def test_ensure_gui_build(monkeypatch, tmp_path):
     with mock.patch.object(start, "run") as m_run:
         with mock.patch("tkinter.Tk"), mock.patch("tkinter.messagebox.showerror"):
             start.ensure_gui_build()
+        m_run.assert_called_once()
+
+    # Ein korrekt gebautes Frontend wird nicht erneut erstellt
+    (dist / "index.html").write_text("x" * 2000)
+    with mock.patch.object(start, "run") as m_run:
+        with mock.patch("tkinter.Tk"), mock.patch("tkinter.messagebox.showerror"):
+            start.ensure_gui_build()
         m_run.assert_not_called()
 
     # Mit force=True sollte der Build erneut angestossen werden
