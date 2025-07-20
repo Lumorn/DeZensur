@@ -39,13 +39,17 @@ class Response:
         self.close()
 
 
-def _request(method: str, url: str, data=None, headers=None, timeout: int | None = None) -> Response:
+def _request(
+    method: str, url: str, data=None, headers=None, timeout: int | None = None
+) -> Response:
     req = urllib.request.Request(url, data=data, headers=headers or {}, method=method)
     resp = urllib.request.urlopen(req, timeout=timeout)
     return Response(resp)
 
 
-def head(url: str, allow_redirects: bool = True, timeout: int | None = None) -> Response:
+def head(
+    url: str, allow_redirects: bool = True, timeout: int | None = None
+) -> Response:
     return _request("HEAD", url, timeout=timeout)
 
 

@@ -816,3 +816,8 @@ Alle Ãnderungen werden in diesem Dokument festgehalten.
   und baut die Oberfläche automatisch neu.
 ### Geändert
 - README beschreibt den automatischen Neu-Build bei weißem Fenster.
+
+## [1.8.48] - 2025-11-08
+### Geändert
+- Codebasis erneut mit `black` und `isort` formatiert.
+

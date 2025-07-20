@@ -6,4 +6,3 @@ def test_load_translations() -> None:
     en = i18n.load_translations("en")
     assert de.get("file") == "Datei"
     assert en.get("add_images") == "Add Images…"
-

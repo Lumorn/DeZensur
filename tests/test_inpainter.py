@@ -4,13 +4,13 @@ import importlib
 import sys
 from pathlib import Path
 
-sys.modules['diffusers'] = importlib.import_module('tests.diffusers')
-sys.modules['iopaint.model_manager'] = importlib.import_module('tests.iopaint')
-sys.modules['PIL'] = importlib.import_module('tests.PIL')
-sys.modules['numpy'] = importlib.import_module('tests.numpy')
-sys.modules['torch'] = importlib.import_module('tests.torch')
-sys.modules['controlnet_aux'] = importlib.import_module('tests.controlnet_aux')
-sys.modules['requests'] = importlib.import_module('tests.requests_stub')
+sys.modules["diffusers"] = importlib.import_module("tests.diffusers")
+sys.modules["iopaint.model_manager"] = importlib.import_module("tests.iopaint")
+sys.modules["PIL"] = importlib.import_module("tests.PIL")
+sys.modules["numpy"] = importlib.import_module("tests.numpy")
+sys.modules["torch"] = importlib.import_module("tests.torch")
+sys.modules["controlnet_aux"] = importlib.import_module("tests.controlnet_aux")
+sys.modules["requests"] = importlib.import_module("tests.requests_stub")
 
 from PIL import Image
 

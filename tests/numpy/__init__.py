@@ -26,16 +26,21 @@ def asarray(obj, dtype=None):
         return DummyArray(obj)
     return DummyArray([0.0])
 
+
 array = asarray
+
 
 def argsort(seq):
     return sorted(range(len(seq)), key=lambda i: seq[i])
 
+
 def maximum(a, b):
     return [max(x, y) for x, y in zip(a, b)]
 
+
 def minimum(a, b):
     return [min(x, y) for x, y in zip(a, b)]
+
 
 def clip(arr, a_min, a_max):
     result = []
@@ -47,6 +52,6 @@ def clip(arr, a_min, a_max):
         result.append(x)
     return result
 
-def where(cond):
-    return [i for i, c in enumerate(cond) if c],
 
+def where(cond):
+    return ([i for i, c in enumerate(cond) if c],)

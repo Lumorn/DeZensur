@@ -23,23 +23,28 @@ class DummyProgress:
     def update(self, *a, **k):
         pass
 
-rich_stub = types.SimpleNamespace(Progress=lambda *a, **k: DummyProgress(), BarColumn=lambda: None, TimeRemainingColumn=lambda: None)
-sys.modules['rich.progress'] = rich_stub
-sys.modules['PIL'] = importlib.import_module('tests.PIL')
-sys.modules['numpy'] = importlib.import_module('tests.numpy')
-sys.modules['onnxruntime'] = importlib.import_module('tests.onnxruntime')
-sys.modules['torch'] = importlib.import_module('tests.torch')
+
+rich_stub = types.SimpleNamespace(
+    Progress=lambda *a, **k: DummyProgress(),
+    BarColumn=lambda: None,
+    TimeRemainingColumn=lambda: None,
+)
+sys.modules["rich.progress"] = rich_stub
+sys.modules["PIL"] = importlib.import_module("tests.PIL")
+sys.modules["numpy"] = importlib.import_module("tests.numpy")
+sys.modules["onnxruntime"] = importlib.import_module("tests.onnxruntime")
+sys.modules["torch"] = importlib.import_module("tests.torch")
 import tests.requests_stub as requests_stub
 
-sys.modules['requests'] = requests_stub
+sys.modules["requests"] = requests_stub
 import tests.huggingface_hub as hf_stub
 
-sys.modules['huggingface_hub'] = hf_stub
+sys.modules["huggingface_hub"] = hf_stub
 import tests.loguru as loguru_stub
 
-sys.modules['loguru'] = loguru_stub
-sys.modules['tqdm'] = importlib.import_module('tests.tqdm')
-sys.modules['segment_anything'] = importlib.import_module('tests.segment_anything')
+sys.modules["loguru"] = loguru_stub
+sys.modules["tqdm"] = importlib.import_module("tests.tqdm")
+sys.modules["segment_anything"] = importlib.import_module("tests.segment_anything")
 
 from PIL import Image
 
@@ -57,12 +62,22 @@ def test_run_batch_updates_status(monkeypatch, tmp_path: Path) -> None:
     proj = Project(proj_dir)
     proj.add_images([str(img1), str(img2)])
 
-    monkeypatch.setattr(batch_runner, "detect_censor", lambda *a, **k: [{"box": [0, 0, 1, 1]}])
+    monkeypatch.setattr(
+        batch_runner, "detect_censor", lambda *a, **k: [{"box": [0, 0, 1, 1]}]
+    )
     monkeypatch.setattr(batch_runner, "generate_mask", lambda *a, **k: [[True]])
-    monkeypatch.setattr(batch_runner, "save_mask_png", lambda mask, p: p.write_text("m"))
+    monkeypatch.setattr(
+        batch_runner, "save_mask_png", lambda mask, p: p.write_text("m")
+    )
 
-    def fake_inpaint(image_path, mask_path, labels=None, model_key="lama", user_prompt=""):
-        out = mask_path.parent.parent / "processed" / f"{Path(image_path).stem}_{model_key}.png"
+    def fake_inpaint(
+        image_path, mask_path, labels=None, model_key="lama", user_prompt=""
+    ):
+        out = (
+            mask_path.parent.parent
+            / "processed"
+            / f"{Path(image_path).stem}_{model_key}.png"
+        )
         out.parent.mkdir(parents=True, exist_ok=True)
         out.write_text("r")
         return out

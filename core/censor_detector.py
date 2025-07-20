@@ -111,7 +111,9 @@ def detect_censor(
     if not boxes:
         return []
 
-    keep = list(_nms(np.array(boxes, dtype=np.float32), np.array(scores, dtype=np.float32)))
+    keep = list(
+        _nms(np.array(boxes, dtype=np.float32), np.array(scores, dtype=np.float32))
+    )
     boxes = [boxes[i] for i in keep]
     scores = [scores[i] for i in keep]
     cls_ids = [cls_ids[i] for i in keep]
@@ -132,11 +134,13 @@ def detect_censor(
             if inter_w * inter_h == 0:
                 continue
         label = LABELS[cid] if cid < len(LABELS) else str(cid)
-        results.append({
-            "label": label,
-            "score": float(sc),
-            "box": [float(b[0]), float(b[1]), float(b[2]), float(b[3])],
-        })
+        results.append(
+            {
+                "label": label,
+                "score": float(sc),
+                "box": [float(b[0]), float(b[1]), float(b[2]), float(b[3])],
+            }
+        )
     return results
 
 

@@ -1,18 +1,22 @@
 """
 Hilfsfunktionen zum Zusammen­bauen des Inpainting-Prompts.
 """
+
 from typing import List
 
-BASE_PROMPT = "masterpiece, best quality, anime illustration, detailed anatomy, soft shading"
-NEG_PROMPT  = "lowres, blurry, bad anatomy, extra limbs, mosaic, censor bar"
+BASE_PROMPT = (
+    "masterpiece, best quality, anime illustration, detailed anatomy, soft shading"
+)
+NEG_PROMPT = "lowres, blurry, bad anatomy, extra limbs, mosaic, censor bar"
 
 TAG_MAP = {
-    "penis":  ["penis, testicles, uncensored, detailed skin, veins"],
-    "pussy":  ["vagina, uncensored, labia, detailed skin"],
+    "penis": ["penis, testicles, uncensored, detailed skin, veins"],
+    "pussy": ["vagina, uncensored, labia, detailed skin"],
     "nipple_f": ["nude, bare breasts, nipples, uncensored"],
 }
 
-def build_prompt(labels: List[str], user_prompt: str | None) -> tuple[str,str]:
+
+def build_prompt(labels: List[str], user_prompt: str | None) -> tuple[str, str]:
     """
     Gibt (prompt, negative_prompt) zurück.
     - labels  : Liste aus Censor-Detector (z.B. ["penis"])

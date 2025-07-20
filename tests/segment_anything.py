@@ -6,6 +6,7 @@ class DummyModel:
     def to(self, device):
         self.device = device
 
+
 class SamPredictor:
     def __init__(self, model):
         self.model = model
@@ -25,7 +26,9 @@ class SamPredictor:
         mask = [[True for _ in range(w)] for _ in range(h)]
         return [mask], None, None
 
+
 def _factory(checkpoint=None):
     return DummyModel(checkpoint)
+
 
 sam_model_registry = {"vit_h": _factory, "vit_t": _factory}

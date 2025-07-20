@@ -277,9 +277,7 @@ def ensure_gui_build(force: bool = False) -> None:
         )
         # Nach dem Build sicherstellen, dass die Datei wirklich existiert
         if not dist_index.exists():
-            msg = (
-                "GUI-Build fehlgeschlagen. Bitte 'npm run build' manuell im Ordner gui ausf\u00fchren."
-            )
+            msg = "GUI-Build fehlgeschlagen. Bitte 'npm run build' manuell im Ordner gui ausf\u00fchren."
             print(msg)
             tk.Tk().withdraw()
             messagebox.showerror("Fehler", msg)

@@ -1,4 +1,5 @@
 """Abhängigkeiten und Modelle verwalten."""
+
 # mypy: ignore-errors
 
 from __future__ import annotations
@@ -15,8 +16,12 @@ from typing import Any, cast
 import requests
 import torch
 import yaml
-from huggingface_hub import (hf_hub_download, hf_hub_url, list_repo_files,
-                             snapshot_download)
+from huggingface_hub import (
+    hf_hub_download,
+    hf_hub_url,
+    list_repo_files,
+    snapshot_download,
+)
 from tqdm import tqdm
 
 logger = logging.getLogger(__name__)
