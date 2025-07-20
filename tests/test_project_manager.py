@@ -19,4 +19,4 @@ def test_add_images_creates_copies(tmp_path: Path):
 
     # Projektdatei sollte einen Eintrag besitzen
     data = Path(f"{proj_dir}.dezproj").read_text(encoding="utf-8")
-    assert 'sample.jpg' in data
+    assert "sample.jpg" in data

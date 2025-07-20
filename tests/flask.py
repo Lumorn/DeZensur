@@ -1,4 +1,5 @@
 """Minimaler Ersatz für Flask, nutzt http.server."""
+
 from __future__ import annotations
 
 import json

@@ -104,13 +104,13 @@ python start.py --force-build
 Unter Windows kannst du das Programm auch bequem per Doppelklick starten.
 Nutze dazu entweder direkt `start.py` oder das neue Skript `start.cmd`.
 
-Sollte nach dem Start nur ein weißes Fenster erscheinen, fehlt meist der
-Frontend-Build. Führe in diesem Fall `python start.py` oder alternativ
-`npm run build` im Ordner `gui/` aus. Komfortabler geht es mit dem Skript
-`python scripts/repair_gui.py`, das den Build automatisch nachholt. Mit
-`python start.py --force-build` lässt sich der Build ebenfalls erzwingen.
-Rufe die GUI nicht direkt mit `npm start` auf, solange kein Build
-existiert – sonst bleibt das Fenster leer.
+Sollte nach dem Start nur ein weißes Fenster erscheinen, fehlt oder
+beschädigt oft der Frontend‑Build. `start.py` erkennt solche Fälle nun und
+erstellt die Dateien automatisch neu. Alternativ kannst du jederzeit
+`python scripts/repair_gui.py` ausführen oder im Ordner `gui/` ein
+`npm run build` anstoßen. Mit `python start.py --force-build` lässt sich der
+Build ebenfalls erzwingen. Starte die GUI nicht direkt mit `npm start`, wenn
+kein Build vorhanden ist – sonst bleibt das Fenster leer.
 
 ### Sprache umschalten
 
@@ -260,7 +260,8 @@ DeZensur/
 
 1. **Fork → Branch → PR** (Conventional Commits)
 2. Lint: `black`, `isort`, `flake8`, `ruff`, `mypy`
-3. Führe bei Importfehlern einfach `isort .` aus
+3. Zeigt die CI "Imports are incorrectly sorted" an, führe `isort .` aus;
+   einzelne Dateien korrigierst du mit `isort core/dep_manager.py core/inpainter.py`
 4. Jeder PR braucht Tests (`pytest`)
 5. CI‑Pipeline muss grün sein
 

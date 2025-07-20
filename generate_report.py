@@ -18,12 +18,12 @@ def main() -> None:
         "--report",
         required=True,
         type=Path,
-        help="Zielpfad f\xFCr den JSON-Report",
+        help="Zielpfad f\xfcr den JSON-Report",
     )
     parser.add_argument(
         "--html",
         type=Path,
-        help="Optionaler Pfad f\xFCr eine HTML-Variante",
+        help="Optionaler Pfad f\xfcr eine HTML-Variante",
     )
     args = parser.parse_args()
 

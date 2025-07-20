@@ -260,7 +260,8 @@ def ensure_gui_build(force: bool = False) -> None:
     """
 
     dist_index = project_root / "gui" / "dist" / "index.html"
-    if force or not dist_index.exists():
+    # Neu bauen, wenn die Datei fehlt oder verdächtig klein ist
+    if force or not dist_index.exists() or dist_index.stat().st_size < 1000:
         # Unter Windows kann das Electron-Build scheitern, wenn keine
         # Berechtigung zum Anlegen von Symlinks vorhanden ist. Durch Setzen
         # dieser Umgebungsvariable wird das Codesigning deaktiviert und der
@@ -276,9 +277,7 @@ def ensure_gui_build(force: bool = False) -> None:
         )
         # Nach dem Build sicherstellen, dass die Datei wirklich existiert
         if not dist_index.exists():
-            msg = (
-                "GUI-Build fehlgeschlagen. Bitte 'npm run build' manuell im Ordner gui ausf\u00fchren."
-            )
+            msg = "GUI-Build fehlgeschlagen. Bitte 'npm run build' manuell im Ordner gui ausf\u00fchren."
             print(msg)
             tk.Tk().withdraw()
             messagebox.showerror("Fehler", msg)

@@ -66,7 +66,9 @@ def inpaint_route():
 
     from core.inpainter import inpaint
 
-    result = inpaint(img_path, mask_path, labels=labels, model_key=model, user_prompt=prompt)
+    result = inpaint(
+        img_path, mask_path, labels=labels, model_key=model, user_prompt=prompt
+    )
     return jsonify({"result": str(result)})
 
 

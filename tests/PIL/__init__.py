@@ -2,7 +2,7 @@ from types import SimpleNamespace
 
 
 class Image(SimpleNamespace):
-    def __init__(self, size=(10,10)):
+    def __init__(self, size=(10, 10)):
         super().__init__(size=size)
 
     @staticmethod
@@ -20,7 +20,7 @@ class Image(SimpleNamespace):
         return Image(self.size)
 
     def crop(self, box):
-        return Image((box[2]-box[0], box[3]-box[1]))
+        return Image((box[2] - box[0], box[3] - box[1]))
 
     def paste(self, img, pos):
         pass
@@ -29,8 +29,8 @@ class Image(SimpleNamespace):
         pass
 
     def save(self, fp, format=None):
-        with open(fp, 'wb') as f:
-            f.write(b'0')
+        with open(fp, "wb") as f:
+            f.write(b"0")
 
     @staticmethod
     def new(mode, size, color=None):
@@ -57,6 +57,6 @@ class ImageFilter:
     def new(mode, size, color=None):
         return Image(size)
 
+
 def new(mode, size, color=None):
     return Image.new(mode, size, color)
-

@@ -11,7 +11,9 @@ TEST_PATH = Path(__file__).resolve().parent.parent
 def _run(args: list[str]) -> subprocess.CompletedProcess:
     env = os.environ.copy()
     env["PYTHONPATH"] = os.pathsep.join([str(TEST_PATH), env.get("PYTHONPATH", "")])
-    return subprocess.run([sys.executable, str(SCRIPT), *args], capture_output=True, text=True, env=env)
+    return subprocess.run(
+        [sys.executable, str(SCRIPT), *args], capture_output=True, text=True, env=env
+    )
 
 
 def test_detect_batch(tmp_path: Path) -> None:

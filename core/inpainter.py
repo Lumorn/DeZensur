@@ -36,7 +36,9 @@ def _load_images(image_path: Path, mask_path: Path) -> tuple[Image.Image, Image.
     return img, mask
 
 
-def _blend_seams(result: Image.Image, original: Image.Image, mask: Image.Image, radius: int = 4) -> Image.Image:
+def _blend_seams(
+    result: Image.Image, original: Image.Image, mask: Image.Image, radius: int = 4
+) -> Image.Image:
     """Glättet die Kanten der Maske mittels simpler Überblendung."""
     blurred = mask.filter(ImageFilter.GaussianBlur(radius))
     return Image.composite(result, original, blurred)
@@ -75,8 +77,7 @@ def inpaint(
         dtype = torch.float16 if device == "cuda" else torch.float32
         if model_key == "sd_controlnet":
             from controlnet_aux import CannyDetector
-            from diffusers import (ControlNetModel,
-                                   StableDiffusionControlNetPipeline)
+            from diffusers import ControlNetModel, StableDiffusionControlNetPipeline
 
             cnet_path = ensure_model("controlnet_canny")
             controlnet = ControlNetModel.from_pretrained(cnet_path, torch_dtype=dtype)

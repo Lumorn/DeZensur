@@ -809,3 +809,27 @@ Alle Ãnderungen werden in diesem Dokument festgehalten.
 ### Geändert
 - Repository erneut mit `isort .` formatiert; es waren keine Anpassungen nötig.
   Alle Tests laufen jetzt lokal durch.
+
+## [1.8.47] - 2025-11-07
+### Behoben
+- `start.py` erkennt nun beschädigte oder sehr kleine `gui/dist/index.html`
+  und baut die Oberfläche automatisch neu.
+### Geändert
+- README beschreibt den automatischen Neu-Build bei weißem Fenster.
+
+## [1.8.48] - 2025-11-08
+### Geändert
+- Codebasis erneut mit `black` und `isort` formatiert.
+
+## [1.8.49] - 2025-11-09
+### Behoben
+- Importreihenfolge in `core/dep_manager.py` und `core/inpainter.py` korrigiert.
+
+## [1.8.50] - 2025-11-10
+### Behoben
+- Imports erneut mit `isort` geprüft, um CI-Fehler zu verhindern.
+
+## [1.8.51] - 2025-11-11
+### Behoben
+- Importreihenfolge in `core/dep_manager.py` und `core/inpainter.py` nochmals
+  angepasst, sodass `isort` ohne Beanstandungen durchläuft.

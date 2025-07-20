@@ -18,7 +18,9 @@ class _Logger:
             return
         name = str(sink)
         if "{time}" in name:
-            name = name.replace("{time}", datetime.datetime.utcnow().strftime("%Y%m%d_%H%M%S"))
+            name = name.replace(
+                "{time}", datetime.datetime.utcnow().strftime("%Y%m%d_%H%M%S")
+            )
         self.sinks.append((Path(name), serialize))
 
     def bind(self, **extra):

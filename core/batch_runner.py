@@ -108,7 +108,11 @@ def run_batch(
     )
     with progress_ctx as progress:
         progress = cast(Progress, progress)
-        task = progress.add_task("[cyan]Batch-Job", total=len(todo)) if show_progress else None
+        task = (
+            progress.add_task("[cyan]Batch-Job", total=len(todo))
+            if show_progress
+            else None
+        )
         with ThreadPoolExecutor(max_workers=max_workers) as exe:
             futures = {
                 exe.submit(
@@ -130,6 +134,7 @@ def run_batch(
                     progress.update(task, advance=1, description=f"[green]{img['id']}")
         rep_path = summarize_batch(project.root, batch_id)
         logger.info(f"Report saved: {rep_path}")
+
 
 def cli() -> None:
     """Einfaches CLI-Interface."""
