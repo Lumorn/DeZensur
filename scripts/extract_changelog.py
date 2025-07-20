@@ -1,7 +1,7 @@
 """Extrahiert den Changelog-Eintrag zu einem gegebenen Tag."""
 
-import sys
 import re
+import sys
 from pathlib import Path
 
 # Tag-Name vom Git-Event (z.B. v1.2.3)

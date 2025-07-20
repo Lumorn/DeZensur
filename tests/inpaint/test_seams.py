@@ -14,6 +14,7 @@ sys.modules['requests'] = importlib.import_module('tests.requests_stub')
 sys.modules['tqdm'] = importlib.import_module('tests.tqdm')
 
 from PIL import Image
+
 from core.inpainter import _blend_seams
 
 

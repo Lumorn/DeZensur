@@ -1,7 +1,7 @@
-from pathlib import Path
-import json
 import datetime
+import json
 import sys
+from pathlib import Path
 
 
 class _Logger:

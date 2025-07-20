@@ -434,8 +434,11 @@ _Nur Punkte, die **noch offen** sind – als kopier- & abhakbare Markdown-Checkb
   - `addImages()` legte bei mehrfachen Pfaden auch Duplikate an.
   - **Fix:** In `useGalleryStore.ts` werden Pfade vorab dedupliziert.
   - **Tests:** `galleryStore.test.ts` prüft die einzigartige Anzahl korrekt.
+- [x] **Imports sind konsistent sortiert**
+  - CI schlug wegen falsch angeordneter `import`-Blöcke fehl.
+  - **Fix:** `isort .` stellt eine einheitliche Reihenfolge sicher.
 
-- [ ] **Code-Signing Pipeline**  
+- [ ] **Code-Signing Pipeline**
   - Windows EXE unsigniert → SmartScreen-Warnung.  
   - **Fix:** GH Action mit `signtool` / EV-Zertifikat einrichten.  
   - **Tests:** Artifact-Hash-Check nach Signierung.

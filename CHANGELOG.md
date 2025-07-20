@@ -790,3 +790,10 @@ Alle Ãnderungen werden in diesem Dokument festgehalten.
 ### Geändert
 - Jest ignoriert `tests/e2e/` damit Playwright separat läuft.
 - README ergänzt Bugfix zur Galerie.
+
+## [1.8.44] - 2025-11-04
+### Behoben
+- CI schlug wegen unsortierter `import`-Blöcke fehl.
+  `isort .` korrigiert nun automatisch alle Dateien.
+### Geändert
+- README erwähnt den isort-Fix.

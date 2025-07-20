@@ -1,9 +1,10 @@
 """Tests für den Batch-Runner."""
 
+import importlib
 import sys
 import types
-import importlib
 from pathlib import Path
+
 
 # Rich-Stubs früh einsetzen
 class DummyProgress:
@@ -29,18 +30,21 @@ sys.modules['numpy'] = importlib.import_module('tests.numpy')
 sys.modules['onnxruntime'] = importlib.import_module('tests.onnxruntime')
 sys.modules['torch'] = importlib.import_module('tests.torch')
 import tests.requests_stub as requests_stub
+
 sys.modules['requests'] = requests_stub
 import tests.huggingface_hub as hf_stub
+
 sys.modules['huggingface_hub'] = hf_stub
 import tests.loguru as loguru_stub
+
 sys.modules['loguru'] = loguru_stub
 sys.modules['tqdm'] = importlib.import_module('tests.tqdm')
 sys.modules['segment_anything'] = importlib.import_module('tests.segment_anything')
 
 from PIL import Image
 
-from core.project_manager import Project
 import core.batch_runner as batch_runner
+from core.project_manager import Project
 
 
 def test_run_batch_updates_status(monkeypatch, tmp_path: Path) -> None:

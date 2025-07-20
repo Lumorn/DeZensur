@@ -3,10 +3,10 @@ from __future__ import annotations
 """Verwaltet Projekte im neuen Schema v2."""
 
 import datetime
-from typing import Any
 import json
 import shutil
 from pathlib import Path
+from typing import Any
 
 SCHEMA_VERSION = 2
 

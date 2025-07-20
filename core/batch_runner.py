@@ -2,23 +2,26 @@ from __future__ import annotations
 
 """Batch-Verarbeitung kompletter Projekte."""
 
-from pathlib import Path
-from concurrent.futures import ThreadPoolExecutor, as_completed
-from rich.progress import Progress, BarColumn, TimeRemainingColumn
-from contextlib import nullcontext
-import sys
-from typing import cast
-from core.project_manager import Project
-from core.censor_detector import detect_censor
-from core.segmenter import generate_mask, save_mask_png
-from core.inpainter import inpaint
-from core.dep_manager import is_gpu_available
-from core.logger_setup import init_logging
-from core.report import summarize_batch
-import os
-import time
-import datetime
 import argparse
+import datetime
+import os
+import sys
+import time
+from concurrent.futures import ThreadPoolExecutor, as_completed
+from contextlib import nullcontext
+from pathlib import Path
+from typing import cast
+
+from rich.progress import BarColumn, Progress, TimeRemainingColumn
+
+from core.censor_detector import detect_censor
+from core.dep_manager import is_gpu_available
+from core.inpainter import inpaint
+from core.logger_setup import init_logging
+from core.project_manager import Project
+from core.report import summarize_batch
+from core.segmenter import generate_mask, save_mask_png
+
 
 def boxes_to_prompts(boxes: list[dict]) -> list[dict]:
     """Wandelt Box-Ergebnisse in Prompt-Dictionaries um."""

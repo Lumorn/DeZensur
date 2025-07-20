@@ -1,5 +1,6 @@
 from types import SimpleNamespace
 
+
 class Image(SimpleNamespace):
     def __init__(self, size=(10,10)):
         super().__init__(size=size)

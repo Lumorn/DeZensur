@@ -8,9 +8,9 @@ import json
 from pathlib import Path
 from typing import Any, Iterable, Tuple, cast
 
-from PIL import Image
 import numpy as np
 import onnxruntime
+from PIL import Image
 
 from . import dep_manager
 from .logger_setup import get_logger

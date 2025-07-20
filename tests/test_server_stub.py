@@ -1,15 +1,17 @@
 """Tests für den Server-Stub."""
 
+import importlib
+import os
 import subprocess
 import sys
-import time
-import os
-from pathlib import Path
 import sys as _sys
-from tests import requests_stub, flask
-import importlib
+import time
 import types
+from pathlib import Path
+
 import tests.huggingface_hub as hf_stub
+from tests import flask, requests_stub
+
 sys.modules['huggingface_hub'] = hf_stub
 sys.modules['tqdm'] = __import__('tests.tqdm', fromlist=[''])
 sys.modules['numpy'] = importlib.import_module('tests.numpy')

@@ -12,16 +12,11 @@ from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 from typing import Any, cast
 
-import yaml
-
 import requests
 import torch
-from huggingface_hub import (
-    hf_hub_download,
-    hf_hub_url,
-    list_repo_files,
-    snapshot_download,
-)
+import yaml
+from huggingface_hub import (hf_hub_download, hf_hub_url, list_repo_files,
+                             snapshot_download)
 from tqdm import tqdm
 
 logger = logging.getLogger(__name__)

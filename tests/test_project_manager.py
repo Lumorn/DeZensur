@@ -1,7 +1,8 @@
 """Tests für den Projektmanager."""
 
-from pathlib import Path
 import tempfile
+from pathlib import Path
+
 from core.project_manager import Project
 
 
