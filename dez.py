@@ -3,7 +3,7 @@ import json
 from pathlib import Path
 
 from core.censor_detector import detect_censor
-from core.inpainter import inpaint, SUPPORTED_MODELS
+from core.inpainter import SUPPORTED_MODELS, inpaint
 
 
 def _cmd_detect(args: argparse.Namespace) -> None:

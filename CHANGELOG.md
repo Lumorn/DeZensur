@@ -773,3 +773,39 @@ Alle Ãnderungen werden in diesem Dokument festgehalten.
 - Preload importierte versehentlich `electron-trpc/main`, wodurch das `electronTRPC`-Objekt im Renderer fehlte.
 ### Geändert
 - README erläutert den korrigierten Import in der Bug-Liste.
+
+## [1.8.42] - 2025-11-02
+### Behoben
+- Jest brach mit "Cannot use import statement outside a module" ab.
+  Neue Dateien `gui/babel.config.cjs` und `gui/jest.config.cjs` stellen die Transformation sicher.
+### Geändert
+- README führt die Babel- und Jest-Konfiguration als behobenen Fehler auf.
+
+## [1.8.43] - 2025-11-03
+### Behoben
+- `galleryStore.addImages` legte doppelte Bilder an.
+  Pfade werden nun innerhalb eines Aufrufs dedupliziert.
+- Fehlende Playwright-Abhängigkeit führte zu Modulfehlern.
+  `@playwright/test` ist jetzt in den Dev-Dependencies.
+### Geändert
+- Jest ignoriert `tests/e2e/` damit Playwright separat läuft.
+- README ergänzt Bugfix zur Galerie.
+
+## [1.8.44] - 2025-11-04
+### Behoben
+- CI schlug wegen unsortierter `import`-Blöcke fehl.
+  `isort .` korrigiert nun automatisch alle Dateien.
+### Geändert
+- README erwähnt den isort-Fix.
+
+## [1.8.45] - 2025-11-05
+### Behoben
+- Pytest meldete `ModuleNotFoundError: yaml`.
+  Das Paket `PyYAML` ist nun in `requirements.txt` enthalten.
+### Geändert
+- README führt PyYAML als neue Abhängigkeit auf.
+
+## [1.8.46] - 2025-11-06
+### Geändert
+- Repository erneut mit `isort .` formatiert; es waren keine Anpassungen nötig.
+  Alle Tests laufen jetzt lokal durch.

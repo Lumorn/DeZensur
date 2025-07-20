@@ -260,8 +260,9 @@ DeZensur/
 
 1. **Fork → Branch → PR** (Conventional Commits)
 2. Lint: `black`, `isort`, `flake8`, `ruff`, `mypy`
-3. Jeder PR braucht Tests (`pytest`)
-4. CI‑Pipeline muss grün sein
+3. Führe bei Importfehlern einfach `isort .` aus
+4. Jeder PR braucht Tests (`pytest`)
+5. CI‑Pipeline muss grün sein
 
 ---
 
@@ -426,7 +427,22 @@ _Nur Punkte, die **noch offen** sind – als kopier- & abhakbare Markdown-Checkb
   - **Fix:** Flag nur für CI erlauben; Warnung im Terminal.
   - **Tests:** `tests/test_start.py::test_should_skip_npm_install_*`.
 
-- [ ] **Code-Signing Pipeline**  
+- [x] **Jest unterstützt ESModule-Imports**
+  - Beim CI-Lauf erschienen "Cannot use import statement outside a module".
+  - **Fix:** `gui/babel.config.cjs` und `gui/jest.config.cjs` konfigurieren Babel-Jest.
+  - **Tests:** `npm test` läuft nun ohne Syntaxfehler.
+- [x] **GalleryStore filtert doppelte Pfade**
+  - `addImages()` legte bei mehrfachen Pfaden auch Duplikate an.
+  - **Fix:** In `useGalleryStore.ts` werden Pfade vorab dedupliziert.
+  - **Tests:** `galleryStore.test.ts` prüft die einzigartige Anzahl korrekt.
+- [x] **Imports sind konsistent sortiert**
+  - CI schlug wegen falsch angeordneter `import`-Blöcke fehl.
+  - **Fix:** `isort .` stellt eine einheitliche Reihenfolge sicher.
+- [x] **PyYAML als Testabhängigkeit**
+  - Pytest konnte `yaml` nicht finden.
+  - **Fix:** Paket `PyYAML` zu den Abhängigkeiten hinzugefügt.
+
+- [ ] **Code-Signing Pipeline**
   - Windows EXE unsigniert → SmartScreen-Warnung.  
   - **Fix:** GH Action mit `signtool` / EV-Zertifikat einrichten.  
   - **Tests:** Artifact-Hash-Check nach Signierung.

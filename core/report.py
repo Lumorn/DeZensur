@@ -1,6 +1,6 @@
+import datetime
 import json
 import statistics
-import datetime
 from pathlib import Path
 from typing import Any
 

@@ -3,10 +3,11 @@
 from __future__ import annotations
 
 import json
-from flask import Flask, request, jsonify
-from pathlib import Path
 import threading
 import time
+from pathlib import Path
+
+from flask import Flask, jsonify, request
 
 app = Flask(__name__)
 

@@ -6,6 +6,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 sys.modules['PIL'] = importlib.import_module('tests.PIL')
 
 import asyncio
+
 from PIL import Image
 
 from core.render_engine import TileRenderer

@@ -14,7 +14,6 @@ from segment_anything import SamPredictor, sam_model_registry
 from .dep_manager import ensure_model, is_gpu_available
 from .logger_setup import get_logger
 
-
 LOGGER = get_logger(__name__)
 
 

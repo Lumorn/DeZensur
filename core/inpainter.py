@@ -7,12 +7,11 @@ import logging
 from pathlib import Path
 
 import numpy as np
+import torch
 from PIL import Image, ImageFilter
 
 from .dep_manager import ensure_model, is_gpu_available
 from .prompt_helper import build_prompt
-
-import torch
 
 SUPPORTED_MODELS = {
     "lama": "iopaint_lama",
@@ -75,8 +74,9 @@ def inpaint(
         model_path = ensure_model(SUPPORTED_MODELS[model_key])
         dtype = torch.float16 if device == "cuda" else torch.float32
         if model_key == "sd_controlnet":
-            from diffusers import StableDiffusionControlNetPipeline, ControlNetModel
             from controlnet_aux import CannyDetector
+            from diffusers import (ControlNetModel,
+                                   StableDiffusionControlNetPipeline)
 
             cnet_path = ensure_model("controlnet_canny")
             controlnet = ControlNetModel.from_pretrained(cnet_path, torch_dtype=dtype)

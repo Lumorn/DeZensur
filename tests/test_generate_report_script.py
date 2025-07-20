@@ -1,9 +1,9 @@
 """Testet das Skript generate_report.py."""
 
 import json
+import os
 import subprocess
 import sys
-import os
 from pathlib import Path
 
 from core.logger_setup import init_logging

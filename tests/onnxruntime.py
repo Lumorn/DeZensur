@@ -1,5 +1,6 @@
 from types import SimpleNamespace
 
+
 class InferenceSession:
     def __init__(self, *args, **kwargs):
         pass

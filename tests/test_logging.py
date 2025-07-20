@@ -5,6 +5,7 @@ import sys
 from pathlib import Path
 
 import tests.loguru as loguru_stub
+
 sys.modules['loguru'] = loguru_stub
 
 from core.logger_setup import init_logging

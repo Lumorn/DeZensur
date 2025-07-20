@@ -9,6 +9,9 @@ jest.mock('react-konva', () => {
   return { Stage: Fake, Layer: Fake, Line: Fake, Image: Fake };
 });
 
+// Konva benötigt node-canvas, das im Test nicht verfügbar ist
+jest.mock('konva', () => ({ hitCanvas: { pixelRatio: 1 } }));
+
 jest.mock('use-image', () => () => [null]);
 
 // Testet, ob sich die Pinselgröße ändert

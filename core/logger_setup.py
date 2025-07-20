@@ -1,6 +1,7 @@
-from loguru import logger
-from pathlib import Path
 import sys
+from pathlib import Path
+
+from loguru import logger
 
 # Standardformat für Konsolen-Ausgaben
 DEFAULT_FORMAT = "{time:YYYY-MM-DD HH:mm:ss.SSS} | {level: <8} | {message}"

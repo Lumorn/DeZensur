@@ -5,7 +5,7 @@ from __future__ import annotations
 import asyncio
 import json
 from pathlib import Path
-from typing import Iterable, Tuple, Set
+from typing import Iterable, Set, Tuple
 
 from PIL import Image
 

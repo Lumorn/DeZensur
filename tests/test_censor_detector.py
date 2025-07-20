@@ -1,26 +1,31 @@
 """Tests für den Censor-Detector."""
-from pathlib import Path
+import importlib
+import json
 import os
 import subprocess
 import sys
-import json
-import importlib
+from pathlib import Path
 
 sys.modules['PIL'] = importlib.import_module('tests.PIL')
 from PIL import Image
+
 sys.modules['numpy'] = importlib.import_module('tests.numpy')
 
 import tests.requests_stub as requests_stub
+
 sys.modules['requests'] = requests_stub
 import tests.huggingface_hub as hf_stub
+
 sys.modules['huggingface_hub'] = hf_stub
 sys.modules['tqdm'] = __import__('tests.tqdm', fromlist=[''])
 import tests.loguru as loguru_stub
+
 sys.modules['loguru'] = loguru_stub
 
 sys.modules['onnxruntime'] = __import__('onnxruntime') if 'onnxruntime' in sys.modules else sys.modules.get('onnxruntime')
 # ensure stubs for offline
 import tests.onnxruntime as onnxruntime_stub
+
 sys.modules['onnxruntime'] = onnxruntime_stub
 sys.modules['torch'] = __import__('tests.torch', fromlist=[''])
 
