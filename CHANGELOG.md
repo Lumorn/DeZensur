@@ -833,3 +833,8 @@ Alle Ãnderungen werden in diesem Dokument festgehalten.
 ### Behoben
 - Importreihenfolge in `core/dep_manager.py` und `core/inpainter.py` nochmals
   angepasst, sodass `isort` ohne Beanstandungen durchläuft.
+
+## [1.8.52] - 2025-11-12
+### Behoben
+- Importreihenfolge erneut angepasst in `core/dep_manager.py` und `core/inpainter.py` mittels `isort`.
+
