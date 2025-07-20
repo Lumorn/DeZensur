@@ -825,3 +825,6 @@ Alle Ãnderungen werden in diesem Dokument festgehalten.
 ### Behoben
 - Importreihenfolge in `core/dep_manager.py` und `core/inpainter.py` korrigiert.
 
+## [1.8.50] - 2025-11-10
+### Behoben
+- Imports erneut mit `isort` geprüft, um CI-Fehler zu verhindern.

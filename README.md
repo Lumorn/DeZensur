@@ -260,7 +260,7 @@ DeZensur/
 
 1. **Fork → Branch → PR** (Conventional Commits)
 2. Lint: `black`, `isort`, `flake8`, `ruff`, `mypy`
-3. Führe bei Importfehlern einfach `isort .` aus
+3. Führe bei Importfehlern `isort .` aus; einzelne Dateien korrigierst du mit `isort core/dep_manager.py core/inpainter.py`
 4. Jeder PR braucht Tests (`pytest`)
 5. CI‑Pipeline muss grün sein
 
