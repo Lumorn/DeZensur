@@ -77,7 +77,8 @@ def inpaint(
         dtype = torch.float16 if device == "cuda" else torch.float32
         if model_key == "sd_controlnet":
             from controlnet_aux import CannyDetector
-            from diffusers import ControlNetModel, StableDiffusionControlNetPipeline
+            from diffusers import (ControlNetModel,
+                                   StableDiffusionControlNetPipeline)
 
             cnet_path = ensure_model("controlnet_canny")
             controlnet = ControlNetModel.from_pretrained(cnet_path, torch_dtype=dtype)

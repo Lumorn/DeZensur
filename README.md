@@ -442,6 +442,10 @@ _Nur Punkte, die **noch offen** sind – als kopier- & abhakbare Markdown-Checkb
 - [x] **PyYAML als Testabhängigkeit**
   - Pytest konnte `yaml` nicht finden.
   - **Fix:** Paket `PyYAML` zu den Abhängigkeiten hinzugefügt.
+- [x] **Importreihenfolge in zwei Modulen gefixt**
+  - `core/dep_manager.py` und `core/inpainter.py` mussten erneut sortiert werden.
+  - **Fix:** `isort core/dep_manager.py core/inpainter.py` ausführen.
+
 
 - [ ] **Code-Signing Pipeline**
   - Windows EXE unsigniert → SmartScreen-Warnung.  
